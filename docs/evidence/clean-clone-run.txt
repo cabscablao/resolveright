@@ -1,0 +1,7 @@
+﻿Clean-clone check, 2026-11-03 01:50: fresh folder 05_Release\resolveright (named resolveright-final at the time of the run), no .env, no .venv
+$ uv sync --frozen
+(dependency list shortened)
+    return json.dumps(val.to_dict())
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+370 passed, 14 warnings in 391.54s (0:06:31)

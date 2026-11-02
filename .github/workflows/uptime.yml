@@ -1,0 +1,16 @@
+name: uptime
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check /health
+        env:
+          URL: ${{ vars.RESOLVERIGHT_URL }}
+        run: |
+          if [ -z "$URL" ]; then echo "Set the repository variable RESOLVERIGHT_URL"; exit 1; fi
+          curl --fail --silent --show-error --max-time 60 "$URL/health" | tee /dev/stderr | grep -q '"status":"ok"'

@@ -1,0 +1,792 @@
+[
+  {
+    "order_id": "ORD-1001",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-HP1",
+        "name": "Wireless headphones",
+        "category": "electronics",
+        "price": 2950.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-15",
+    "status": "delivered",
+    "shipped_date": "2026-10-18",
+    "estimated_delivery_date": "2026-10-22",
+    "delivered_date": "2026-10-23",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Customer changed their mind.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1002",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-JK1",
+        "name": "Rain jacket",
+        "category": "apparel",
+        "price": 4000.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-09-10",
+    "status": "delivered",
+    "shipped_date": "2026-09-13",
+    "estimated_delivery_date": "2026-09-17",
+    "delivered_date": "2026-09-18",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1003",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-SH1",
+        "name": "Running shoes",
+        "category": "apparel",
+        "price": 2500.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-09-26",
+    "status": "delivered",
+    "shipped_date": "2026-09-29",
+    "estimated_delivery_date": "2026-10-03",
+    "delivered_date": "2026-10-04",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1004",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-BP1",
+        "name": "Backpack",
+        "category": "apparel",
+        "price": 2000.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-09-24",
+    "status": "delivered",
+    "shipped_date": "2026-09-27",
+    "estimated_delivery_date": "2026-10-01",
+    "delivered_date": "2026-10-02",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1005",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-SW1",
+        "name": "Clearance sweater",
+        "category": "apparel",
+        "price": 1350.0,
+        "final_sale": true,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-20",
+    "status": "delivered",
+    "shipped_date": "2026-10-23",
+    "estimated_delivery_date": "2026-10-27",
+    "delivered_date": "2026-10-28",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1006",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-LP1",
+        "name": "Clearance desk lamp",
+        "category": "home",
+        "price": 1500.0,
+        "final_sale": true,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-20",
+    "status": "delivered",
+    "shipped_date": "2026-10-23",
+    "estimated_delivery_date": "2026-10-27",
+    "delivered_date": "2026-10-28",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1007",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-DW1",
+        "name": "Ceramic dinnerware set",
+        "category": "home",
+        "price": 3150.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-22",
+    "status": "delivered",
+    "shipped_date": "2026-10-25",
+    "estimated_delivery_date": "2026-10-29",
+    "delivered_date": "2026-10-30",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1008",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-VS1",
+        "name": "Glass vase",
+        "category": "home",
+        "price": 2350.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-13",
+    "status": "delivered",
+    "shipped_date": "2026-10-16",
+    "estimated_delivery_date": "2026-10-20",
+    "delivered_date": "2026-10-21",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Customer reports the vase arrived broken, 12 days after delivery.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1009",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-LT1",
+        "name": "Laptop 14 inch",
+        "category": "electronics",
+        "price": 30000.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-17",
+    "status": "delivered",
+    "shipped_date": "2026-10-20",
+    "estimated_delivery_date": "2026-10-24",
+    "delivered_date": "2026-10-25",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1010",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-TB1",
+        "name": "Tablet stand",
+        "category": "electronics",
+        "price": 2150.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-16",
+    "status": "in_transit",
+    "shipped_date": "2026-10-18",
+    "estimated_delivery_date": "2026-10-24",
+    "delivered_date": null,
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1011",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-KT1",
+        "name": "Electric kettle",
+        "category": "home",
+        "price": 1950.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-25",
+    "status": "in_transit",
+    "shipped_date": "2026-10-27",
+    "estimated_delivery_date": "2026-11-01",
+    "delivered_date": null,
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1012",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-CS1",
+        "name": "Phone case",
+        "category": "electronics",
+        "price": 1150.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-22",
+    "status": "in_transit",
+    "shipped_date": "2026-10-24",
+    "estimated_delivery_date": "2026-10-29",
+    "delivered_date": null,
+    "shipping_paid": 250.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1013",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-BK1",
+        "name": "Yoga mat",
+        "category": "home",
+        "price": 1400.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-11-01",
+    "status": "processing",
+    "shipped_date": null,
+    "estimated_delivery_date": "2026-11-08",
+    "delivered_date": null,
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1014",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-BL1",
+        "name": "Bluetooth speaker mini",
+        "category": "electronics",
+        "price": 1850.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-30",
+    "status": "shipped",
+    "shipped_date": "2026-11-01",
+    "estimated_delivery_date": "2026-11-07",
+    "delivered_date": null,
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1015",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-TW1",
+        "name": "Bath towel set",
+        "category": "home",
+        "price": 1600.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-11-01",
+    "status": "processing",
+    "shipped_date": null,
+    "estimated_delivery_date": "2026-11-08",
+    "delivered_date": null,
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Customer wants to change the delivery address.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1016",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-SC1",
+        "name": "Scarf (blue ordered)",
+        "category": "apparel",
+        "price": 1850.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-05",
+    "status": "delivered",
+    "shipped_date": "2026-10-08",
+    "estimated_delivery_date": "2026-10-12",
+    "delivered_date": "2026-10-13",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Customer received a red scarf instead of blue.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1017",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-SP1",
+        "name": "Portable speaker",
+        "category": "electronics",
+        "price": 4350.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-04-08",
+    "status": "delivered",
+    "shipped_date": "2026-04-11",
+    "estimated_delivery_date": "2026-04-15",
+    "delivered_date": "2026-04-16",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1018",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-AD1",
+        "name": "USB-C adapter",
+        "category": "electronics",
+        "price": 2000.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2025-09-20",
+    "status": "delivered",
+    "shipped_date": "2025-09-23",
+    "estimated_delivery_date": "2025-09-27",
+    "delivered_date": "2025-09-28",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1019",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-GC1",
+        "name": "Brightcart gift card",
+        "category": "gift_card",
+        "price": 1650.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-10",
+    "status": "delivered",
+    "shipped_date": "2026-10-13",
+    "estimated_delivery_date": "2026-10-17",
+    "delivered_date": "2026-10-18",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1020",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-CT1",
+        "name": "Wool coat",
+        "category": "apparel",
+        "price": 6650.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false,
+        "current_price": 5350.0
+      }
+    ],
+    "order_date": "2026-10-21",
+    "status": "delivered",
+    "shipped_date": "2026-10-23",
+    "estimated_delivery_date": "2026-10-27",
+    "delivered_date": "2026-10-28",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Our price dropped to \u20b15,350 after purchase.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1021",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-CH1",
+        "name": "Ergonomic chair",
+        "category": "home",
+        "price": 10650.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-20",
+    "status": "delivered",
+    "shipped_date": "2026-10-23",
+    "estimated_delivery_date": "2026-10-27",
+    "delivered_date": "2026-10-28",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1022",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-HB1",
+        "name": "Hair brush set",
+        "category": "home",
+        "price": 1350.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-15",
+    "status": "delivered",
+    "shipped_date": "2026-10-18",
+    "estimated_delivery_date": "2026-10-22",
+    "delivered_date": "2026-10-23",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1023",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-PB1",
+        "name": "Power bank",
+        "category": "electronics",
+        "price": 1150.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-19",
+    "status": "delivered",
+    "shipped_date": "2026-10-22",
+    "estimated_delivery_date": "2026-10-26",
+    "delivered_date": "2026-10-27",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Customer reports the power bank overheats while charging.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1024",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-JK2",
+        "name": "Fleece jacket",
+        "category": "apparel",
+        "price": 3000.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-15",
+    "status": "delivered",
+    "shipped_date": "2026-10-18",
+    "estimated_delivery_date": "2026-10-22",
+    "delivered_date": "2026-10-23",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 1000.0,
+    "refund_date": "2026-10-25",
+    "notes": "\u20b11,000 already refunded as a goodwill gesture.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1025",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-BT1",
+        "name": "Leather boots",
+        "category": "apparel",
+        "price": 2850.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-13",
+    "status": "delivered",
+    "shipped_date": "2026-10-16",
+    "estimated_delivery_date": "2026-10-20",
+    "delivered_date": "2026-10-21",
+    "shipping_paid": 0.0,
+    "shipping_region": "Bulacan",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1026",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-PL1",
+        "name": "Pillow set",
+        "category": "home",
+        "price": 1650.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-28",
+    "status": "cancelled",
+    "shipped_date": null,
+    "estimated_delivery_date": null,
+    "delivered_date": null,
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 1650.0,
+    "refund_date": "2026-10-30",
+    "notes": "Cancelled 3 days ago. Refund issued 3 days ago.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1027",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-SU1",
+        "name": "Protein supplement",
+        "category": "consumable",
+        "price": 950.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": true
+      }
+    ],
+    "order_date": "2026-09-30",
+    "status": "delivered",
+    "shipped_date": "2026-10-03",
+    "estimated_delivery_date": "2026-10-07",
+    "delivered_date": "2026-10-08",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1028",
+    "customer_id": "C-001",
+    "items": [
+      {
+        "sku": "SKU-MG1",
+        "name": "Personalised mug",
+        "category": "home",
+        "price": 750.0,
+        "final_sale": false,
+        "personalised": true,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-21",
+    "status": "delivered",
+    "shipped_date": "2026-10-24",
+    "estimated_delivery_date": "2026-10-28",
+    "delivered_date": "2026-10-29",
+    "shipping_paid": 200.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "Name on mug is misspelled. Unclear whether the customer or we made the error.",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1029",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-LM1",
+        "name": "Table lamp",
+        "category": "home",
+        "price": 1350.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      },
+      {
+        "sku": "SKU-FR1",
+        "name": "Photo frame",
+        "category": "home",
+        "price": 1850.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-18",
+    "status": "delivered",
+    "shipped_date": "2026-10-21",
+    "estimated_delivery_date": "2026-10-25",
+    "delivered_date": "2026-10-26",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": false
+  },
+  {
+    "order_id": "ORD-1030",
+    "customer_id": "C-002",
+    "items": [
+      {
+        "sku": "SKU-HD1",
+        "name": "Hoodie",
+        "category": "apparel",
+        "price": 3650.0,
+        "final_sale": false,
+        "personalised": false,
+        "opened": false
+      }
+    ],
+    "order_date": "2026-10-11",
+    "status": "delivered",
+    "shipped_date": "2026-10-14",
+    "estimated_delivery_date": "2026-10-18",
+    "delivered_date": "2026-10-19",
+    "shipping_paid": 0.0,
+    "shipping_region": "Metro Manila",
+    "refunded_amount": 0.0,
+    "refund_date": null,
+    "notes": "",
+    "chargeback_open": true
+  }
+]

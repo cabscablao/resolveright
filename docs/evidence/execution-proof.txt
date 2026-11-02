@@ -1,0 +1,30 @@
+Execution is a mock (D50): the agent writes one ledger line and a runtime copy of the order, and never edits data/.
+
+Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, no real LLM calls).
+
+
+Tests that prove the action boundary:
+  PASSED test_a_bare_human_request_assumes_no_order_item_or_reason
+  PASSED test_a_draft_with_an_invented_fee_is_repaired_once_with_feedback
+  PASSED test_a_human_request_that_names_an_order_keeps_only_that_order
+  PASSED test_a_policy_escalation_is_not_executed
+  PASSED test_a_request_for_a_human_is_escalated_and_never_executed
+  PASSED test_agent_executes_then_a_repeat_is_answered_without_a_second_refund
+  PASSED test_amount_above_what_the_rules_allow_is_refused
+  PASSED test_an_executed_answer_is_never_stored_in_the_semantic_cache[Do you accept returns?]
+  PASSED test_another_money_action_for_a_settled_request_is_also_a_repeat
+  PASSED test_escalation_cases_and_other_customers_orders_are_not_executed
+  PASSED test_executes_an_approved_refund_and_updates_the_order
+  PASSED test_execution_failure_becomes_a_system_fallback_escalation
+  PASSED test_handoff_has_no_personal_contact_data_and_the_log_has_no_name
+  PASSED test_policy_gap_and_system_fallback_are_labelled
+  PASSED test_staff_authority_lifts_the_agent_limit_but_not_ownership_or_the_cap
+  PASSED test_the_human_request_does_not_wait_for_the_model_to_flag_it
+  PASSED test_the_peso_sign_is_sent_to_the_model_as_a_character_not_an_escape
+  PASSED test_the_same_resolution_cannot_run_twice
+  PASSED test_update_address_is_not_an_executable_action
+  PASSED test_tools_never_change_data
+
+data/ is unchanged by running the app (git status of data/ after the whole test run and a server session):
+  git status --porcelain -- data  ->  (empty: no change)
+  git log --oneline -n 3 -- data  ->  4b4f0c5 Two customers, follow-ups on a held case, and no refund history across restarts (D57-D60) | 9637deb Localize to the Philippines: pesos, Metro Manila return fee (D52) | ad0f482 Human decision only for escalations (D47); address-change fraud rule in POL-10 v1.1

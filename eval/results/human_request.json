@@ -1,0 +1,74 @@
+{
+  "passed": 9,
+  "total": 9,
+  "phrasings": [
+    {
+      "id": "H-P01",
+      "message": "I want to talk to human staff",
+      "expected": true,
+      "got": true,
+      "ok": true
+    },
+    {
+      "id": "H-P02",
+      "message": "Can I speak to a real person please",
+      "expected": true,
+      "got": true,
+      "ok": true
+    },
+    {
+      "id": "H-P03",
+      "message": "connect me to an agent",
+      "expected": true,
+      "got": true,
+      "ok": true
+    },
+    {
+      "id": "H-P04",
+      "message": "I need a human",
+      "expected": true,
+      "got": true,
+      "ok": true
+    },
+    {
+      "id": "H-P05",
+      "message": "Let me talk to a manager about my refund",
+      "expected": true,
+      "got": true,
+      "ok": true
+    },
+    {
+      "id": "H-P06",
+      "message": "the human-sized mannequin is too big",
+      "expected": false,
+      "got": false,
+      "ok": true
+    },
+    {
+      "id": "H-P07",
+      "message": "I want to return the shirt from ORD-1001",
+      "expected": false,
+      "got": false,
+      "ok": true
+    },
+    {
+      "id": "H-P08",
+      "message": "Where is my order?",
+      "expected": false,
+      "got": false,
+      "ok": true
+    }
+  ],
+  "handoff": {
+    "id": "H-T01",
+    "ok": true,
+    "checks": {
+      "escalated": true,
+      "reason_human_requested": true,
+      "no_question_back": true,
+      "no_order": true,
+      "no_item": true,
+      "no_guessed_reason": true
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "environment": {
+    "date": "2026-10-26T14:11:23+00:00",
+    "python": "3.12.11",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "versions": {
+      "ragas": "0.4.3",
+      "langchain": "0.3.30",
+      "langgraph": "0.6.11",
+      "qdrant-client": "1.15.1",
+      "openai": "1.109.1",
+      "langfuse": "5.0.4"
+    },
+    "llm_model": "gpt-5-nano",
+    "embedding_model": "text-embedding-3-small",
+    "prompt_version": "v1_baseline",
+    "chunk_strategy": "baseline",
+    "top_k": 4,
+    "as_of_date": "2026-11-02",
+    "temperature": "provider default for gpt-5* (no temperature sent); 0 for other models",
+    "seed": "none (the OpenAI API has no seed we rely on); results can vary a little per run"
+  },
+  "generator_model": "gpt-4o-mini",
+  "requested": 15,
+  "generated": 16,
+  "graph_nodes": 77,
+  "graph_relationships": 98,
+  "by_synthesizer": {
+    "single_hop_specific_query_synthesizer": 8,
+    "multi_hop_abstract_query_synthesizer": 4,
+    "multi_hop_specific_query_synthesizer": 4
+  },
+  "context_in_policy": 16,
+  "no_source_doc_found": 0,
+  "near_duplicates_of_golden": 0,
+  "retrieval_hit_rate": 0.875,
+  "cost_usd": 0.0201
+}

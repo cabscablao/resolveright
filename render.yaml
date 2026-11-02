@@ -1,0 +1,36 @@
+# Render Blueprint. Create it from the dashboard: New > Blueprint > pick the GitHub repo.
+# Secret values are entered in the Render dashboard (sync: false), never committed.
+services:
+  - type: web
+    name: resolveright
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: LANGFUSE_PUBLIC_KEY
+        sync: false
+      - key: LANGFUSE_SECRET_KEY
+        sync: false
+      - key: LANGFUSE_HOST
+        value: https://us.cloud.langfuse.com
+      - key: LLM_MODEL
+        value: gpt-5-nano
+      - key: PROMPT_VERSION
+        value: v5_executing
+      - key: EMBEDDING_PROVIDER
+        value: openai
+      - key: AS_OF_DATE
+        value: "2026-11-02"
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "10"
+      - key: DAILY_REQUEST_BUDGET
+        value: "300"
+      - key: MAX_MESSAGE_CHARS
+        value: "1500"
+      # Guardrails AI is on by default in the code, but its models need more than the 512 MB of
+      # the free plan. The built-in rule layers still run. Remove this line on a bigger plan.
+      - key: GUARDRAILS_AI_ENABLED
+        value: "false"

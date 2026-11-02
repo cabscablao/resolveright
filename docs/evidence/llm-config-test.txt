@@ -1,0 +1,15 @@
+LLM configuration check (GET /health). Model, prompt version, vector store and cache state come from config, not from code.
+Captured 2026-11-03 00:34 on a local server.
+
+{
+  "status": "ok",
+  "version": "0.1.0",
+  "model": "gpt-5-nano",
+  "prompt_version": "v5_executing",
+  "vector_store": "ok",
+  "cache": {
+    "llm_exact": "on",
+    "semantic": "on"
+  },
+  "tracing": "off"
+}

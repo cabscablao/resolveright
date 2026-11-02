@@ -1,0 +1,16 @@
+[
+  {
+    "customer_id": "C-001",
+    "first_name": "Nora",
+    "email": "nora.c-001@example.test",
+    "country": "PH",
+    "refunds_last_90_days": 0
+  },
+  {
+    "customer_id": "C-002",
+    "first_name": "Milo",
+    "email": "milo.c-002@example.test",
+    "country": "PH",
+    "refunds_last_90_days": 0
+  }
+]

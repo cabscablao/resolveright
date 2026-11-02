@@ -1,0 +1,1035 @@
+{
+  "label": "section_hybrid",
+  "environment": {
+    "date": "2026-10-26T07:29:32+00:00",
+    "python": "3.12.11",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "versions": {
+      "ragas": "0.4.3",
+      "langchain": "0.3.30",
+      "langgraph": "0.6.11",
+      "qdrant-client": "1.15.1",
+      "openai": "1.109.1",
+      "langfuse": "5.0.4"
+    },
+    "llm_model": "gpt-5-nano",
+    "embedding_model": "text-embedding-3-small",
+    "prompt_version": "v1_baseline",
+    "chunk_strategy": "section",
+    "top_k": 4,
+    "as_of_date": "2026-11-02",
+    "temperature": "provider default for gpt-5* (no temperature sent); 0 for other models",
+    "seed": "none (the OpenAI API has no seed we rely on); results can vary a little per run",
+    "retriever": "hybrid"
+  },
+  "metrics": {
+    "faithfulness": 1.0,
+    "answer_relevancy": 0.828,
+    "context_precision": 0.7875,
+    "context_recall": 0.95,
+    "correctly_declined": "3/5",
+    "wrongly_declined": "0/20",
+    "retrieval_hit_rate": 0.85,
+    "invalid_citations": 1,
+    "mean_latency_s": 1.5264
+  },
+  "cost": {
+    "agent_model": "gpt-5-nano",
+    "agent_usage": {
+      "calls": 25,
+      "prompt_tokens": 14195,
+      "completion_tokens": 1735
+    },
+    "agent_cost_usd": 0.0014,
+    "judge_model": "gpt-4o-mini",
+    "judge_calls": 160,
+    "judge_cost_usd": 0.031
+  },
+  "items": [
+    {
+      "id": "G01",
+      "question": "How many days after delivery can a customer return an item?",
+      "reference_answer": "Within 30 days of the delivery date. The window is counted from the day the carrier marks the order as delivered. Day 30 is still inside the window; day 31 is outside it.",
+      "reference_policy_ids": [
+        "POL-01"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Customers may return an eligible item within 30 days of the delivery date.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-02#s6",
+        "POL-07#s0",
+        "POL-01#s1",
+        "POL-07#s4"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-07"
+      ],
+      "contexts": [
+        "POL-02 Refunds and Store Credit / Refund timing\n\nAfter approval, refunds are issued to the original payment method. Customers should expect them 5 to 7 business days after the returned item is received, or 5 to 7 business days after approval when no return is required.",
+        "POL-07 Cancellations and Order Changes / Purpose\n\nThis policy explains when a customer can cancel an order or change its delivery address.",
+        "POL-01 Returns Policy / Return window\n\nCustomers may return an eligible item within **30 days of the delivery date**. The window is counted from the day the carrier marks the order as delivered, not from the order date or the ship date. Day 30 is still inside the window; day 31 is outside it. Brightcart support agents may not extend the window. A request outside the window is declined politely, and the agent may mention that damaged or defective items are handled under different rules.",
+        "POL-07 Cancellations and Order Changes / Orders that have already shipped\n\nAfter shipment, **cancellation is refused**. The agent explains that the package has already left our warehouse and offers the alternative: the customer can **return the item after delivery** under the normal return rules in POL-01. The customer should not refuse delivery or ask the carrier to return the parcel, because this causes delays and extra fees."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 3.48,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5771,
+        "context_precision": 0.3333,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G02",
+      "question": "Who pays for return shipping when the customer changes their mind, and how much is deducted?",
+      "reference_answer": "The customer pays. Brightcart deducts a flat $6.95 return-shipping fee from the refund instead of asking the customer to prepay a label.",
+      "reference_policy_ids": [
+        "POL-01"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "For change-of-mind returns, the customer pays return shipping. Brightcart deducts a flat $6.95 return-shipping fee from the refund.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#s3"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-01#s3",
+        "POL-01#s4",
+        "POL-04#s3",
+        "POL-02#s3"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-04"
+      ],
+      "contexts": [
+        "POL-01 Returns Policy / Who pays for return shipping\n\nFor change-of-mind returns, the customer pays return shipping. Instead of asking the customer to prepay a label, Brightcart deducts a flat **$6.95** return-shipping fee from the refund. Brightcart pays for return shipping only when the return is caused by our error, such as a wrong item or a damaged item (see POL-04).",
+        "POL-01 Returns Policy / International orders\n\nFor orders shipped outside the United States, the customer pays return shipping directly to the carrier. The original shipping charge and any import duties or taxes collected at delivery are **non-refundable**. The $6.95 flat fee does not apply to international returns, because the customer already bears the actual cost of shipping.",
+        "POL-04 Damaged, Defective and Wrong Items / Remedies\n\nThe customer may choose a **replacement or a refund**. If Brightcart is at fault, the refund includes the original shipping fee. Brightcart pays for the return, and the customer receives a **free return label** for wrong items and for damaged or defective items that need to be sent back. The $6.95 return-shipping deduction from POL-01 never applies to these cases.",
+        "POL-02 Refunds and Store Credit / Shipping fees\n\nOriginal shipping fees are refunded **only when the problem is our error**: damaged, defective or wrong items, lost packages, or a late delivery as described in POL-05. For ordinary change-of-mind returns the original shipping fee is not refunded."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.34,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6476,
+        "context_precision": 0.75,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G03",
+      "question": "How long does a refund take after the returned item is received?",
+      "reference_answer": "The refund goes to the original payment method 5 to 7 business days after Brightcart receives the returned item and confirms its condition.",
+      "reference_policy_ids": [
+        "POL-01"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Refunds are issued 5 to 7 business days after Brightcart receives the returned item (to the original payment method).",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#s5"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-02#s6",
+        "POL-01#s6",
+        "POL-01#s5",
+        "POL-06#s2"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-06"
+      ],
+      "contexts": [
+        "POL-02 Refunds and Store Credit / Refund timing\n\nAfter approval, refunds are issued to the original payment method. Customers should expect them 5 to 7 business days after the returned item is received, or 5 to 7 business days after approval when no return is required.",
+        "POL-01 Returns Policy / Multi-item orders\n\nWhen an order contains several items, only the returned item is refunded. The refund equals the price of that item minus the $6.95 fee. The other items stay with the customer and are not affected.",
+        "POL-01 Returns Policy / Refund timing and method\n\nRefunds go back to the **original payment method**. The refund is issued **5 to 7 business days after Brightcart receives the returned item** and confirms its condition. Customers who ask where their refund is should be told this timeline. Store credit is available as an alternative (see POL-02).",
+        "POL-06 Lost Packages / Remedy\n\nWhen a package is lost, the customer is offered a **replacement or a refund**, at the customer's choice. The refund includes the original shipping fee because the problem is our error (POL-02). No return of the item is needed. If the replacement item is out of stock, the refund or store credit is offered instead."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.45,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6679,
+        "context_precision": 0.8333,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G04",
+      "question": "Can a customer choose store credit instead of a refund, and is there a bonus?",
+      "reference_answer": "Yes. Store credit is an alternative to a refund to the original payment method and carries a 10% bonus, so a $50.00 refund becomes $55.00 in credit. It does not expire and cannot be converted back to cash. Agents offer it as an option but never push it.",
+      "reference_policy_ids": [
+        "POL-02"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Yes. A customer may choose store credit instead of a refund, and store credit carries a 10% bonus.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-02#s2"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-02#s2",
+        "POL-06#s2",
+        "POL-02#s5",
+        "POL-02#s4"
+      ],
+      "retrieved_docs": [
+        "POL-02",
+        "POL-06"
+      ],
+      "contexts": [
+        "POL-02 Refunds and Store Credit / Store credit alternative\n\nA customer may choose **store credit** instead of a refund to the original payment method. Store credit carries a **10% bonus**: a $50.00 refund becomes $55.00 in credit. Store credit does not expire, is applied to the customer's Brightcart account, and cannot be converted back to cash once issued. Agents should offer store credit as an option but never push it.",
+        "POL-06 Lost Packages / Remedy\n\nWhen a package is lost, the customer is offered a **replacement or a refund**, at the customer's choice. The refund includes the original shipping fee because the problem is our error (POL-02). No return of the item is needed. If the replacement item is out of stock, the refund or store credit is offered instead.",
+        "POL-02 Refunds and Store Credit / Combined amounts\n\nThe $150 limit applies to the total value of the resolution for the case, not to each item separately. A $100 refund plus a $60 shipping credit is $160 in total and needs manager approval.",
+        "POL-02 Refunds and Store Credit / Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **$150** per case. Anything **above $150 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.12,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9542,
+        "context_precision": 0.9167,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G05",
+      "question": "What is the largest refund an agent can approve without a manager?",
+      "reference_answer": "$150 per case. Anything above $150 needs manager approval, and the agent escalates with a summary instead of approving. The limit applies to the total value of the resolution for the case.",
+      "reference_policy_ids": [
+        "POL-02",
+        "POL-10"
+      ],
+      "type": "multi_document",
+      "reviewed_by_human": false,
+      "answer": "Agents may approve refunds up to $150 per case without a manager. Anything above $150 needs manager approval.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#s8",
+        "POL-02#s4"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-07#s5",
+        "POL-01#s8",
+        "POL-02#s0",
+        "POL-02#s4"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-07"
+      ],
+      "contexts": [
+        "POL-07 Cancellations and Order Changes / Orders already cancelled\n\nIf an order was cancelled and the refund has been issued, the customer is told the date of the refund and the 5 to 7 business day timeline. If more than 7 business days have passed without the money arriving, the agent escalates.",
+        "POL-01 Returns Policy / Approval limits\n\nAgents may approve refunds up to $150. Refunds above that amount need manager approval (see POL-02 and POL-10).",
+        "POL-02 Refunds and Store Credit / Purpose\n\nThis policy describes the forms a resolution can take at Brightcart and who is allowed to approve them.",
+        "POL-02 Refunds and Store Credit / Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **$150** per case. Anything **above $150 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case."
+      ],
+      "hit": false,
+      "invalid_citations": [],
+      "latency_s": 2.1,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8476,
+        "context_precision": 0.5,
+        "context_recall": 0.6667
+      }
+    },
+    {
+      "id": "G06",
+      "question": "When are shipping fees refunded?",
+      "reference_answer": "Original shipping fees are refunded only when the problem is Brightcart's error: damaged, defective or wrong items, lost packages, or a delivery more than 2 days late. They are not refunded for ordinary change-of-mind returns.",
+      "reference_policy_ids": [
+        "POL-02",
+        "POL-05"
+      ],
+      "type": "multi_document",
+      "reviewed_by_human": false,
+      "answer": "Shipping fees are refunded only when the problem is Brightcart's error (damaged, defective or wrong items, lost packages, or a late delivery as described in POL-05). For ordinary change-of-mind returns, the original shipping fee is not refunded.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-02#s3",
+        "POL-01#s3",
+        "POL-05#s0"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-02#s3",
+        "POL-05#s2",
+        "POL-01#s3",
+        "POL-05#s0"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-05"
+      ],
+      "contexts": [
+        "POL-02 Refunds and Store Credit / Shipping fees\n\nOriginal shipping fees are refunded **only when the problem is our error**: damaged, defective or wrong items, lost packages, or a late delivery as described in POL-05. For ordinary change-of-mind returns the original shipping fee is not refunded.",
+        "POL-05 Shipping and Delivery / Shipping fees\n\nStandard shipping is **free for orders over $50**. For orders of $50 or less, a flat standard shipping fee applies. Express shipping always has a fee. International orders pay shipping according to the destination, and customs duties are the customer's responsibility.",
+        "POL-01 Returns Policy / Who pays for return shipping\n\nFor change-of-mind returns, the customer pays return shipping. Instead of asking the customer to prepay a label, Brightcart deducts a flat **$6.95** return-shipping fee from the refund. Brightcart pays for return shipping only when the return is caused by our error, such as a wrong item or a damaged item (see POL-04).",
+        "POL-05 Shipping and Delivery / Purpose\n\nThis policy describes Brightcart shipping options, fees and what to do when a delivery is late."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.57,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9322,
+        "context_precision": 0.8333,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G07",
+      "question": "Which item types are non-returnable?",
+      "reference_answer": "For change-of-mind returns: clearance items (final sale), personalised items, gift cards, opened consumables such as food and supplements, and hygiene items once the hygiene seal has been removed. Sealed consumables follow the normal return rules.",
+      "reference_policy_ids": [
+        "POL-03"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Non-returnable item types include final-sale and non-returnable categories such as Clearance items, Personalised items, Gift cards, Opened consumables, and Hygiene items (with the note that unopened consumables still sealed follow normal return rules).",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-03#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-01#s6",
+        "POL-03#s1",
+        "POL-02#s6",
+        "POL-03#s0"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-03"
+      ],
+      "contexts": [
+        "POL-01 Returns Policy / Multi-item orders\n\nWhen an order contains several items, only the returned item is refunded. The refund equals the price of that item minus the $6.95 fee. The other items stay with the customer and are not affected.",
+        "POL-03 Final-Sale and Non-Returnable Items / Non-returnable categories\n\nThe following items are **non-returnable** for change-of-mind requests:\n\n- **Clearance items.** Products sold in the Clearance section are final sale. The product page and the order confirmation state this.\n- **Personalised items.** Products made to order with a name, text or custom design, such as engraved or printed goods.\n- **Gift cards.** Physical or digital gift cards (see also POL-09).\n- **Opened consumables.** Food, supplements and similar consumable products once the seal has been opened.\n- **Hygiene items.** Items such as personal-care devices, underwear and swimwear once the hygiene seal has been removed.\n\nUnopened consumables that are still sealed follow the normal return rules in POL-01.",
+        "POL-02 Refunds and Store Credit / Refund timing\n\nAfter approval, refunds are issued to the original payment method. Customers should expect them 5 to 7 business days after the returned item is received, or 5 to 7 business days after approval when no return is required.",
+        "POL-03 Final-Sale and Non-Returnable Items / Purpose\n\nSome Brightcart products cannot be returned for a change of mind. This policy lists them and explains the exceptions."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.45,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9116,
+        "context_precision": 0.5,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G08",
+      "question": "Can a final-sale item be returned if it arrives defective?",
+      "reference_answer": "Yes. The final-sale restriction does not apply to defective, damaged or wrong items. Those claims are handled under the damaged, defective and wrong items policy even if the product was clearance or personalised, for example a clearance lamp that arrives broken is eligible for replacement or refund.",
+      "reference_policy_ids": [
+        "POL-03",
+        "POL-04"
+      ],
+      "type": "multi_document",
+      "reviewed_by_human": false,
+      "answer": "Yes. If the item is defective or the wrong item was sent, the restriction does not apply and the claim is handled under POL-04, with replacement or refund eligibility.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-03#s2"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-03#s2",
+        "POL-03#s3",
+        "POL-03#s4",
+        "POL-06#s4"
+      ],
+      "retrieved_docs": [
+        "POL-03",
+        "POL-06"
+      ],
+      "contexts": [
+        "POL-03 Final-Sale and Non-Returnable Items / Exceptions\n\nThe restriction does not apply when the item is **defective, damaged, or the wrong item was sent**. In those cases the claim is handled under POL-04 even if the product was clearance or personalised. A clearance lamp that arrives broken, for example, is eligible for replacement or refund. Warranty claims under POL-08 also remain available.",
+        "POL-03 Final-Sale and Non-Returnable Items / Personalised items and errors\n\nIf a personalised item has an error, the agent must first establish **who made the error**. When Brightcart made the mistake, for example by printing a different name from the one on the order, it is treated as a wrong item. When the customer supplied the wrong spelling, the item is final sale. If it is unclear who made the error, the agent asks the customer for the original text they entered, and escalates if it still cannot be determined.",
+        "POL-03 Final-Sale and Non-Returnable Items / What agents say to customers\n\nWhen a request is declined because an item is final sale, the agent should explain the rule in plain words, mention the exceptions, and ask whether the item arrived damaged or defective. The agent must not make exceptions to this policy on their own authority.",
+        "POL-06 Lost Packages / If the package turns up later\n\nIf the original package arrives after a replacement has been sent, the customer is asked to refuse or return it using a free label. Agents do not chase this case further."
+      ],
+      "hit": false,
+      "invalid_citations": [],
+      "latency_s": 1.39,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5674,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G09",
+      "question": "How soon after delivery must damage be reported?",
+      "reference_answer": "Within 7 days of the delivery date. A damage claim reported later than that cannot be approved by a support agent and must be escalated to a human reviewer.",
+      "reference_policy_ids": [
+        "POL-04"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Damage must be reported within 7 days of the delivery date.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-04#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-04#s5",
+        "POL-04#s1",
+        "POL-01#s2",
+        "POL-04#s2"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-04"
+      ],
+      "contexts": [
+        "POL-04 Damaged, Defective and Wrong Items / Late claims\n\nA damage claim reported **more than 7 days after delivery** cannot be approved by a support agent. The agent must escalate it to a human reviewer with a short case summary and must not promise any outcome to the customer. The same applies to defect claims after 30 days unless POL-08 warranty terms apply.",
+        "POL-04 Damaged, Defective and Wrong Items / Reporting deadlines\n\n- **Damaged items** must be reported within **7 days of the delivery date**.\n- **Defective items** (the item does not work as intended) must be reported within **30 days of the delivery date**. Longer-term defects may be covered by the warranty in POL-08.\n- **Wrong items** (a different product, size or colour from the order) should be reported within 30 days of delivery.",
+        "POL-01 Returns Policy / Condition of returned items\n\nItems must be unused and returned in their original packaging, with all accessories and tags. Items that show signs of wear, use or missing parts may be refused or refunded only in part, after review by the agent.",
+        "POL-04 Damaged, Defective and Wrong Items / Evidence\n\nFor damage, the customer must provide **photos** of the item and of the packaging. The agent asks for photos before approving anything. For defects, a short description of the fault is enough. For wrong items, a photo of the item received is helpful but not required."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.33,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8659,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G10",
+      "question": "What evidence is required for a damaged-item claim?",
+      "reference_answer": "Photos of the item and of the packaging. The agent asks for the photos before approving anything.",
+      "reference_policy_ids": [
+        "POL-04"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "The policy requires photos of the item and of the packaging for a damaged item claim; photos are needed before approving anything.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-04#s2",
+        "POL-04#s4"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-04#s8",
+        "POL-08#s2",
+        "POL-04#s2",
+        "POL-06#s6"
+      ],
+      "retrieved_docs": [
+        "POL-04",
+        "POL-06",
+        "POL-08"
+      ],
+      "contexts": [
+        "POL-04 Damaged, Defective and Wrong Items / What to tell the customer\n\nThe reply should apologise, state what is needed next (photos, a choice of replacement or refund), and avoid promising approval before the checks are complete.",
+        "POL-08 Warranty / What is covered\n\nThe warranty covers failures caused by how the product was made. Examples are a speaker that stops working after months of normal use, or a seam that comes apart.",
+        "POL-04 Damaged, Defective and Wrong Items / Evidence\n\nFor damage, the customer must provide **photos** of the item and of the packaging. The agent asks for photos before approving anything. For defects, a short description of the fault is enough. For wrong items, a photo of the item received is helpful but not required.",
+        "POL-06 Lost Packages / What to tell the customer\n\nThe reply should apologise, confirm that the package is treated as lost under our policy, and ask whether the customer prefers a replacement or a refund. It should not guess at what the carrier did."
+      ],
+      "hit": true,
+      "invalid_citations": [
+        "POL-04#s4"
+      ],
+      "latency_s": 1.45,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8349,
+        "context_precision": 0.8333,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G11",
+      "question": "How long do standard and express shipping take?",
+      "reference_answer": "Standard shipping takes 5 to 7 business days from the ship date and express shipping takes 2 business days from the ship date. Business days are Monday to Friday excluding public holidays, and processing time before shipping is not counted.",
+      "reference_policy_ids": [
+        "POL-05"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Standard shipping takes 5 to 7 business days from the ship date. Express shipping takes 2 business days from the ship date.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-05#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-05#s2",
+        "POL-05#s1",
+        "POL-05#s0",
+        "POL-10#s6"
+      ],
+      "retrieved_docs": [
+        "POL-05",
+        "POL-10"
+      ],
+      "contexts": [
+        "POL-05 Shipping and Delivery / Shipping fees\n\nStandard shipping is **free for orders over $50**. For orders of $50 or less, a flat standard shipping fee applies. Express shipping always has a fee. International orders pay shipping according to the destination, and customs duties are the customer's responsibility.",
+        "POL-05 Shipping and Delivery / Shipping methods and times\n\n- **Standard shipping** takes **5 to 7 business days** from the ship date.\n- **Express shipping** takes **2 business days** from the ship date.\n\nBusiness days are Monday to Friday, excluding public holidays. Processing time before an order ships is not counted. The estimated delivery date shown to the customer is calculated when the order ships.",
+        "POL-05 Shipping and Delivery / Purpose\n\nThis policy describes Brightcart shipping options, fees and what to do when a delivery is late.",
+        "POL-10 Escalation and Authority Limits / No legal or medical advice\n\nAgents do not give legal or medical advice. If asked, they decline politely and escalate where appropriate."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.33,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9943,
+        "context_precision": 0.5,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G12",
+      "question": "What order value qualifies for free standard shipping?",
+      "reference_answer": "Standard shipping is free for orders over $50. Orders of $50 or less pay a flat standard shipping fee.",
+      "reference_policy_ids": [
+        "POL-05"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Standard shipping is free for orders over $50.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-05#s2"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-05#s2",
+        "POL-02#s5",
+        "POL-05#s1",
+        "POL-06#s4"
+      ],
+      "retrieved_docs": [
+        "POL-02",
+        "POL-05",
+        "POL-06"
+      ],
+      "contexts": [
+        "POL-05 Shipping and Delivery / Shipping fees\n\nStandard shipping is **free for orders over $50**. For orders of $50 or less, a flat standard shipping fee applies. Express shipping always has a fee. International orders pay shipping according to the destination, and customs duties are the customer's responsibility.",
+        "POL-02 Refunds and Store Credit / Combined amounts\n\nThe $150 limit applies to the total value of the resolution for the case, not to each item separately. A $100 refund plus a $60 shipping credit is $160 in total and needs manager approval.",
+        "POL-05 Shipping and Delivery / Shipping methods and times\n\n- **Standard shipping** takes **5 to 7 business days** from the ship date.\n- **Express shipping** takes **2 business days** from the ship date.\n\nBusiness days are Monday to Friday, excluding public holidays. Processing time before an order ships is not counted. The estimated delivery date shown to the customer is calculated when the order ships.",
+        "POL-06 Lost Packages / If the package turns up later\n\nIf the original package arrives after a replacement has been sent, the customer is asked to refuse or return it using a free label. Agents do not chase this case further."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.27,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6579,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G13",
+      "question": "When is a package treated as lost?",
+      "reference_answer": "When 7 or more days have passed after the estimated delivery date and the order still shows no delivery. If it was only 1 day ago the package is merely late.",
+      "reference_policy_ids": [
+        "POL-06",
+        "POL-05"
+      ],
+      "type": "multi_document",
+      "reviewed_by_human": false,
+      "answer": "A package is treated as lost when 7 or more days have passed after the estimated delivery date and the order still shows no delivery.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-06#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-06#s0",
+        "POL-06#s6",
+        "POL-06#s1",
+        "POL-06#s4"
+      ],
+      "retrieved_docs": [
+        "POL-06"
+      ],
+      "contexts": [
+        "POL-06 Lost Packages / Purpose\n\nThis policy defines when a package is treated as lost and what Brightcart offers the customer.",
+        "POL-06 Lost Packages / What to tell the customer\n\nThe reply should apologise, confirm that the package is treated as lost under our policy, and ask whether the customer prefers a replacement or a refund. It should not guess at what the carrier did.",
+        "POL-06 Lost Packages / Definition of lost\n\nA package is treated as **lost when 7 or more days have passed after the estimated delivery date** and the order still shows no delivery. The count starts on the estimated delivery date shown on the order. For example, if the estimated delivery date was 9 days ago and the package has not arrived, it is lost. If it was 1 day ago, the package is only late and POL-05 applies.",
+        "POL-06 Lost Packages / If the package turns up later\n\nIf the original package arrives after a replacement has been sent, the customer is asked to refuse or return it using a free label. Agents do not chase this case further."
+      ],
+      "hit": false,
+      "invalid_citations": [],
+      "latency_s": 1.53,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9553,
+        "context_precision": 0.8333,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G14",
+      "question": "What can a customer be offered for a lost package?",
+      "reference_answer": "A replacement or a refund, at the customer's choice. The refund includes the original shipping fee and no return of the item is needed. If the replacement is out of stock, a refund or store credit is offered instead.",
+      "reference_policy_ids": [
+        "POL-06"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "A customer can be offered a replacement or a refund for a lost package, with the refund including the original shipping fee.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-06#s2"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-06#s2",
+        "POL-06#s6",
+        "POL-09#s3",
+        "POL-06#s4"
+      ],
+      "retrieved_docs": [
+        "POL-06",
+        "POL-09"
+      ],
+      "contexts": [
+        "POL-06 Lost Packages / Remedy\n\nWhen a package is lost, the customer is offered a **replacement or a refund**, at the customer's choice. The refund includes the original shipping fee because the problem is our error (POL-02). No return of the item is needed. If the replacement item is out of stock, the refund or store credit is offered instead.",
+        "POL-06 Lost Packages / What to tell the customer\n\nThe reply should apologise, confirm that the package is treated as lost under our policy, and ask whether the customer prefers a replacement or a refund. It should not guess at what the carrier did.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Gift cards\n\nGift cards are **non-refundable** and **not redeemable for cash**. This applies to physical and digital cards, to cards bought by the customer, and to cards received as gifts. If a customer asks to return a gift card or to receive a refund for one, the agent declines politely. A gift card that is lost or stolen is escalated to a human, because the card number must be checked.",
+        "POL-06 Lost Packages / If the package turns up later\n\nIf the original package arrives after a replacement has been sent, the customer is asked to refuse or return it using a free label. Agents do not chase this case further."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.01,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8378,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G15",
+      "question": "Until when can an order be cancelled?",
+      "reference_answer": "Only before the order ships. An order with status processing can be cancelled; once it is shipped, in transit or delivered it can no longer be cancelled.",
+      "reference_policy_ids": [
+        "POL-07"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "An order can be cancelled before it ships; once it is shipped, in transit, or delivered, it cannot be cancelled or redirected.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-07#s1",
+        "POL-07#s2"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-07#s2",
+        "POL-07#s1",
+        "POL-07#s0",
+        "POL-07#s5"
+      ],
+      "retrieved_docs": [
+        "POL-07"
+      ],
+      "contexts": [
+        "POL-07 Cancellations and Order Changes / Cancelling an order that has not shipped\n\nIf the order is still processing, the agent can recommend cancellation. The full amount, including shipping, is refunded to the original payment method. Customers should expect the refund 5 to 7 business days after the cancellation is confirmed.",
+        "POL-07 Cancellations and Order Changes / The rule: before shipment only\n\nBrightcart allows a customer to **cancel an order or change its delivery address only before the order ships**. An order whose status is *processing* can be cancelled or changed. Once the status is *shipped*, *in transit* or *delivered*, the order can no longer be cancelled or redirected, because the package is already with the carrier.",
+        "POL-07 Cancellations and Order Changes / Purpose\n\nThis policy explains when a customer can cancel an order or change its delivery address.",
+        "POL-07 Cancellations and Order Changes / Orders already cancelled\n\nIf an order was cancelled and the refund has been issued, the customer is told the date of the refund and the 5 to 7 business day timeline. If more than 7 business days have passed without the money arriving, the agent escalates."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.36,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.7555,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G16",
+      "question": "Can the shipping address be changed after the order ships?",
+      "reference_answer": "No. The delivery address can be changed only before the order ships, while the status is processing. After shipment the package is already with the carrier and cannot be redirected.",
+      "reference_policy_ids": [
+        "POL-07"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "No. Brightcart allows changing the delivery address only before the order ships; once shipped (or in transit/delivered), the order cannot be cancelled or redirected. The policy also notes address changes are only possible before shipment.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-07#s1",
+        "POL-07#s2",
+        "POL-07#s3"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-07#s3",
+        "POL-07#s1",
+        "POL-09#s2",
+        "POL-07#s2"
+      ],
+      "retrieved_docs": [
+        "POL-07",
+        "POL-09"
+      ],
+      "contexts": [
+        "POL-07 Cancellations and Order Changes / Changing the address\n\nIf the order is still processing, the agent can recommend an address update. The customer must provide the complete new address. Support does not store it in free-text notes; it goes into the order system by the fulfilment team. In this tool the agent only records the recommendation.",
+        "POL-07 Cancellations and Order Changes / The rule: before shipment only\n\nBrightcart allows a customer to **cancel an order or change its delivery address only before the order ships**. An order whose status is *processing* can be cancelled or changed. Once the status is *shipped*, *in transit* or *delivered*, the order can no longer be cancelled or redirected, because the package is already with the carrier.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Promotional codes\n\nPromo codes **cannot be stacked**: only one code may be used per order. If a customer used a code and then wants to add another after the fact, the request is declined. A promo code cannot be applied to an order after it has been placed.",
+        "POL-07 Cancellations and Order Changes / Cancelling an order that has not shipped\n\nIf the order is still processing, the agent can recommend cancellation. The full amount, including shipping, is refunded to the original payment method. Customers should expect the refund 5 to 7 business days after the cancellation is confirmed."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.48,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9065,
+        "context_precision": 1.0,
+        "context_recall": 0.6667
+      }
+    },
+    {
+      "id": "G17",
+      "question": "How long is the electronics warranty and what does it exclude?",
+      "reference_answer": "Electronics have a 12-month warranty from the delivery date for manufacturing defects. It excludes accidental damage such as drops, spills and water damage, misuse, unauthorised repairs, normal wear and tear, and cosmetic changes from ordinary use.",
+      "reference_policy_ids": [
+        "POL-08"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "The electronics warranty is 12 months from the delivery date for manufacturing defects, and it excludes accidental damage (drops, spills, water damage), misuse, unauthorised repairs, and normal wear and tear.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-08#s1",
+        "POL-08#s3"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-10#s4",
+        "POL-08#s1",
+        "POL-07#s3",
+        "POL-08#s3"
+      ],
+      "retrieved_docs": [
+        "POL-07",
+        "POL-08",
+        "POL-10"
+      ],
+      "contexts": [
+        "POL-10 Escalation and Authority Limits / Telling the customer\n\nThe agent tells the customer that the case has been passed to a specialist, what happens next, and a realistic timeframe if one is available. The agent does not promise an outcome.",
+        "POL-08 Warranty / Warranty periods\n\n- **Electronics:** **12 months from the delivery date** for manufacturing defects.\n- **Apparel and home goods:** **90 days from the delivery date** for workmanship defects, such as failed stitching or a broken seam.\n\nThe period is counted from the delivery date shown on the order.",
+        "POL-07 Cancellations and Order Changes / Changing the address\n\nIf the order is still processing, the agent can recommend an address update. The customer must provide the complete new address. Support does not store it in free-text notes; it goes into the order system by the fulfilment team. In this tool the agent only records the recommendation.",
+        "POL-08 Warranty / What is not covered\n\nThe warranty **excludes accidental damage**, such as drops, spills, water damage, misuse, unauthorised repairs and normal wear and tear. Cosmetic changes from ordinary use are also excluded."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.38,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8504,
+        "context_precision": 0.5,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G18",
+      "question": "How long does a customer have to request a price adjustment?",
+      "reference_answer": "Within 14 days of purchase, and only when Brightcart itself lowered the price. The refund is the difference between the price paid and the new price, never more than the price paid.",
+      "reference_policy_ids": [
+        "POL-09"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "A customer may request a price adjustment within 14 days of purchase.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-09#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-09#s1",
+        "POL-09#s6",
+        "POL-02#s4",
+        "POL-09#s0"
+      ],
+      "retrieved_docs": [
+        "POL-02",
+        "POL-09"
+      ],
+      "contexts": [
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Price adjustments\n\nIf Brightcart itself lowers the price of an item, a customer who bought it within the last **14 days of purchase** may request a price adjustment. The agent refunds the difference between the price paid and the new price. For example, a coat bought for $200 whose price dropped to $160 earns a $40 adjustment. The refund goes to the original payment method.\n\nPrice adjustments apply only to **our own price drops**. They do not apply to prices at other retailers, to clearance markdowns on items that are already final sale (POL-03), or to purchases made more than 14 days earlier. The adjustment amount is never more than the price paid.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / What to tell the customer\n\nConfirm the price paid, the new price, the amount to be adjusted and the timeline of 5 to 7 business days.",
+        "POL-02 Refunds and Store Credit / Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **$150** per case. Anything **above $150 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Purpose\n\nThis policy covers promotional codes, requests for a price adjustment after a price drop, and gift cards."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.26,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9569,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G19",
+      "question": "Can promo codes be stacked?",
+      "reference_answer": "No. Only one promo code may be used per order, and a code cannot be applied to an order after it has been placed.",
+      "reference_policy_ids": [
+        "POL-09"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Yes. Promo codes cannot be stacked: only one code may be used per order.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-09#s2"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-09#s2",
+        "POL-04#s1",
+        "POL-09#s0",
+        "POL-01#s2"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-04",
+        "POL-09"
+      ],
+      "contexts": [
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Promotional codes\n\nPromo codes **cannot be stacked**: only one code may be used per order. If a customer used a code and then wants to add another after the fact, the request is declined. A promo code cannot be applied to an order after it has been placed.",
+        "POL-04 Damaged, Defective and Wrong Items / Reporting deadlines\n\n- **Damaged items** must be reported within **7 days of the delivery date**.\n- **Defective items** (the item does not work as intended) must be reported within **30 days of the delivery date**. Longer-term defects may be covered by the warranty in POL-08.\n- **Wrong items** (a different product, size or colour from the order) should be reported within 30 days of delivery.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Purpose\n\nThis policy covers promotional codes, requests for a price adjustment after a price drop, and gift cards.",
+        "POL-01 Returns Policy / Condition of returned items\n\nItems must be unused and returned in their original packaging, with all accessories and tags. Items that show signs of wear, use or missing parts may be refused or refunded only in part, after review by the agent."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.46,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.9554,
+        "context_precision": 0.8333,
+        "context_recall": 0.6667
+      }
+    },
+    {
+      "id": "G20",
+      "question": "Which situations must always be escalated to a human?",
+      "reference_answer": "Suspected fraud, legal threats, safety hazards (urgent), harassment or abusive behaviour, open chargebacks, three or more refunds in the last 90 days, a customer asking for a human, claims above $150, and late damage claims reported more than 7 days after delivery.",
+      "reference_policy_ids": [
+        "POL-10"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": false,
+      "answer": "Always escalate to a human in these situations: suspected fraud, legal threats, safety hazards, harassment or abusive behaviour toward staff, open chargebacks, three or more refunds in the last 90 days for the same customer, the customer asks for a human, claims above $150 needing manager approval, and late damage claims reported more than 7 days after delivery.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-10#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-09#s3",
+        "POL-10#s1",
+        "POL-04#s5",
+        "POL-10#s3"
+      ],
+      "retrieved_docs": [
+        "POL-04",
+        "POL-09",
+        "POL-10"
+      ],
+      "contexts": [
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Gift cards\n\nGift cards are **non-refundable** and **not redeemable for cash**. This applies to physical and digital cards, to cards bought by the customer, and to cards received as gifts. If a customer asks to return a gift card or to receive a refund for one, the agent declines politely. A gift card that is lost or stolen is escalated to a human, because the card number must be checked.",
+        "POL-10 Escalation and Authority Limits / Always escalate\n\nThe agent must **always escalate** to a human in these situations:\n\n1. **Suspected fraud**, such as a customer claiming a different identity or a pattern of repeated claims that looks abusive.\n2. **Legal threats**, including mentions of lawyers, lawsuits, regulators or consumer-protection complaints.\n3. **Safety hazards**, such as an overheating battery, smoke, fire, sparks or injury. These are **urgent**.\n4. **Harassment** or abusive behaviour toward staff.\n5. **Open chargebacks.** If the customer has disputed the charge with their bank, no refund is processed until it is resolved.\n6. **Three or more refunds in the last 90 days** for the same customer.\n7. **The customer asks for a human.** This request is always honoured.\n8. **Claims above $150**, which need manager approval (POL-02).\n9. **Late damage claims** reported more than 7 days after delivery (POL-04).",
+        "POL-04 Damaged, Defective and Wrong Items / Late claims\n\nA damage claim reported **more than 7 days after delivery** cannot be approved by a support agent. The agent must escalate it to a human reviewer with a short case summary and must not promise any outcome to the customer. The same applies to defect claims after 30 days unless POL-08 warranty terms apply.",
+        "POL-10 Escalation and Authority Limits / What an escalation contains\n\nAn escalation includes a short case summary, the order number, the reason code, the urgency level (normal or urgent), the policies that apply, and the facts found. Personal data is kept to the minimum needed."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.65,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.8829,
+        "context_precision": 0.5833,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G21",
+      "question": "Do you price-match competitors?",
+      "reference_answer": "Not covered in the policy documents. The agent should say so and escalate instead of guessing.",
+      "reference_policy_ids": [],
+      "type": "unanswerable",
+      "reviewed_by_human": false,
+      "answer": "The policy excerpts state that Brightcart does not cover competitor price matching and that agents should escalate rather than guessing in such cases. Therefore, the policy does not confirm price-matching with competitors.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-09#s5",
+        "POL-09#s1"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-10#s5",
+        "POL-09#s5",
+        "POL-10#s4",
+        "POL-09#s1"
+      ],
+      "retrieved_docs": [
+        "POL-09",
+        "POL-10"
+      ],
+      "contexts": [
+        "POL-10 Escalation and Authority Limits / Urgent cases\n\nSafety hazards are marked urgent. The agent advises the customer to stop using the product and keep it away from flammable materials, and does not offer any resolution before the human review.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Not covered here\n\nThese documents do not describe competitor price matching or loyalty points. If a customer asks about either, the agent says it is not covered in the policy documents and escalates, rather than guessing.",
+        "POL-10 Escalation and Authority Limits / Telling the customer\n\nThe agent tells the customer that the case has been passed to a specialist, what happens next, and a realistic timeframe if one is available. The agent does not promise an outcome.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Price adjustments\n\nIf Brightcart itself lowers the price of an item, a customer who bought it within the last **14 days of purchase** may request a price adjustment. The agent refunds the difference between the price paid and the new price. For example, a coat bought for $200 whose price dropped to $160 earns a $40 adjustment. The refund goes to the original payment method.\n\nPrice adjustments apply only to **our own price drops**. They do not apply to prices at other retailers, to clearance markdowns on items that are already final sale (POL-03), or to purchases made more than 14 days earlier. The adjustment amount is never more than the price paid."
+      ],
+      "hit": null,
+      "invalid_citations": [],
+      "latency_s": 1.78
+    },
+    {
+      "id": "G22",
+      "question": "Can I pick up my order in store?",
+      "reference_answer": "Not covered in the policy documents. The agent should say so and escalate instead of guessing.",
+      "reference_policy_ids": [],
+      "type": "unanswerable",
+      "reviewed_by_human": false,
+      "answer": "The policy excerpts provided do not mention in-store pickup options. They cover warranty/approval limits and store credit/refund options but do not address picking up orders in store.",
+      "answered": false,
+      "cited_chunk_ids": [],
+      "retrieved_chunk_ids": [
+        "POL-08#s7",
+        "POL-07#s3",
+        "POL-06#s5",
+        "POL-02#s2"
+      ],
+      "retrieved_docs": [
+        "POL-02",
+        "POL-06",
+        "POL-07",
+        "POL-08"
+      ],
+      "contexts": [
+        "POL-08 Warranty / Approval limits\n\nAgents may approve warranty replacements up to $150. Higher-value items go to manager approval (POL-02).",
+        "POL-07 Cancellations and Order Changes / Changing the address\n\nIf the order is still processing, the agent can recommend an address update. The customer must provide the complete new address. Support does not store it in free-text notes; it goes into the order system by the fulfilment team. In this tool the agent only records the recommendation.",
+        "POL-06 Lost Packages / Approval limits\n\nAgents may approve a replacement or refund up to $150. Above that, manager approval is needed (POL-02).",
+        "POL-02 Refunds and Store Credit / Store credit alternative\n\nA customer may choose **store credit** instead of a refund to the original payment method. Store credit carries a **10% bonus**: a $50.00 refund becomes $55.00 in credit. Store credit does not expire, is applied to the customer's Brightcart account, and cannot be converted back to cash once issued. Agents should offer store credit as an option but never push it."
+      ],
+      "hit": null,
+      "invalid_citations": [],
+      "latency_s": 1.37
+    },
+    {
+      "id": "G23",
+      "question": "How many loyalty points do I earn per dollar?",
+      "reference_answer": "Not covered in the policy documents. The agent should say so and escalate instead of guessing.",
+      "reference_policy_ids": [],
+      "type": "unanswerable",
+      "reviewed_by_human": false,
+      "answer": "The policy excerpts do not describe competitor price matching or loyalty points, and do not specify loyalty points earned per dollar. Therefore, this question is not covered in the policy documents.",
+      "answered": false,
+      "cited_chunk_ids": [
+        "POL-09#s5",
+        "POL-09#s2",
+        "POL-02#s5",
+        "POL-02#s4"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-09#s5",
+        "POL-09#s2",
+        "POL-02#s5",
+        "POL-02#s4"
+      ],
+      "retrieved_docs": [
+        "POL-02",
+        "POL-09"
+      ],
+      "contexts": [
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Not covered here\n\nThese documents do not describe competitor price matching or loyalty points. If a customer asks about either, the agent says it is not covered in the policy documents and escalates, rather than guessing.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Promotional codes\n\nPromo codes **cannot be stacked**: only one code may be used per order. If a customer used a code and then wants to add another after the fact, the request is declined. A promo code cannot be applied to an order after it has been placed.",
+        "POL-02 Refunds and Store Credit / Combined amounts\n\nThe $150 limit applies to the total value of the resolution for the case, not to each item separately. A $100 refund plus a $60 shipping credit is $160 in total and needs manager approval.",
+        "POL-02 Refunds and Store Credit / Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **$150** per case. Anything **above $150 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case."
+      ],
+      "hit": null,
+      "invalid_citations": [],
+      "latency_s": 1.57
+    },
+    {
+      "id": "G24",
+      "question": "Do you repair electronics after the warranty expires?",
+      "reference_answer": "Not covered in the policy documents. Repair services for out-of-warranty items are not described, so the agent must not promise any and should escalate.",
+      "reference_policy_ids": [],
+      "type": "unanswerable",
+      "reviewed_by_human": false,
+      "answer": "The policy states that repair services for out-of-warranty items are not covered and the agent must not promise any; it describes replacement or refund within the warranty but does not cover repairs after expiry.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-08#s5"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-08#s5",
+        "POL-08#s2",
+        "POL-08#s0",
+        "POL-08#s4"
+      ],
+      "retrieved_docs": [
+        "POL-08"
+      ],
+      "contexts": [
+        "POL-08 Warranty / Expired warranty\n\nIf the claim is outside the warranty period, for example a defect reported 13 months after delivery of an electronic item, the agent cannot approve a replacement or refund. The agent politely explains that the warranty has ended. Repair services for out-of-warranty items are not covered by these policy documents, so the agent must not promise any.",
+        "POL-08 Warranty / What is covered\n\nThe warranty covers failures caused by how the product was made. Examples are a speaker that stops working after months of normal use, or a seam that comes apart.",
+        "POL-08 Warranty / Purpose\n\nThis policy sets out Brightcart's warranty for products that fail after the normal return period.",
+        "POL-08 Warranty / Remedy\n\nFor a valid claim within the warranty period, the remedy is a **replacement**. If a replacement is not available, a refund or store credit may be offered. Warranty remedies do not carry the $6.95 return-shipping deduction, because the item has failed for a reason that is our responsibility."
+      ],
+      "hit": null,
+      "invalid_citations": [],
+      "latency_s": 1.37
+    },
+    {
+      "id": "G25",
+      "question": "Can I place a bulk order for my business?",
+      "reference_answer": "Not covered in the policy documents. The agent should say so and escalate instead of guessing.",
+      "reference_policy_ids": [],
+      "type": "unanswerable",
+      "reviewed_by_human": false,
+      "answer": "The policy excerpts provided do not mention placing bulk or business orders. They cover refunds, approval limits, and checks before approval but do not specify bulk ordering policies.",
+      "answered": false,
+      "cited_chunk_ids": [],
+      "retrieved_chunk_ids": [
+        "POL-02#s1",
+        "POL-09#s4",
+        "POL-06#s3",
+        "POL-02#s4"
+      ],
+      "retrieved_docs": [
+        "POL-02",
+        "POL-06",
+        "POL-09"
+      ],
+      "contexts": [
+        "POL-02 Refunds and Store Credit / Full and partial refunds\n\nBrightcart issues a **full refund** when the problem is our error, for example a damaged item, a defective item, a wrong item, or a package lost in transit. A **partial refund** applies when only part of an order is returned, when an item shows wear, or when a deduction such as the $6.95 return-shipping fee (POL-01) applies. Refunds are paid to the original payment method.",
+        "POL-09 Promotions, Price Adjustments and Gift Cards / Approval limits\n\nAgents may approve price adjustments up to $150. For larger amounts, manager approval is needed (POL-02).",
+        "POL-06 Lost Packages / Checks before approval\n\nBefore offering a remedy the agent confirms:\n\n1. The order belongs to the customer who is asking.\n2. The status is not delivered.\n3. The estimated delivery date is at least 7 days in the past.\n\nIf the order shows as delivered but the customer says it never arrived, the agent does not approve a remedy and instead escalates for investigation, because carrier proof of delivery has to be checked.",
+        "POL-02 Refunds and Store Credit / Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **$150** per case. Anything **above $150 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case."
+      ],
+      "hit": null,
+      "invalid_citations": [],
+      "latency_s": 1.66
+    }
+  ]
+}

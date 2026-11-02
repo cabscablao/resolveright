@@ -1,0 +1,62 @@
+{
+  "passed": 7,
+  "total": 7,
+  "rows": [
+    {
+      "id": "F01",
+      "message": "Any update on my return?",
+      "expected": "status_check",
+      "got": "status_check",
+      "ok": true,
+      "source": "5.6 row 1"
+    },
+    {
+      "id": "F02",
+      "message": "The chair arrived with a cracked leg",
+      "expected": "added_info",
+      "got": "added_info",
+      "ok": true,
+      "source": "5.6 row 2"
+    },
+    {
+      "id": "F03",
+      "message": "Just refund me now!",
+      "expected": "repeat",
+      "got": "repeat",
+      "ok": true,
+      "source": "5.6 row 3"
+    },
+    {
+      "id": "F04",
+      "message": "What's your shipping policy?",
+      "expected": "unrelated",
+      "got": "unrelated",
+      "ok": true,
+      "source": "6.5 row 1"
+    },
+    {
+      "id": "F05",
+      "message": "I want to return the mouse from ORD-1002",
+      "expected": "unrelated",
+      "got": "unrelated",
+      "ok": true,
+      "source": "6.5 row 2"
+    },
+    {
+      "id": "F06",
+      "message": "How long does it take?",
+      "expected": "ambiguous",
+      "got": "ambiguous",
+      "ok": true,
+      "source": "6.5 row 3"
+    },
+    {
+      "id": "F07",
+      "message": "Do you refund expensive items?",
+      "expected": "unrelated",
+      "got": "unrelated",
+      "ok": true,
+      "source": "6.5 row 4"
+    }
+  ]
+}

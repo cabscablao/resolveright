@@ -1,0 +1,346 @@
+{
+  "judge_model": "gpt-4o-mini",
+  "drafts_model": "gpt-5-nano",
+  "prompt_version": "v2_grounded",
+  "n": 34,
+  "means": {
+    "policy_accuracy": 4.59,
+    "tone_empathy": 4.74,
+    "completeness": 4.24,
+    "no_over_promising": 4.65
+  },
+  "distribution": {
+    "policy_accuracy": {
+      "1": 1,
+      "3": 3,
+      "4": 4,
+      "5": 26
+    },
+    "tone_empathy": {
+      "3": 1,
+      "4": 7,
+      "5": 26
+    },
+    "completeness": {
+      "2": 1,
+      "3": 3,
+      "4": 17,
+      "5": 13
+    },
+    "no_over_promising": {
+      "2": 1,
+      "3": 4,
+      "4": 1,
+      "5": 28
+    }
+  },
+  "rows": [
+    {
+      "id": "S01",
+      "recommendation": "refund",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "S02",
+      "recommendation": "refund",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "S03",
+      "recommendation": "deny",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "S04",
+      "recommendation": "deny",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "S05",
+      "recommendation": "deny",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "S06",
+      "recommendation": "replacement",
+      "policy_accuracy": 3,
+      "tone_empathy": 4,
+      "completeness": 3,
+      "no_over_promising": 2,
+      "comment": "Promises replacement shipment and tracking without confirming necessary checks."
+    },
+    {
+      "id": "S07",
+      "recommendation": "replacement",
+      "policy_accuracy": 4,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 3,
+      "comment": "Missing clarity on approval process and potential delays."
+    },
+    {
+      "id": "S08",
+      "recommendation": "escalate",
+      "policy_accuracy": 3,
+      "tone_empathy": 5,
+      "completeness": 3,
+      "no_over_promising": 5,
+      "comment": "Missing details about the escalation process."
+    },
+    {
+      "id": "S09",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing specific next steps or timeframe for follow-up."
+    },
+    {
+      "id": "S10",
+      "recommendation": "replacement",
+      "policy_accuracy": 4,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 3,
+      "comment": "The draft over-promises by stating a replacement will be arranged immediately."
+    },
+    {
+      "id": "S11",
+      "recommendation": "inform",
+      "policy_accuracy": 4,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 3,
+      "comment": "The draft over-promises updates and lacks specific tracking information."
+    },
+    {
+      "id": "S12",
+      "recommendation": "cancel_order",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "S13",
+      "recommendation": "deny",
+      "policy_accuracy": 5,
+      "tone_empathy": 4,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing specific return policy details and timelines."
+    },
+    {
+      "id": "S14",
+      "recommendation": "replacement",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 4,
+      "comment": "Missing request for photos and slightly over-promises on updates."
+    },
+    {
+      "id": "S15",
+      "recommendation": "deny",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing clear explanation that no other options apply due to warranty expiration."
+    },
+    {
+      "id": "S16",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing specific next steps or timeframe for follow-up."
+    },
+    {
+      "id": "S17",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing specific next steps or timeframe for the customer."
+    },
+    {
+      "id": "S18",
+      "recommendation": "need_info",
+      "policy_accuracy": 4,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 3,
+      "comment": "Missing clarity on the non-returnable nature of personalised items."
+    },
+    {
+      "id": "S19",
+      "recommendation": "need_info",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing a clear next step or timeframe for response."
+    },
+    {
+      "id": "S20",
+      "recommendation": "need_info",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing guidance on what to do if the order number is correct."
+    },
+    {
+      "id": "S21",
+      "recommendation": "escalate",
+      "policy_accuracy": 1,
+      "tone_empathy": 3,
+      "completeness": 2,
+      "no_over_promising": 5,
+      "comment": "Incomplete information and no explanation of return policy."
+    },
+    {
+      "id": "S22",
+      "recommendation": "escalate",
+      "policy_accuracy": 3,
+      "tone_empathy": 4,
+      "completeness": 3,
+      "no_over_promising": 5,
+      "comment": "Missing explanation of return policy and potential non-returnable status."
+    },
+    {
+      "id": "S23",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 4,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Lacks a bit of warmth and detail about the escalation process."
+    },
+    {
+      "id": "S24",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Missing specific next steps or timeframe for follow-up."
+    },
+    {
+      "id": "P01",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P02",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P03",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P04",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P05",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P06",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P07",
+      "recommendation": "inform",
+      "policy_accuracy": 5,
+      "tone_empathy": 5,
+      "completeness": 5,
+      "no_over_promising": 5,
+      "comment": "none"
+    },
+    {
+      "id": "P08",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 4,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Lacks a bit of warmth in tone."
+    },
+    {
+      "id": "P09",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 4,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Lacks a bit of warmth in tone."
+    },
+    {
+      "id": "P10",
+      "recommendation": "escalate",
+      "policy_accuracy": 5,
+      "tone_empathy": 4,
+      "completeness": 4,
+      "no_over_promising": 5,
+      "comment": "Lacks a bit of warmth in tone."
+    }
+  ],
+  "cost_usd": 0.008
+}

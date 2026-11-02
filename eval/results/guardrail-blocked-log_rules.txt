@@ -1,0 +1,1 @@
+{"ts": "2026-10-29T14:27:50.336861+00:00", "level": "INFO", "event": "guardrail_triggered", "layer": "input", "rule": "prompt_injection", "action": "block", "score": 1.0, "source": "rules", "request_id": "a66a163f53e4"}

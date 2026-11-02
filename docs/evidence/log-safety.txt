@@ -1,0 +1,18 @@
+Log safety (OPS): logs carry request ids, rule names and lengths, never customer text or personal data.
+
+Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, no real LLM calls).
+
+
+  PASSED tests/test_agent.py::test_edit_replaces_reply_and_logs_only_its_length
+  PASSED tests/test_agent.py::test_engine_escalation_overrides_llm_and_logs
+  PASSED tests/test_agent.py::test_every_log_line_of_a_request_shares_one_request_id
+  PASSED tests/test_cache.py::test_masked_pii_or_a_follow_up_is_never_cacheable
+  PASSED tests/test_cache.py::test_no_customer_text_in_the_semantic_cache_logs
+  PASSED tests/test_cache.py::test_pii_message_is_never_stored
+  PASSED tests/test_guardrails.py::test_blocked_attack_makes_no_llm_call_and_is_logged
+  PASSED tests/test_guardrails.py::test_logs_never_contain_the_raw_pii
+  PASSED tests/test_guardrails.py::test_pii_in_the_draft_is_masked
+  PASSED tests/test_resolution.py::test_handoff_has_no_personal_contact_data_and_the_log_has_no_name
+  PASSED tests/test_smoke.py::test_log_line_is_json_and_drops_unknown_fields
+
+Live check (2026-11-03): docs/evidence/log-sample.jsonl holds the 48 JSON log lines of a real local session (a refund, a blocked attack, an unknown order and an escalation). A search for the customer's first name, order ids, e-mail characters and item names in those lines found nothing.

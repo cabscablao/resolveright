@@ -1,0 +1,3 @@
+﻿Langfuse API check (keys not shown), observations endpoint v2: HTTP 200
+recent observations: 100 in 11 traces
+kinds: [('CHAIN', 'LangGraph'), ('CHAIN', 'RunnableCallable'), ('CHAIN', 'after_understand'), ('CHAIN', 'decide'), ('CHAIN', 'draft'), ('CHAIN', 'execute'), ('CHAIN', 'gather'), ('CHAIN', 'review'), ('CHAIN', 'understand'), ('EMBEDDING', 'OpenAI-embedding'), ('GENERATION', 'OpenAI-generation')]

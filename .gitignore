@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.cache/
+qdrant_db/
+.diskcache/
+*.sqlite3
+logs/
+eval/results/raw/
+Capstone_Project_*.zip
+eval/results/sdg_knowledge_graph.json

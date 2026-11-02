@@ -1,0 +1,48 @@
+{"ts": "2026-11-02T17:35:06.671901+00:00", "level": "INFO", "event": "cases_reset"}
+{"ts": "2026-11-02T17:35:06.675819+00:00", "level": "INFO", "event": "order_state_reset"}
+{"ts": "2026-11-02T17:35:07.822964+00:00", "level": "INFO", "event": "ingest_done", "status": "{'docs_embedded': 0, 'docs_skipped': 10, 'chunks_total': 10}"}
+{"ts": "2026-11-02T17:35:26.265800+00:00", "level": "INFO", "event": "guardrails_ai_status", "status": "{'jailbreak': 'ready', 'profanity': 'ready', 'topic': 'ready'}"}
+{"ts": "2026-11-02T17:36:20.103248+00:00", "level": "INFO", "event": "message_routed", "status": "normal", "case_id": null}
+{"ts": "2026-11-02T17:36:21.019578+00:00", "level": "INFO", "event": "llm_cache", "cache_hit": true, "cache_tier": "exact", "stage": "Understanding", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.019578+00:00", "level": "INFO", "event": "understood", "intent": "return", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.020602+00:00", "level": "INFO", "event": "stage_done", "stage": "understand", "latency_ms": 9, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.025330+00:00", "level": "INFO", "event": "tool_call", "tool": "lookup_order", "status": "ok", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.030480+00:00", "level": "INFO", "event": "tool_call", "tool": "check_eligibility", "status": "ok", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.040930+00:00", "level": "INFO", "event": "tool_call", "tool": "search_policy", "status": "ok", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.042953+00:00", "level": "INFO", "event": "stage_done", "stage": "gather", "latency_ms": 19, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.044961+00:00", "level": "INFO", "event": "stage_done", "stage": "decide", "latency_ms": 0, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:21.048991+00:00", "level": "INFO", "event": "llm_cache", "cache_hit": true, "cache_tier": "exact", "stage": "Draft", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.629310+00:00", "level": "INFO", "event": "stage_done", "stage": "draft", "latency_ms": 1582, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.648503+00:00", "level": "INFO", "event": "resolution_executed", "status": "refund", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.650512+00:00", "level": "INFO", "event": "tool_call", "tool": "execute_resolution", "status": "ok", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.650512+00:00", "level": "INFO", "event": "resolution_attached", "status": "refund", "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.652369+00:00", "level": "INFO", "event": "stage_done", "stage": "execute", "latency_ms": 18, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.654792+00:00", "level": "INFO", "event": "stage_done", "stage": "review", "latency_ms": 0, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.658711+00:00", "level": "INFO", "event": "request_done", "recommendation": "refund", "intent": "return", "latency_ms": 1655, "case_id": "CASE-4673828B", "cache_hit": false, "request_id": "387cfeaa2c29"}
+{"ts": "2026-11-02T17:36:22.672074+00:00", "level": "INFO", "event": "case_saved", "case_id": "CASE-4673828B", "status": "completed"}
+{"ts": "2026-11-02T17:36:41.171982+00:00", "level": "INFO", "event": "message_routed", "status": "normal", "case_id": null}
+{"ts": "2026-11-02T17:36:41.178020+00:00", "level": "INFO", "event": "guardrail_triggered", "layer": "input", "rule": "prompt_injection", "action": "block", "score": 1.0, "source": "rules", "request_id": "42eb8d5efba8"}
+{"ts": "2026-11-02T17:36:41.183448+00:00", "level": "INFO", "event": "input_blocked", "status": "prompt_injection", "request_id": "42eb8d5efba8"}
+{"ts": "2026-11-02T17:36:41.190686+00:00", "level": "INFO", "event": "case_saved", "case_id": "CASE-52BBB185", "status": "completed"}
+{"ts": "2026-11-02T17:36:57.255946+00:00", "level": "INFO", "event": "message_routed", "status": "normal", "case_id": null}
+{"ts": "2026-11-02T17:36:57.467528+00:00", "level": "INFO", "event": "llm_cache", "cache_hit": true, "cache_tier": "exact", "stage": "Understanding", "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.468808+00:00", "level": "INFO", "event": "understood", "intent": "return", "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.469819+00:00", "level": "INFO", "event": "stage_done", "stage": "understand", "latency_ms": 6, "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.472528+00:00", "level": "INFO", "event": "tool_call", "tool": "lookup_order", "status": "not_found", "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.473035+00:00", "level": "INFO", "event": "stage_done", "stage": "gather", "latency_ms": 1, "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.477059+00:00", "level": "INFO", "event": "stage_done", "stage": "review", "latency_ms": 0, "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.479075+00:00", "level": "INFO", "event": "request_done", "recommendation": "need_info", "intent": "return", "latency_ms": 22, "case_id": "CASE-4CE595D7", "cache_hit": false, "request_id": "37ede29a8407"}
+{"ts": "2026-11-02T17:36:57.490834+00:00", "level": "INFO", "event": "case_saved", "case_id": "CASE-4CE595D7", "status": "completed"}
+{"ts": "2026-11-02T17:37:14.870259+00:00", "level": "INFO", "event": "message_routed", "status": "normal", "case_id": null}
+{"ts": "2026-11-02T17:37:15.116778+00:00", "level": "INFO", "event": "llm_cache", "cache_hit": true, "cache_tier": "exact", "stage": "Understanding", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.116778+00:00", "level": "INFO", "event": "understood", "intent": "return", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.116778+00:00", "level": "INFO", "event": "stage_done", "stage": "understand", "latency_ms": 5, "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.120798+00:00", "level": "INFO", "event": "tool_call", "tool": "lookup_order", "status": "ok", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.123464+00:00", "level": "INFO", "event": "tool_call", "tool": "check_eligibility", "status": "ok", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.136747+00:00", "level": "INFO", "event": "tool_call", "tool": "search_policy", "status": "ok", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.138819+00:00", "level": "INFO", "event": "stage_done", "stage": "gather", "latency_ms": 19, "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.151746+00:00", "level": "INFO", "event": "escalation_recorded", "status": "above_agent_limit:normal", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.153241+00:00", "level": "INFO", "event": "tool_call", "tool": "escalate_to_human", "status": "ok", "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.155254+00:00", "level": "INFO", "event": "stage_done", "stage": "decide", "latency_ms": 13, "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.162793+00:00", "level": "INFO", "event": "request_done", "recommendation": "escalate", "intent": "return", "latency_ms": 55, "case_id": "CASE-1A513D2E", "cache_hit": false, "request_id": "15d091bd703d"}
+{"ts": "2026-11-02T17:37:15.175022+00:00", "level": "INFO", "event": "case_saved", "case_id": "CASE-1A513D2E", "status": "escalated"}

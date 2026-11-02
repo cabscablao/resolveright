@@ -1,0 +1,9 @@
+Secret scan of the git history (2026-11-03). gitleaks is not used (flagged by the anti-virus); detect-secrets and exact-value searches instead.
+
+Commits scanned: 52 (all branches).
+  value of OPENAI_API_KEY (164 chars, not shown) found in history: no
+  value of LANGFUSE_PUBLIC_KEY (42 chars, not shown) found in history: no
+  value of LANGFUSE_SECRET_KEY (42 chars, not shown) found in history: no
+  pattern OpenAI-style key sk-...: none
+  pattern Langfuse key pk-lf-/sk-lf-: none
+  .env tracked by git: no   .env.example tracked: yes

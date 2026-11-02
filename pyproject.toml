@@ -1,0 +1,75 @@
+[project]
+name = "resolveright"
+version = "0.1.0"
+description = "ResolveRight: decision-support agent for e-commerce support resolutions"
+requires-python = ">=3.12,<3.13"
+# Course stack (Sessions 3-9): LangChain 0.3 + LangGraph + Qdrant + RAGAS + Guardrails AI + Langfuse.
+dependencies = [
+    "langchain>=0.3,<0.4",
+    "langchain-community>=0.3,<0.4",
+    "langchain-openai>=0.3,<0.4",
+    "langchain-qdrant>=0.2,<0.3",
+    "langchain-text-splitters>=0.3,<0.4",
+    "qdrant-client>=1.15,<1.16",
+    "langgraph>=0.6,<0.7",
+    "guardrails-ai==0.11.0",
+    "guardrails-ai-restrict-to-topic>=0.1.0",
+    "guardrails-ai-detect-jailbreak>=0.1.6",
+    "guardrails-ai-competitor-check>=0.0.2",
+    "guardrails-ai-profanity-free>=0.1.0",
+    "guardrails-ai-guardrails-pii>=1.0.8",
+    "torch>=2.2",  # direct, so the CPU-only index below applies on Linux
+    "transformers>=4.46,<5",  # 5.x cannot load the DetectJailbreak and PII models (id2label, int overflow)
+    "langfuse>=5,<6",
+    "rank-bm25>=0.2.2",
+    "openai>=1.40,<2",
+    "pydantic>=2.11",
+    "python-dotenv>=1.0",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "gradio>=6,<7",
+]
+
+[tool.uv]
+# guardrails-ai 0.11 asks for langchain-core>=1.0, but the course stack (Sessions 4 and 9)
+# stays on LangChain 0.3. The override (taken from Session 9) keeps both working.
+override-dependencies = ["langchain-core>=0.3.72,<0.4", "openai>=1.40,<2"]
+default-groups = ["dev", "eval"]
+
+# The Guardrails AI validators pull in torch. On Linux (the Render image) use the CPU-only
+# build, which avoids about 3 GB of CUDA libraries the container cannot use anyway.
+[tool.uv.sources]
+torch = { index = "pytorch-cpu", marker = "sys_platform == 'linux'" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[dependency-groups]
+# Evaluation only (week 2). Kept out of the Docker image with `uv sync --no-dev --no-group eval`.
+eval = [
+    "ragas==0.4.3",
+    "rapidfuzz>=3.14.6",
+]
+dev = [
+    "black>=26.10.1",
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff.lint]
+ignore = ["ISC004", "B008"]  # B008: FastAPI's Depends() default is the documented pattern
