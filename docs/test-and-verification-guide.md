@@ -21,24 +21,24 @@ Conventions:
 
 | Spec requirement | Test IDs | Evidence file |
 |---|---|---|
-| R1 usable interface (UI or documented API) | FT-01 to FT-06, API-01 to API-05 | `ui-core-flow.png`, `api-openapi.png`, `api-curl.txt` |
+| R1 usable interface (UI or documented API) | FT-01 to FT-06, API-01 to API-05 | `screenshots/ui/ui-core-flow.png`, `screenshots/api/api-openapi.png`, `api-curl.txt` |
 | R1 LLM cleanly integrated (not a single hard-coded call) | LLM-01 to LLM-04 | `llm-config-test.txt` |
 | R1 at least one agentic capability | AG-01 to AG-09 | `agentic-checks.md` |
 | Acts within policy; mock execution only; never executes an escalation (D50) | AG-08, AG-11, AG-12 | `execution-proof.txt` |
 | R1 deliberate prompt design (2–3 variants) | PD-01 to PD-04 | `docs/prompt-comparison.md` |
 | R1 graceful degradation | GD-01 to GD-10 | `degradation-results.md` |
-| R2 public URL | DP-01 to DP-04 | `public-url-incognito.png`, `smoke.txt` |
+| R2 public URL | DP-01 to DP-04 | `screenshots/deployment/public-url-incognito.png`, `smoke.txt` |
 | R2 secrets hygiene, `.env.example` | SEC-01 to SEC-06 | `gitleaks-report.txt`, `history-scan.txt` |
 | R2 logging, latency, error handling, PII-free logs | OPS-01 to OPS-06 | `log-sample.jsonl`, `log-safety.txt` |
-| R2 live through grading, backup evidence | DP-05 to DP-07 | `uptime-monitor.png`, `dashboard.png` |
+| R2 live through grading, backup evidence | DP-05 to DP-07 | `screenshots/deployment/uptime-monitor.png`, `screenshots/deployment/dashboard.png` |
 | R3 RAG golden set and RAGAS metrics | RAG-01 to RAG-05 | `eval/results/rag_*.json`, `docs/evaluation.md` |
 | R3 tool selection and task completion (≥15 scenarios, designed failures) | TS-01 to TS-24 | `eval/results/tools_*.json` |
 | Refusal and escalation suite | GR-01 to GR-26 | `eval/results/refusal_*.json` |
 | R3 LLM-as-judge plus hand spot-check | JD-01 to JD-04 | `eval/judge_prompt.md`, `judge-agreement.md` |
 | R3 baseline, improvement, before/after | IT-01 to IT-03 | `docs/evaluation.md` |
-| R3 tracing with screenshots | TR-01 to TR-04 | `trace-*.png` |
+| R3 tracing with screenshots | TR-01 to TR-04 | `screenshots/tracing/trace-*.png` |
 | R3 one debugged failure | DF-01 | `docs/debugged-failure.md` |
-| Guardrails with blocked-attack log evidence | GR-01 to GR-26, GL-01 to GL-03 | `guardrail-blocked-log.txt`, `guardrail-blocked-ui.png` |
+| Guardrails with blocked-attack log evidence | GR-01 to GR-26, GL-01 to GL-03 | `guardrail-blocked-log.txt`, `screenshots/guardrails/guardrail-blocked-ui.png` |
 | Caching with before/after table and invalidation | CA-01 to CA-08 | `docs/caching.md`, `cache-bench.json` |
 | Repo reproducible from a clean clone | RP-01 to RP-06 | `clean-clone-run.txt` |
 | Demo video ≤5 min, five sections in order | VD-01 to VD-06 | `video-check.md` |
@@ -327,7 +327,7 @@ Run `make test-guardrails` and `make eval-refusal`. For each case record: expect
 
 ### 7.4 Required evidence (GL-01 to GL-03)
 - GL-01: The log lines for GR-01, for example one JSON line with fields `event=guardrail_triggered`, `layer=input`, `rule=prompt_injection`, `action=block`, `request_id`, masked content only. Save as `guardrail-blocked-log.txt`.
-- GL-02: A screenshot of the same case in the UI with the refusal message and the guardrail badge. Save as `guardrail-blocked-ui.png`.
+- GL-02: A screenshot of the same case in the UI with the refusal message and the guardrail badge. Save as `screenshots/guardrails/guardrail-blocked-ui.png`.
 - GL-03: A screenshot of the Langfuse trace of the blocked request.
 
 ---
@@ -488,15 +488,15 @@ Rehearse twice with a timer. Keep `docs/video-script.md` with timings.
 
 | File | Created by | Done |
 |---|---|---|
-| `ui-core-flow.png` | FT-01 | ☐ |
-| `api-openapi.png`, `api-curl.txt` | API-02, API-03 | ☐ |
+| `screenshots/ui/ui-core-flow.png` | FT-01 | ☐ |
+| `screenshots/api/api-openapi.png`, `api-curl.txt` | API-02, API-03 | ☐ |
 | `llm-config-test.txt` | LLM-01 to LLM-04 | ☐ |
 | `agentic-checks.md`, `no-action-proof.txt` | AG-01 to AG-09 | ☐ |
 | `degradation-results.md` | GD-01 to GD-10 | ☐ |
-| `trace-retrieval.png`, `trace-multitool.png`, `trace-blocked.png`, `trace-toolfailure.png` | TR-01 to TR-04 | ☐ |
-| `guardrail-blocked-log.txt`, `guardrail-blocked-ui.png` | GL-01, GL-02 | ☐ |
+| `screenshots/tracing/trace-retrieval.png`, `trace-multitool.png`, `trace-blocked.png`, `screenshots/tracing/trace-toolfailure.png` | TR-01 to TR-04 | ☐ |
+| `guardrail-blocked-log.txt`, `screenshots/guardrails/guardrail-blocked-ui.png` | GL-01, GL-02 | ☐ |
 | `cache-bench.json` | CA-01 to CA-04 | ☐ |
-| `public-url-incognito.png`, `smoke.txt`, `uptime-monitor.png`, `dashboard.png` | DP-01 to DP-07 | ☐ |
+| `screenshots/deployment/public-url-incognito.png`, `smoke.txt`, `screenshots/deployment/uptime-monitor.png`, `screenshots/deployment/dashboard.png` | DP-01 to DP-07 | ☐ |
 | `gitleaks-report.txt`, `history-scan.txt` | SEC-02 to SEC-04 | ☐ |
 | `log-sample.jsonl`, `log-safety.txt` | OPS-01 to OPS-06 | ☐ |
 | `judge-agreement.md` | JD-04 | ☐ |

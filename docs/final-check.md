@@ -20,7 +20,7 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 
 | Requirement | Status | Evidence and notes |
 |---|---|---|
-| Usable interface (UI and API) | Pass | UI and API tested; `api-curl.txt`, `ui-core-flow.png`, `api-openapi.png` and the staff and developer page screenshots saved in `docs/evidence/` |
+| Usable interface (UI and API) | Pass | UI and API tested; `api-curl.txt`, `screenshots/ui/ui-core-flow.png`, `screenshots/api/api-openapi.png` and the staff and developer page screenshots saved in `docs/evidence/` (screenshots grouped in `docs/evidence/screenshots/`) |
 | LLM cleanly integrated | Pass | Model and prompt version from config, shown at `/health` (`llm-config-test.txt`) |
 | Agentic capabilities | Pass | `docs/evidence/agentic-checks.md`, `execution-proof.txt` |
 | Prompt design and comparison | Pass | `docs/prompt-comparison.md` (v1 to v3 compared; the default `v5_executing` was not compared against them) |
@@ -31,8 +31,8 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 | Tool scenarios | Pass | tool selection 1.00, task completion 1.00 after the fix in `debugged-failure.md`; measured before the 2026-11-02 changes and not re-run |
 | LLM judge and agreement | Pass, with a disclosure | `docs/judge-agreement.md`; reviewer scores were LLM-assisted |
 | Baseline, improvement, before and after | Pass | `docs/evaluation.md` section 1b: no change beat the baseline, reported as found |
-| Tracing with screenshots | Pass | Langfuse traces arrive from the local run and from the live Render app (`docs/evidence/langfuse-check.txt`). Screenshots: `trace-retrieval.png` (understand, gather with the embedding retrieval, decide, draft, execute, review, with latency, tokens and cost), `trace-escalation.png` (ORD-1021 handed to staff), `trace-toolfailure.png` (unknown order ORD-9999). Rule-blocked messages stop before the graph, so they have no trace; their evidence is `guardrail-blocked-log.txt` |
-| Guardrails with a blocked-attack log | Pass (log and `guardrail-blocked-ui.png`) | `docs/evidence/guardrail-blocked-log.txt`; `docs/guardrail-testing.md` lists messages and expected results. The 26-case suite (attacks 19 of 20, escalations 2 of 3, false alarms 0 of 6) was run before Guardrails AI became the default (D64) and was not repeated |
+| Tracing with screenshots | Pass | Langfuse traces arrive from the local run and from the live Render app (`docs/evidence/langfuse-check.txt`). Screenshots: `screenshots/tracing/trace-retrieval.png` (understand, gather with the embedding retrieval, decide, draft, execute, review, with latency, tokens and cost), `screenshots/tracing/trace-escalation.png` (ORD-1021 handed to staff), `screenshots/tracing/trace-toolfailure.png` (unknown order ORD-9999). Rule-blocked messages stop before the graph, so they have no trace; their evidence is `guardrail-blocked-log.txt` |
+| Guardrails with a blocked-attack log | Pass (log and `screenshots/guardrails/guardrail-blocked-ui.png`) | `docs/evidence/guardrail-blocked-log.txt`; `docs/guardrail-testing.md` lists messages and expected results. The 26-case suite (attacks 19 of 20, escalations 2 of 3, false alarms 0 of 6) was run before Guardrails AI became the default (D64) and was not repeated |
 | Caching with a table and an invalidation policy | Pass | `docs/caching.md`, `docs/evidence/cache-bench.json` |
 | Limitations and next steps | Pass | `docs/limitations.md` |
 | Clean-clone reproducibility | Pending | run on the release copy; result goes to `docs/evidence/clean-clone-run.txt` |
