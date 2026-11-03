@@ -8,7 +8,7 @@ Each file backs a claim in the specification (section 10, "Evidence docs") or in
 | `guardrail-blocked-ui.png` | The blocked attack as the customer sees it | GL-02 |
 | `ui-core-flow.png`, `ui-graceful-failure.png`, `ui-escalated.png` | Refund confirmation, unknown order handled politely, case passed to staff | FT, GD |
 | `ui-staff-review.png`, `ui-dev-debug.png` | Staff Review (hand-off packet, recommendation) and the read-only Developer Debug view of the same case | AG (human-in-the-loop) |
-| `langfuse-check.txt` | Langfuse received the LangGraph traces (observations by name) from the local run, checked through the API | TR-01 (the dashboard screenshots are pending) |
+| `langfuse-check.txt` | Langfuse received the LangGraph traces (observations by name), checked through the API | TR-01 |
 | `video-check.md` | Checklist of the demo video | VD-01 to VD-09 |
 | `api-curl.txt`, `llm-config-test.txt` | The REST API works with curl; model, prompt version and cache state come from config | Usable interface, LLM-01 to LLM-03 |
 | `agentic-checks.md` | Agentic capabilities mapped to passing tests | AG-01 to AG-10 |
@@ -19,7 +19,7 @@ Each file backs a claim in the specification (section 10, "Evidence docs") or in
 | `history-scan.txt` | No key value from `.env` appears anywhere in the git history | SEC-01 to SEC-04 |
 | `package-listing.txt` | Contents of the submission zip (`make package`) | PK-01 to PK-05 |
 | `api-openapi.png` | The API documentation page | Usable interface |
-| `trace-*.png` | Langfuse traces: retrieval, multi-tool, blocked, tool failure | TR-01 to TR-04 (pending: owner's Langfuse login) |
+| `trace-retrieval.png`, `trace-escalation.png`, `trace-toolfailure.png` | Langfuse traces of the live app: the full refund flow with retrieval, LLM calls, execution, latency and cost; an escalation to staff; an unknown order handled without an LLM call. Account details are cropped out | TR-01 to TR-04 |
 | `public-url-incognito.png`, `smoke.txt`, `uptime-monitor.png`, `dashboard.png` | The deployed app, health check and uptime monitor | DP-01 to DP-07 (pending: Render deployment) |
 
 Other evidence lives next to the claims it supports: `eval/results/` (RAGAS, scenarios, refusal suite, judge scores, cache), `docs/evaluation.md`, `docs/prompt-comparison.md`, `docs/debugged-failure.md`, `docs/guardrails.md`, `docs/caching.md`, `docs/judge-agreement.md`.

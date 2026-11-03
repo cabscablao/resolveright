@@ -31,7 +31,7 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 | Tool scenarios | Pass | tool selection 1.00, task completion 1.00 after the fix in `debugged-failure.md`; measured before the 2026-11-02 changes and not re-run |
 | LLM judge and agreement | Pass, with a disclosure | `docs/judge-agreement.md`; reviewer scores were LLM-assisted |
 | Baseline, improvement, before and after | Pass | `docs/evaluation.md` section 1b: no change beat the baseline, reported as found |
-| Tracing with screenshots | Partial | Langfuse was switched on locally on 2026-11-03 and the traces arrive (`docs/evidence/langfuse-check.txt`); the four `trace-*.png` screenshots need the owner's Langfuse login |
+| Tracing with screenshots | Pass | Langfuse traces arrive from the local run and from the live Render app (`docs/evidence/langfuse-check.txt`). Screenshots: `trace-retrieval.png` (understand, gather with the embedding retrieval, decide, draft, execute, review, with latency, tokens and cost), `trace-escalation.png` (ORD-1021 handed to staff), `trace-toolfailure.png` (unknown order ORD-9999). Rule-blocked messages stop before the graph, so they have no trace; their evidence is `guardrail-blocked-log.txt` |
 | Guardrails with a blocked-attack log | Pass (log and `guardrail-blocked-ui.png`) | `docs/evidence/guardrail-blocked-log.txt`; `docs/guardrail-testing.md` lists messages and expected results. The 26-case suite (attacks 19 of 20, escalations 2 of 3, false alarms 0 of 6) was run before Guardrails AI became the default (D64) and was not repeated |
 | Caching with a table and an invalidation policy | Pass | `docs/caching.md`, `docs/evidence/cache-bench.json` |
 | Limitations and next steps | Pass | `docs/limitations.md` |
@@ -42,7 +42,7 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 ## Still open (owner or later)
 
 1. Deployment: GitHub repository, Render service, uptime monitor, `make smoke URL=...`, public-URL screenshots.
-2. Langfuse: tracing is on and traces arrive; log in and take the four trace screenshots (the keys page must not be visible).
+2. Langfuse: done (three trace screenshots). A trace of a blocked attack does not exist because blocked messages never reach the graph.
 3. `docs/proposal.md` still has the placeholders for the student name and the date.
 4. Paid re-runs that would refresh older numbers (owner decides): the refusal suite and tool scenarios with Guardrails AI on, and the cache benchmark.
 5. Known gap: GR-18 (an "already approved" claim for a refund over ₱5,000) is not escalated (`docs/guardrails.md`).
