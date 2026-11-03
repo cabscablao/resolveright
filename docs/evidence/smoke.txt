@@ -1,0 +1,18 @@
+Smoke test of https://resolveright.onrender.com, 2026-11-03 08:50 (local time)
+
+$ make smoke URL=https://resolveright.onrender.com   (exit code 0)
+{'status': 'ok', 'version': '0.1.0', 'model': 'gpt-5-nano', 'prompt_version': 'v5_executing', 'vector_store': 'ok', 'cache': {'llm_exact': 'on', 'semantic': 'on'}, 'tracing': 'langfuse'}
+
+GET /docs -> 200
+GET /ui -> 200
+
+POST /api/v1/resolve (prompt-injection attempt, blocked before any LLM call)
+{"recommendation": "inform", "guardrail_status": "blocked", "approval_level": "agent"}
+guardrail rule: ['prompt_injection']
+
+POST /api/v1/resolve (normal return request)
+{"recommendation": "refund", "proposed_action": "Approve a full refund of the eligible item price to the original payment method, deducting the return shipping fee of \u20b1200 since the order is within Metro Manila, and communicate the 5-7 business day timeline after item receipt.", "amount": 2750.0, "approval_level": "agent", "guardrail_status": "passed"}
+reply: Hi {{first_name}},
+
+I’m sorry the headphones didn’t meet your expectations. I’ve approved a refund for the item to your original payment method. Since this return is within Metro Manila, a ₱200 return-shipping fee will be deducted from the refund. You can expect the funds to arrive in 5-7 business d
+
