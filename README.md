@@ -7,7 +7,7 @@
 This is an individual capstone project for the PSIA AI Engineering course. All data is synthetic: no real people, companies or payments.
 
 - **Live URL:** <https://resolveright.onrender.com> (customer page at [`/ui`](https://resolveright.onrender.com/ui), API docs at [`/docs`](https://resolveright.onrender.com/docs), health check at [`/health`](https://resolveright.onrender.com/health)). It runs on the Render free plan, so the first request after a quiet period can take about a minute. Deployment steps are in [`docs/deployment.md`](docs/deployment.md).
-- **Video:** [`docs/ResolveRight_demo_local.mp4`](docs/ResolveRight_demo_local.mp4) (4:32, recorded on the local build; a recording of the live Render app, `ResolveRight_demo_render.mp4`, will be added)
+- **Video:** [`docs/ResolveRight_demo_render.mp4`](docs/ResolveRight_demo_render.mp4) (4:55, recorded on the live Render app); an earlier local-build recording is [`docs/ResolveRight_demo_local.mp4`](docs/ResolveRight_demo_local.mp4) (4:32)
 - **Course tools used:** see [`docs/requirements-traceability.md`](docs/requirements-traceability.md)
 
 ## An example

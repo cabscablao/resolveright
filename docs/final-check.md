@@ -13,7 +13,7 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 | Evaluation with a test set, metrics and one improvement iteration | Pass | `docs/evaluation.md` |
 | One debugged failure with root cause, fix, before and after | Pass | `docs/debugged-failure.md` |
 | GitHub repository with a reproducible README and evidence docs | Partial | README and docs done; the repository is created at upload; clean-clone run recorded after the copy |
-| Demo video of at most 5 minutes | Pass (local build), re-record on Render | 4:32, made from the script the owner reviewed (`docs/evidence/video-check.md`) |
+| Demo video of at most 5 minutes | Pass | 4:55, recorded on the live Render app from the script the owner reviewed (`docs/evidence/video-check.md`) |
 | Working public URL | Pending (deployment) | |
 
 ## Requirement by requirement
@@ -37,7 +37,7 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 | Limitations and next steps | Pass | `docs/limitations.md` |
 | Clean-clone reproducibility | Pending | run on the release copy; result goes to `docs/evidence/clean-clone-run.txt` |
 | Submission package | Partial | `make package NAME="..."` exists; the student name is still an owner item |
-| Demo video | Pass (local build), re-record on Render | 4:32, `docs/evidence/video-check.md`; the file is `docs/ResolveRight_demo_local.mp4`; the Render recording will be `docs/ResolveRight_demo_render.mp4` |
+| Demo video | Pass | 4:55 on the live Render app, `docs/evidence/video-check.md`; the file is `docs/ResolveRight_demo_render.mp4`; the local recording `docs/ResolveRight_demo_local.mp4` (4:32) is kept as a fallback |
 
 ## Still open (owner or later)
 
