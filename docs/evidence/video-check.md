@@ -1,6 +1,6 @@
 # Demo video check (VD-01 to VD-09)
 
-File: `docs/ResolveRight_demo.mp4` (9.65 MB, copied from `04_Video\out\ResolveRight_demo.mp4`, where the working files stay). Checked 2026-11-03 on the local build; to be recorded again on the Render URL after deployment.
+File: `docs/ResolveRight_demo_local.mp4` (9.65 MB, copied from `04_Video\out\ResolveRight_demo.mp4`, where the working files stay). Checked 2026-11-03 on the local build; to be recorded again on the Render URL after deployment.
 
 | Check | Result |
 |---|---|

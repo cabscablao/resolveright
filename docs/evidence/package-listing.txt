@@ -69,7 +69,7 @@ data/policies/POL-08_warranty.md
 data/policies/POL-09_promotions_price_adjustments_gift_cards.md
 data/policies/POL-10_escalation_authority.md
 docs/CREDITS.md
-docs/ResolveRight_demo.mp4
+docs/ResolveRight_demo_local.mp4
 docs/architecture.md
 docs/caching.md
 docs/debugged-failure.md

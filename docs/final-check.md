@@ -37,7 +37,7 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 | Limitations and next steps | Pass | `docs/limitations.md` |
 | Clean-clone reproducibility | Pending | run on the release copy; result goes to `docs/evidence/clean-clone-run.txt` |
 | Submission package | Partial | `make package NAME="..."` exists; the student name is still an owner item |
-| Demo video | Pass (local build), re-record on Render | 4:32, `docs/evidence/video-check.md`; the file is `docs/ResolveRight_demo.mp4` |
+| Demo video | Pass (local build), re-record on Render | 4:32, `docs/evidence/video-check.md`; the file is `docs/ResolveRight_demo_local.mp4`; the Render recording will be `docs/ResolveRight_demo_render.mp4` |
 
 ## Still open (owner or later)
 
