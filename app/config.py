@@ -6,6 +6,7 @@ the one place to look when you want to change how the app behaves.
 """
 
 import os
+import sys
 from datetime import date
 from pathlib import Path
 
@@ -71,6 +72,12 @@ MODERATION_MODEL = os.getenv("MODERATION_MODEL", "omni-moderation-latest")
 # On by default (since 2026-11-02): the Guardrails AI validators run after the rules. They are
 # slower and need model downloads (see hub.py); set false on small hosts (render.yaml does).
 GUARDRAILS_AI_ENABLED = _flag("GUARDRAILS_AI_ENABLED", True)
+if not GUARDRAILS_AI_ENABLED:
+    # langchain_core tries `import transformers` when it loads, and that drags in torch (about
+    # 230 MB of RAM). Nothing else here needs them when Guardrails AI is off, and the 512 MB Render
+    # free plan runs out of memory with them (the service was killed on the first LLM call).
+    # A None entry makes that import fail cleanly, which langchain_core already handles.
+    sys.modules.setdefault("transformers", None)
 # Per-user request limit per minute, to stop a single client flooding the service.
 RATE_LIMIT_PER_MINUTE = int(os.getenv("RATE_LIMIT_PER_MINUTE", "10"))
 # Total requests allowed per day, which caps the LLM bill.

@@ -38,6 +38,7 @@ ResolveRight runs as one Docker container: FastAPI (`/api/v1/*`, `/health`, `/do
 ## Behaviour to know
 - **First start on an empty disk:** the app embeds the 10 policies (a few cents, a few seconds). On every later start it re-embeds only the policy files that changed (D54). If that fails, `/health` shows `degraded` and the agent escalates policy questions instead of guessing.
 - **Free plan:** the instance sleeps after inactivity and its disk is wiped on every deploy and restart. That is fine here because policies are re-embedded on start, but pending review cases and sessions (in memory) are lost.
+- **Memory (512 MB free plan):** with Guardrails AI off, the app stays under about 390 MiB (measured in a 512 MB container with a real LLM call). The first deploy crashed with a 502 on the first LLM call because `langchain_core` loaded `transformers` and `torch` (about 230 MB). `app/config.py` now blocks that import when `GUARDRAILS_AI_ENABLED` is off, and `tests/test_memory_footprint.py` guards it. Guardrails AI on needs a plan with at least 2 GB.
 - **One worker only:** local Qdrant allows a single process per folder. Do not add `--workers`.
 - **Cold start:** the first request after a sleep can take about a minute. The app warms up the retriever at start so the 30 s request deadline is not spent on imports.
 
