@@ -22,8 +22,8 @@ ResolveRight runs as one Docker container: FastAPI (`/api/v1/*`, `/health`, `/do
 - Message length: `MAX_MESSAGE_CHARS` (1500). Empty and garbage input never reach the LLM.
 - Set a monthly spend limit in the OpenAI dashboard as the last line of defence.
 
-## Steps for the first deployment (you do these; they need your accounts)
-1. Create an empty GitHub repository, then in the project folder:
+## Steps for a first deployment (they need your own accounts)
+1. The project repository is https://github.com/cabscablao/resolveright and the live service is https://resolveright.onrender.com. To deploy your own copy, create an empty GitHub repository, then in the project folder:
    `git remote add origin https://github.com/<you>/<repo>.git` and `git push -u origin main`.
 2. Render dashboard > **New > Blueprint** > pick the repository. Render reads `render.yaml`.
 3. When asked, enter the three secret values (OpenAI key, Langfuse public and secret key).

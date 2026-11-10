@@ -25,7 +25,7 @@ Python 3.12; OpenAI mini-class model with native tool calling; framework-light s
 Input layer: length limits, prompt-injection detection, off-topic filtering, PII masking. Output layer: moderation, citation and grounding check, rule-consistency check, schema validation, refusal with escalation. Response and embedding caching with measured before/after latency and cost. Structured JSON logs without PII.
 
 ## Evaluation plan
-25-question RAG golden set (RAGAS metrics); 24 tool scenarios including designed failures (tool-selection accuracy, task completion); 19 attack cases plus 7 benign look-alikes (GR-10 "process the refund now" became a normal request in D50) (refusal accuracy, escalation recall, false-positive rate); LLM-as-judge with hand spot-check; three prompt variants compared; a baseline-to-improved retrieval comparison (fixed-size to section-aware chunking); one documented debugged failure.
+25-question RAG golden set (RAGAS metrics); 23 tool scenarios (24 before D57) including designed failures (tool-selection accuracy, task completion); 19 attack cases plus 7 benign look-alikes (GR-10 "process the refund now" became a normal request in D50) (refusal accuracy, escalation recall, false-positive rate); LLM-as-judge with hand spot-check; three prompt variants compared; a baseline-to-improved retrieval comparison (fixed-size to section-aware chunking); one documented debugged failure.
 
 ## Data
 All data is synthetic: 10 policy documents, 2 customers (Nora, the demo user, and Milo, whose orders test ownership), 30 orders. No real people or payment data.

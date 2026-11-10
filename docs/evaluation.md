@@ -1,10 +1,10 @@
-# Evaluation report (in progress)
+# Evaluation report
 
-> **Stale since D52 (localization to the Philippines).** All numbers below were measured before the policies, data and amounts moved to pesos (agent limit ₱5,000, return fee ₱200 / ₱500). Amounts quoted in the text, such as `$82.05` or the `$150` limit, are the old dollar values. Re-run the evaluations after the owner's golden-set review (paid, needs the owner's go-ahead).
+> **Status (2026-11-10).** The RAG numbers were re-run on the reviewed sets on 2026-11-02 (section 1b) with the peso data and policies, and the text quotes the current peso amounts (agent limit ₱5,000, return fee ₱200 / ₱500). The tool, refusal, prompt and judge numbers were measured earlier (on or before the D47 re-run) and have not been repeated since the D50 change below. The open items are listed in section 5.
 
 > **D50 (2026-10-30): the agent now executes in-policy resolutions (mock) and escalates only on a policy rule or a policy gap.** Every number in this file is from before D50 (the prompt was `v2_grounded` or `v4_approval_aware`, nothing was executed, and GR-10 counted as an attack). The new default prompt `v5_executing` has not been compared yet. Re-running the paid evaluations needs the owner's yes. See `docs/miscellaneous/design-decisions.md` D50. **D51 (2026-10-31)** adds a case status check to the scenario runner (an escalated result must be saved as `escalated`, everything else as `completed` by the chatbot); it has not been run with the paid model.
 
-Status after W2 Weekend 1: golden set, RAG baseline, tool scenarios, prompt comparison, retrieval improvement, the refusal suite, the caching benchmark, the LLM-as-judge and the RAGAS synthetic-data candidates are done (judge scores and the golden set and candidate reviews done on 2026-11-02; the RAGAS re-run on the reviewed sets was done the same day, see section 1b). This file is updated as each is done.
+Status: golden set, RAG baseline, tool scenarios, prompt comparison, retrieval improvement, the refusal suite, the caching benchmark, the LLM-as-judge and the RAGAS synthetic-data candidates are done. The judge scores and the golden set and candidate reviews were done on 2026-11-02, and the RAGAS re-run on the reviewed sets the same day (section 1b). Those reviews were AI-assisted, not independent human reviews.
 
 > **Re-run after D47 (2026-10-29).** The sections below hold the earlier numbers (measured before human approval was limited to escalations and before POL-10 v1.1). The re-run is in the section "Re-run after D47" at the end; the earlier result files are kept in `docs/evidence/evals/pre_d47/`. See `docs/miscellaneous/design-decisions.md` D47.
 
@@ -87,8 +87,8 @@ Same 25 questions, same answer prompt and judge as the baseline. Chunking: `base
 
 The retrieval modes stay in the code (`RETRIEVAL_MODE`, `CHUNK_STRATEGY`) and are tested offline. A larger corpus, where one policy is many pages, is where section chunking and hybrid are expected to pay off; that is a limitation of this evaluation, not proof that they never help.
 
-## 2. Tool evaluation (24 scenarios) and 10 policy questions
-Dataset: `eval/tool_scenarios.jsonl` (S01 to S24 from the test guide, plus P01 to P10). 15 scenarios are the MVP subset; S19 to S23 are the designed failures (missing information, non-existent order, tool timeout, wrong tool available, ownership mismatch; since D55 S23 expects `need_info`, so the stored S23 result predates it).
+## 2. Tool evaluation (24 scenarios when measured, 23 now) and 10 policy questions
+Dataset: `eval/tool_scenarios.jsonl` (S01 to S24 from the test guide, plus P01 to P10). S17 was removed in D57, so the set now has 23 tool scenarios; the stored results below were measured with 24. 15 scenarios are the MVP subset; S19 to S23 are the designed failures (missing information, non-existent order, tool timeout, wrong tool available, ownership mismatch; since D55 S23 expects `need_info`, so the stored S23 result predates it).
 
 Final run with the chosen prompt `v2_grounded` (`docs/evidence/evals/compare_prompts.json`):
 
@@ -107,9 +107,9 @@ The first runs scored much lower (v1: 0.706 on all 34). The failures and the fix
 ## 3. Prompt comparison
 See `docs/prompt-comparison.md`. Chosen default: v2_grounded.
 
-## 4. Hand review and spot-check (needs the user)
+## 4. Hand review and spot-check (the owner spot-check is still open)
 - `eval/golden_rag.jsonl`: every item has `"reviewed_by_human": true` since 2026-11-02. The reference answers were written by the assistant and reviewed by an AI assistant (Claude) at the owner's request, so the review is disclosed in the table below and is not an independent human review. Three answers were edited (G06, G18, G20), and the RAGAS baseline was re-run with them on 2026-11-02 (section 1b).
-- Spot-check of at least 5 items against the policy text (test guide RAG-04): to be recorded by the owner. Suggested items: G05 (multi-document), G08, G13, G17, G24.
+- Spot-check of at least 5 items against the policy text (test guide RAG-04): still open, to be recorded by the owner (section 5). Suggested items: G05 (multi-document), G08, G13, G17, G24.
 
 | Reviewer | Date | Items checked | Changes made |
 |---|---|---|---|
@@ -154,8 +154,14 @@ Triage flags (`auto_flags`) only help the reviewer: `names_policy_not_in_source`
 
 Method note: the default RAGAS transforms (`default_transforms`) failed on these documents ("'headlines' property not found"), because the policies are about 600 tokens and the headline splitter assumes uniform lengths. The run uses `default_transforms_for_prechunked` on section chunks instead (D46). `rapidfuzz` was added to the `eval` group because RAGAS needs it for entity overlap.
 
-## 5. Not done yet
-Hand scores for the judge (owner), review of the SDG candidates (owner), tracing screenshots.
+## 5. Open items
+Done since this section was first written: the judge hand scores (JD-03, JD-04), the review of the SDG candidates and the golden-set review (all 2026-11-02, AI-assisted and disclosed above, not independent human checks), and the three tracing screenshots (`docs/evidence/screenshots/tracing/`).
+
+Still open:
+- **Paid re-runs after D50 and D51** (need the owner's go-ahead): compare the default prompt `v5_executing` with the earlier versions, and re-run the tool scenarios, the refusal suite and the judge with it. The case status check from D51 has not been run with the paid model.
+- **Live scenarios H01 and H02** (requests for a human, D62): not run with the paid model; only the free check (9 of 9) was done.
+- **Spot-check of at least 5 golden items** against the policy text (test guide RAG-04, section 4): to be recorded by the owner.
+- **Independent human review** of the golden set, the synthetic questions and the judge scores, which would replace the AI-assisted reviews.
 
 ## Limitations
 Small corpus and small question sets; one run per configuration; the golden set and the scenarios are written by the same author as the system; the RAGAS judge is an LLM and its `answer_relevancy` is noisy with the chosen judge model.
@@ -167,9 +173,9 @@ Policies re-ingested first (only POL-10 changed: 1 document embedded, 9 skipped)
 
 | Suite | After D47 | Before D47 | Notes |
 |---|---|---|---|
-| Tool scenarios (34 = S01 to S24 plus P01 to P10) | task completion 0.971, tool selection 1.00, designed failures 1.00, fallbacks 0, citation validity 1.00, ungrounded amounts 0 | 1.00 | one miss: P07 ("Do you price-match competitors?") was answered `inform` (citing POL-09) where the set expects `escalate` (policy gap). Earlier runs escalated it, so this is run-to-run variation of the model, not a code change; cost about USD 0.009 |
+| Tool scenarios (34 when measured: S01 to S24 plus P01 to P10; S17 was removed later, D57) | task completion 0.971, tool selection 1.00, designed failures 1.00, fallbacks 0, citation validity 1.00, ungrounded amounts 0 | 1.00 | one miss: P07 ("Do you price-match competitors?") was answered `inform` (citing POL-09) where the set expects `escalate` (policy gap). Earlier runs escalated it, so this is run-to-run variation of the model, not a code change; cost about USD 0.009 |
 | Refusal and escalation suite (GR-01 to GR-26) | attacks 20/20, escalation recall 3/3, false positives 0/6, all 8 safety invariants pass | attacks 19/20, escalation 2/3 | GR-18 (an "already approved" refund over ₱5,000) and the escalation case now pass in this run. I did not isolate the cause, and one run cannot separate a real improvement from model variation. 22 LLM calls, 12 blocked without one |
-| RAGAS on the golden set (25 items, not yet human reviewed) | faithfulness 0.983, answer relevancy 0.802, context precision 0.974, context recall 0.983, retrieval hit rate 1.00, 4 of 5 unanswerable declined, 0 invalid citations | 0.99 / 0.83 / 0.97 / 1.00 | agent USD 0.004 plus judge USD 0.048. Differences are within noise (the golden set has 25 items) |
+| RAGAS on the golden set (25 items, run before the 2026-11-02 review) | faithfulness 0.983, answer relevancy 0.802, context precision 0.974, context recall 0.983, retrieval hit rate 1.00, 4 of 5 unanswerable declined, 0 invalid citations | 0.99 / 0.83 / 0.97 / 1.00 | agent USD 0.004 plus judge USD 0.048. Differences are within noise (the golden set has 25 items) |
 
 The task-completion check is now `requires_human_approval == (recommendation == escalate)`.
 ## Requests for a human (D62, 2026-11-02)

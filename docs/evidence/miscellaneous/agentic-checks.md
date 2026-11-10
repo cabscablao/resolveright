@@ -1,6 +1,6 @@
 # Agentic capability checks (AG-01 to AG-10)
 
-Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, no real LLM calls).
+Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, no real LLM calls). The suite now has 371 tests and all passed on 2026-11-10.
 
 
 | Capability | Result | Tests |
@@ -15,4 +15,4 @@ Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, n
 | AG bounded loop and timeout | 2 of 2 passed | `test_order_tool_timeout_retries_then_escalates; test_overall_deadline_returns_safe_answer` |
 | AG follow-ups on a held case | 14 of 14 passed | `test_added_information_is_appended_and_flagged_for_staff; test_added_information_is_masked_like_any_message; test_router_table; test_status_check_leaves_the_case_untouched_and_skips_the_agent` |
 
-Scenario and tool-selection scores (24 scenarios, tool selection 1.00, task completion 1.00) are in `docs/evaluation.md` section 2; they were measured after the fix in `docs/debugged-failure.md`.
+Scenario and tool-selection scores (24 scenarios when measured, 23 since D57; tool selection 1.00, task completion 1.00) are in `docs/evaluation.md` section 2; they were measured after the fix in `docs/debugged-failure.md`.

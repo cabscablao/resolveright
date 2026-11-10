@@ -265,7 +265,7 @@ An environment variable is a setting given to the app from outside the code. The
 | `make secrets` | Scans the repository for accidentally committed keys (detect-secrets) | no |
 | `make ingest` | Embeds the policies into the local vector store | yes (a few cents, cached after the first run) |
 | `make eval-rag` | Scores policy answers on the golden set with RAGAS | yes |
-| `make eval-tools` | Runs the 24 scripted scenarios through the real agent | yes |
+| `make eval-tools` | Runs the 23 scripted scenarios and 10 policy questions through the real agent | yes |
 | `make compare-prompts` | Runs prompt versions v1, v2, v3 on the same inputs (v4 via `--versions`, see [`prompt-comparison.md`](docs/prompt-comparison.md)) | yes |
 | `make eval-refusal` | The 26-case suite of attacks and escalations | yes |
 | `make bench-cache` | Measures the caches (checks CA-01 to CA-08) | yes (under USD 0.10) |

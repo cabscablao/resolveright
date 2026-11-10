@@ -1,6 +1,6 @@
 # Graceful degradation results (GD-01 to GD-10)
 
-Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, no real LLM calls).
+Full suite run on 2026-11-03: **370 of 370 tests passed** (`uv run pytest -v`, no real LLM calls). The suite now has 371 tests and all passed on 2026-11-10.
 
 
 | Case | Result | Tests (file `tests/test_agent.py` unless named) |

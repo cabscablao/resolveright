@@ -1,6 +1,6 @@
 # Prompt comparison (v1, v2, v3)
 
-Same model (`gpt-5-nano`, reasoning effort minimal), same 34 inputs (24 tool scenarios plus 10 policy questions), same retrieval (baseline chunks, top-4), same rules engine. Only the **draft prompt** changes (`prompts/v1_baseline.md`, `v2_grounded.md`, `v3_checklist.md`). The understand prompt (`prompts/understand.md`) is shared.
+Same model (`gpt-5-nano`, reasoning effort minimal), same 34 inputs (24 tool scenarios plus 10 policy questions; S17 was removed afterwards in D57, so the set is now 23 plus 10), same retrieval (baseline chunks, top-4), same rules engine. Only the **draft prompt** changes (`prompts/v1_baseline.md`, `v2_grounded.md`, `v3_checklist.md`). The understand prompt (`prompts/understand.md`) is shared.
 
 Run with `uv run python -m eval.compare_prompts` (or `.\tasks.ps1 compare-prompts`). Raw results: `docs/evidence/evals/compare_prompts.json`.
 

@@ -20,7 +20,7 @@ Two sibling defects found in the same runs were fixed the same way (code validat
 
 ## Proof
 - Tests: `tests/test_agent.py::test_safety_keywords_escalate_even_when_the_llm_misses_the_hazard`, `test_safety_keywords_do_not_fire_on_ordinary_messages`, `test_guessed_error_origin_is_dropped_...`, `test_explicit_error_origin_is_kept`, `test_other_customers_order_is_not_revealed`.
-- Re-run: S16, S18 and S23 pass under v1, v2 and v3 (`docs/prompt-comparison.md`, final table; task completion on the 24 tool scenarios went from 0.875/0.917/0.875 to 1.0/1.0/1.0).
+- Re-run: S16, S18 and S23 pass under v1, v2 and v3 (`docs/prompt-comparison.md`, final table; task completion on the 24 tool scenarios of that time (23 since D57) went from 0.875/0.917/0.875 to 1.0/1.0/1.0).
 
 ## Limits
 The keyword list is English only and will miss unusual wording ("it got really hot and bulged"). It is a safety net under the LLM flag, not a replacement for it; the Guardrails AI layer (on by default since D64) adds a second check.

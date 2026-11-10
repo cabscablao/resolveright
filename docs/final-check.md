@@ -1,6 +1,6 @@
 # Final check against the specification and the test guide
 
-Status report, updated 2026-11-03. It is not a sign-off: items that need the deployed app, a login, or a paid run are marked pending, not passed. Numbers are quoted from the saved result files; where a result predates a later change, that is said.
+Status report, updated 2026-11-10. It is not a sign-off: items that need the deployed app, a login, or a paid run are marked pending, not passed. Numbers are quoted from the saved result files; where a result predates a later change, that is said.
 
 **Status words.** *Pass*: shown by a command or a saved result. *Partial*: built and tested, one part is missing. *Pending*: waits on the deployment, a login or a paid run.
 
@@ -8,13 +8,13 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 
 | Item | Status | Where |
 |---|---|---|
-| Working application with an LLM core and agentic capability | Pass | 370 tests pass (`docs/evidence/miscellaneous/agentic-checks.md`) |
-| Deployed on a server, secrets handled safely | Pending (deployment) | `render.yaml`, `Dockerfile`, `docs/deployment.md`; key scan in `docs/evidence/miscellaneous/history-scan.txt` |
+| Working application with an LLM core and agentic capability | Pass | 371 tests pass (370 when first recorded on 2026-11-03; `docs/evidence/miscellaneous/agentic-checks.md`) |
+| Deployed on a server, secrets handled safely | Pass (deployment screenshots still to be added) | Live on Render at https://resolveright.onrender.com (`/health` answered ok on 2026-11-10, `docs/evidence/miscellaneous/smoke.txt`); `render.yaml`, `Dockerfile`, `docs/deployment.md`; key scan in `docs/evidence/miscellaneous/history-scan.txt` |
 | Evaluation with a test set, metrics and one improvement iteration | Pass | `docs/evaluation.md` |
 | One debugged failure with root cause, fix, before and after | Pass | `docs/debugged-failure.md` |
-| GitHub repository with a reproducible README and evidence docs | Partial | README and docs done; the repository is created at upload; clean-clone run recorded after the copy |
+| GitHub repository with a reproducible README and evidence docs | Pass | Repository https://github.com/cabscablao/resolveright; README and docs done; clean-clone run recorded on 2026-11-03 (`docs/evidence/miscellaneous/clean-clone-run.txt`) |
 | Demo video of at most 5 minutes | Pass | 4:55, recorded on the live Render app from the script the owner reviewed (`docs/evidence/miscellaneous/video-check.md`) |
-| Working public URL | Pending (deployment) | |
+| Working public URL | Pass | https://resolveright.onrender.com (`/ui`, `/docs` and `/health` answer 200; the first request after idle can take about a minute) |
 
 ## Requirement by requirement
 
@@ -33,16 +33,15 @@ Status report, updated 2026-11-03. It is not a sign-off: items that need the dep
 | Baseline, improvement, before and after | Pass | `docs/evaluation.md` section 1b: no change beat the baseline, reported as found |
 | Tracing with screenshots | Pass | Langfuse traces arrive from the local run and from the live Render app (`docs/evidence/miscellaneous/langfuse-check.txt`). Screenshots: `screenshots/tracing/trace-retrieval.png` (understand, gather with the embedding retrieval, decide, draft, execute, review, with latency, tokens and cost), `screenshots/tracing/trace-escalation.png` (ORD-1021 handed to staff), `screenshots/tracing/trace-toolfailure.png` (unknown order ORD-9999). Rule-blocked messages stop before the graph, so they have no trace; their evidence is `guardrail-blocked-log.txt` |
 | Guardrails with a blocked-attack log | Pass (log and `screenshots/guardrails/guardrail-blocked-ui.png`) | `docs/evidence/guardrail-blocked-log.txt`; `docs/guardrail-testing.md` lists messages and expected results. The 26-case suite (attacks 19 of 20, escalations 2 of 3, false alarms 0 of 6) was run before Guardrails AI became the default (D64) and was not repeated |
-| Caching with a table and an invalidation policy | Pass | `docs/caching.md`, `docs/evidence/cache-bench.json` |
+| Caching with a table and an invalidation policy | Pass | `docs/caching.md`, `docs/evidence/evals/cache-bench.json` |
 | Limitations and next steps | Pass | `docs/limitations.md` |
-| Clean-clone reproducibility | Pending | run on the release copy; result goes to `docs/evidence/miscellaneous/clean-clone-run.txt` |
-| Submission package | Partial | `make package NAME="..."` exists; the student name is still an owner item |
+| Clean-clone reproducibility | Pass | fresh folder, no `.env`, no `.venv`, `uv sync --frozen` and the full test run on 2026-11-03: `docs/evidence/miscellaneous/clean-clone-run.txt` |
+| Submission package | Pass | `make package NAME="..."` builds it; the contents are listed in `docs/evidence/miscellaneous/package-listing.txt` (a snapshot from 2026-11-03, regenerated each time the package is rebuilt) |
 | Demo video | Pass | 4:55 on the live Render app, `docs/evidence/miscellaneous/video-check.md`; the file is `docs/ResolveRight_demo_render.mp4`; the local recording `docs/ResolveRight_demo_local.mp4` (4:32) is kept as a fallback |
 
 ## Still open (owner or later)
 
-1. Deployment: GitHub repository, Render service, uptime monitor, `make smoke URL=...`, public-URL screenshots.
+1. Deployment screenshots: public URL in a private window, uptime monitor and Render dashboard (docs/evidence/screenshots/deployment/). The GitHub repository and the Render service are live and make smoke passed on 2026-11-03.
 2. Langfuse: done (three trace screenshots). A trace of a blocked attack does not exist because blocked messages never reach the graph.
-3. `docs/proposal.md` still has the placeholders for the student name and the date.
-4. Paid re-runs that would refresh older numbers (owner decides): the refusal suite and tool scenarios with Guardrails AI on, and the cache benchmark.
-5. Known gap: GR-18 (an "already approved" claim for a refund over ₱5,000) is not escalated (`docs/guardrails.md`).
+3. Paid re-runs that would refresh older numbers (owner decides): the refusal suite and tool scenarios with Guardrails AI on, the comparison of the default prompt 5_executing, and the cache benchmark.
+4. Known gap: GR-18 (an "already approved" claim for a refund over ₱5,000) is not escalated (`docs/guardrails.md`).

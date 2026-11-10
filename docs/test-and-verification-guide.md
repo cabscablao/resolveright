@@ -119,7 +119,7 @@ Conventions:
 
 | ID | Step | Pass criteria |
 |---|---|---|
-| PD-01 | `make compare-prompts` | Runs v1, v2, v3 on the **same** 24 scenarios and 10 policy questions, same model and temperature. The variant `v4_approval_aware` (added after D47) is compared with `--versions v2_grounded v4_approval_aware` and is not the default until it is |
+| PD-01 | `make compare-prompts` | Runs v1, v2, v3 on the **same** 23 scenarios and 10 policy questions, same model and temperature. The variant `v4_approval_aware` (added after D47) is compared with `--versions v2_grounded v4_approval_aware` and is not the default until it is |
 | PD-02 | Inspect the output table | Columns: task completion, schema validity, citation validity, hallucinated facts, mean latency, mean tokens/cost |
 | PD-03 | Read `docs/prompt-comparison.md` | Contains per-variant observations (what improved or worsened) and the reason for the default |
 | PD-04 | Confirm the default in config equals the chosen variant | Match |

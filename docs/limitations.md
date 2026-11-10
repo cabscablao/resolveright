@@ -33,4 +33,4 @@ Stated plainly, so a reader knows what the results do and do not show.
 3. Test retrieval options again on a larger policy corpus.
 4. Add a persistent store (database) for audit entries, sessions and the cache, so a restart loses nothing.
 5. Add guardrail rules for more languages and multi-turn attacks, and measure them on a larger attack set.
-6. Split `app/agent/graph.py` (about 800 lines) into smaller modules.
+6. Split `app/agent/graph.py` (about 1,200 lines) into smaller modules.
