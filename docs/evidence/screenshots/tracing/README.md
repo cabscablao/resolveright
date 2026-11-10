@@ -8,7 +8,7 @@ Three traces of the live Render app (https://resolveright.onrender.com), taken i
 | `trace-escalation.png` | ORD-1021 handed to staff | TR-01 to TR-04 |
 | `trace-toolfailure.png` | Unknown order ORD-9999 handled without an LLM call | TR-01 to TR-04 |
 
-Text check that Langfuse received the traces: [`../../langfuse-check.txt`](../../langfuse-check.txt).
+Text check that Langfuse received the traces: [`../../miscellaneous/langfuse-check.txt`](../../miscellaneous/langfuse-check.txt).
 
 ## Screenshots
 

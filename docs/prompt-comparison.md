@@ -2,11 +2,11 @@
 
 Same model (`gpt-5-nano`, reasoning effort minimal), same 34 inputs (24 tool scenarios plus 10 policy questions), same retrieval (baseline chunks, top-4), same rules engine. Only the **draft prompt** changes (`prompts/v1_baseline.md`, `v2_grounded.md`, `v3_checklist.md`). The understand prompt (`prompts/understand.md`) is shared.
 
-Run with `uv run python -m eval.compare_prompts` (or `.\tasks.ps1 compare-prompts`). Raw results: `eval/results/compare_prompts.json`.
+Run with `uv run python -m eval.compare_prompts` (or `.\tasks.ps1 compare-prompts`). Raw results: `docs/evidence/evals/compare_prompts.json`.
 
 > **v5 added after D50 (2026-10-30).** `prompts/v5_executing.md` is now the default (`PROMPT_VERSION=v5_executing`): the agent carries out approved in-policy resolutions itself, so the prompt says the system executes the action and adds the reference, and that a case goes to staff only for a policy escalation or a policy gap. v2 to v4 keep their old role lines ("a human reviews" or "never executes") as evaluated; those lines are out of date. v5 has not been compared with the others, so quote no score for it.
 >
-> **v4 added after D47 (compared on 2026-10-29: see the last section).** Human approval is now needed only for escalations (`docs/design-decisions.md` D47), but v1 to v3 still tell the model "a human support agent reviews your answer before anything is sent". They were left as evaluated, and `prompts/v4_approval_aware.md` was added: v2 with a corrected role line (a specialist takes only escalations; other replies may go out as written), no "a team member must approve it" wording, and an instruction to promise no outcome on an escalation. v4 is **not** the default (`PROMPT_VERSION` stays `v2_grounded`). The tables below cover v1 to v3 only and predate D47; `eval/results/compare_prompts.json` now holds the v2 and v4 run, and the earlier file is kept in `eval/results/pre_d47/`.
+> **v4 added after D47 (compared on 2026-10-29: see the last section).** Human approval is now needed only for escalations (`docs/miscellaneous/design-decisions.md` D47), but v1 to v3 still tell the model "a human support agent reviews your answer before anything is sent". They were left as evaluated, and `prompts/v4_approval_aware.md` was added: v2 with a corrected role line (a specialist takes only escalations; other replies may go out as written), no "a team member must approve it" wording, and an instruction to promise no outcome on an escalation. v4 is **not** the default (`PROMPT_VERSION` stays `v2_grounded`). The tables below cover v1 to v3 only and predate D47; `docs/evidence/evals/compare_prompts.json` now holds the v2 and v4 run, and the earlier file is kept in `docs/evidence/evals/pre_d47/`.
 
 ## The three prompts
 | Version | What it adds |
@@ -40,7 +40,7 @@ Three full runs were made; the code changed between them because the runs expose
 | 2 | 0.882 | 0.912 | 0.853 | After: keyword safety net, ownership-mismatch escalation, understand prompt rules. Left: S18 (guessed who made a personalisation error), P02, price-match questions answered as `inform`. |
 | 3 (final) | 0.912 | 0.971 | 0.941 | After: `error_origin` is kept only when the customer's words say who made the mistake; v2 and v3 told to treat "the excerpts say it is not covered" as not covered. |
 
-Details of each fix are in `docs/debugged-failure.md` (drafted) and `docs/design-decisions.md` (D36 to D38).
+Details of each fix are in `docs/debugged-failure.md` (drafted) and `docs/miscellaneous/design-decisions.md` (D36 to D38).
 
 ## Observations
 - **The rules engine decides most outcomes, so the tool scenarios are almost insensitive to the prompt.** All 24 pass under every prompt in the final run. The prompt changes the wording and matters mainly where there is no engine result: the policy questions, and the choice between "inform" and "escalate" for questions the documents do not cover.
@@ -52,7 +52,7 @@ Details of each fix are in `docs/debugged-failure.md` (drafted) and `docs/design
 - One run per prompt. The model is not deterministic: the same message was classified as `policy_question`, `return` and `refund_status` on three consecutive calls in a check, so differences of one or two items are noise. A repeat of the comparison would be needed for a significance claim.
 - 34 inputs only, written by the same author as the prompts and rules. The numbers show that the pipeline behaves as designed on these cases, not how it would do on unseen customer messages.
 - "Hallucinated amount" is a heuristic (peso amounts in the written text that appear nowhere in the case data), not a full factual check.
-- The scenario expectations were fixed before the runs, but the code was changed after run 1 and 2, so the final numbers are "after fixes", not a blind test. Run 1 and 2 files are kept in `eval/results/`.
+- The scenario expectations were fixed before the runs, but the code was changed after run 1 and 2, so the final numbers are "after fixes", not a blind test. Run 1 and 2 files are kept in `docs/evidence/evals/`.
 - P02 ("Can I choose store credit instead of a refund?") still fails intermittently because the understand step sometimes returns an order intent with no order number and the agent asks for one.
 
 

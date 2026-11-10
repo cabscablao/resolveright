@@ -130,7 +130,7 @@ stateDiagram-v2
 
 ## Key decisions
 
-The full list is in `docs/design-decisions.md`. The ones a reader needs first:
+The full list is in `docs/miscellaneous/design-decisions.md`. The ones a reader needs first:
 
 - **The rule engine decides, the LLM talks.** Money decisions come from code that is tested for every order archetype. The LLM understands the message and writes wording.
 - **A small explicit state machine** (LangGraph) with a step cap and a timeout, so a loop cannot cost money.

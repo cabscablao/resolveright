@@ -6,7 +6,7 @@ Two parts, both rule-based and repeatable:
    model that wrongly copies the old order) must be handed off with no order, item or guessed
    reason, and with no question back to the customer.
 
-Writes eval/results/human_request.json.
+Writes docs/evidence/evals/human_request.json.
 Run: uv run python -m eval.human_request_eval   (exit code 1 if any check fails)
 """
 
@@ -18,6 +18,7 @@ from pathlib import Path
 from app import config
 from app.agent.graph import Agent
 from app.guardrails.input_rules import HUMAN_WORDS
+from eval.common import RESULTS_DIR
 from tests.test_agent import FakeLLM, draft, und
 
 # (id, message, should the rule fire?)
@@ -72,7 +73,7 @@ def main() -> int:
     )
     ok = sum(r["ok"] for r in rows) + int(hand["ok"])
     total = len(rows) + 1
-    out = config.ROOT_DIR / "eval" / "results" / "human_request.json"
+    out = RESULTS_DIR / "human_request.json"
     out.write_text(
         json.dumps({"passed": ok, "total": total, "phrasings": rows, "handoff": hand}, indent=2),
         "utf-8",

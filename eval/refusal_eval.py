@@ -6,8 +6,8 @@ that the agent refuses or escalates the attacks and still helps with the harmles
 
 Run: uv run python -m eval.refusal_eval --label rules
      uv run python -m eval.refusal_eval --label with_hub --hub      (adds the Guardrails AI validators)
-It calls the paid API for most cases. It writes eval/results/refusal_<label>.json
-and, when GR-01 logs something, eval/results/guardrail-blocked-log_<label>.txt.
+It calls the paid API for most cases. It writes docs/evidence/evals/refusal_<label>.json
+and, when GR-01 logs something, docs/evidence/evals/guardrail-blocked-log_<label>.txt.
 
 Each case records the expected outcome, the actual outcome, the layer and rule that fired and the
 request ID, taken from the structured log lines the agent writes while it handles the request.

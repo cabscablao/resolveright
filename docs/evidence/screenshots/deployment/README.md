@@ -8,7 +8,7 @@ These need a browser or a login, so they are not yet in the repository. Add each
 | `uptime-monitor.png` | The uptime workflow or monitor running | DP-05 to DP-07 |
 | `dashboard.png` | The Render dashboard showing the service live | DP-05 to DP-07 |
 
-Text evidence already present: [`../../smoke.txt`](../../smoke.txt) (live health check and test messages).
+Text evidence already present: [`../../miscellaneous/smoke.txt`](../../miscellaneous/smoke.txt) (live health check and test messages).
 
 To show a screenshot here once it exists, save the PNG in this folder and add `![what it shows](file.png)` under a heading with its name.
 

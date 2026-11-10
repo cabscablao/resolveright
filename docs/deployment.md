@@ -13,7 +13,7 @@ ResolveRight runs as one Docker container: FastAPI (`/api/v1/*`, `/health`, `/do
 
 ## Secrets
 - `OPENAI_API_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY` are typed into the **Render dashboard** only. They are not in the image, the repository, the logs or any screenshot.
-- `.env` is git-ignored and docker-ignored. The detect-secrets pre-commit hook scans every commit; `uv run pre-commit run detect-secrets --all-files` scans the working tree (the history scan is in `docs/evidence/history-scan.txt`).
+- `.env` is git-ignored and docker-ignored. The detect-secrets pre-commit hook scans every commit; `uv run pre-commit run detect-secrets --all-files` scans the working tree (the history scan is in `docs/evidence/miscellaneous/history-scan.txt`).
 - Rotate a key at once if it is ever pasted somewhere it should not be.
 
 ## Cost and abuse protection

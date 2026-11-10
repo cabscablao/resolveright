@@ -5,10 +5,10 @@ first model wrote, using a 1-5 score on a few criteria. A judge can be wrong, so
 also score a small sample by hand and measure how often the judge and the human agree.
 
   uv run python -m eval.judge --score        judge every v2_grounded draft from the tool scenarios
-  uv run python -m eval.judge --sheet        write eval/results/judge_manual.csv for blind hand scoring
+  uv run python -m eval.judge --sheet        write docs/evidence/evals/judge_manual.csv for blind hand scoring
   uv run python -m eval.judge --agreement    compare hand scores with the judge's, write the report
 
-Files written: eval/results/judge_scores.json (--score), eval/results/judge_manual.csv (--sheet)
+Files written: docs/evidence/evals/judge_scores.json (--score), docs/evidence/evals/judge_manual.csv (--sheet)
 and docs/judge-agreement.md (--agreement). --score calls the paid API.
 
 The judge model (`JUDGE_MODEL`, default gpt-4o-mini) is deliberately not the model that wrote the

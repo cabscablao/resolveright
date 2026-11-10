@@ -9,15 +9,15 @@ chunk to answer. "Multi-hop" questions need facts from several chunks.
 Run: uv run python -m eval.sdg --size 15
      uv run python -m eval.sdg --triage-only     (re-flag the saved candidates; no API calls)
      uv run python -m eval.sdg --merge           (reviewed keep/edit candidates -> eval/golden_rag_sdg.jsonl)
-The generation run calls paid APIs. It writes eval/results/sdg_candidates.jsonl,
-eval/results/sdg_summary.json and eval/results/sdg_knowledge_graph.json.
+The generation run calls paid APIs. It writes docs/evidence/evals/sdg_candidates.jsonl,
+docs/evidence/evals/sdg_summary.json and docs/evidence/evals/sdg_knowledge_graph.json.
 
 Pipeline (same steps as the course notebook): policies -> KnowledgeGraph document nodes ->
 `default_transforms` (summaries, themes, entities, similarity links) -> `TestsetGenerator` with a
 query distribution of 50% single-hop specific, 25% multi-hop abstract, 25% multi-hop specific.
 
 The output is a list of CANDIDATES, never a finished test set. They are written to
-`eval/results/sdg_candidates.jsonl` with `reviewed_by_human: false`, kept apart from the hand-made
+`docs/evidence/evals/sdg_candidates.jsonl` with `reviewed_by_human: false`, kept apart from the hand-made
 `eval/golden_rag.jsonl`, and are not used in any reported metric until the owner has read and
 accepted them. Each candidate is annotated automatically:
   - `source_docs`: policy documents whose text contains the reference context;
@@ -310,7 +310,7 @@ def merge_reviewed(rows: list[dict]) -> list[dict]:
     have the same fields as `eval/golden_rag.jsonl`, so the RAG evaluation can read them.
 
     Args:
-        rows: Candidate rows as saved in eval/results/sdg_candidates.jsonl.
+        rows: Candidate rows as saved in docs/evidence/evals/sdg_candidates.jsonl.
 
     Returns:
         Golden-style rows, in the order of the candidates. The ids stay as the candidate ids

@@ -1,0 +1,3506 @@
+{
+  "environment": {
+    "date": "2026-10-26T05:24:16+00:00",
+    "python": "3.12.11",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "versions": {
+      "ragas": "0.4.3",
+      "langchain": "0.3.30",
+      "langgraph": "0.6.11",
+      "qdrant-client": "1.15.1",
+      "openai": "1.109.1",
+      "langfuse": "5.0.4"
+    },
+    "llm_model": "gpt-5-nano",
+    "embedding_model": "text-embedding-3-small",
+    "prompt_version": "v3_checklist",
+    "chunk_strategy": "baseline",
+    "top_k": 4,
+    "as_of_date": "2026-11-02",
+    "temperature": "provider default for gpt-5* (no temperature sent); 0 for other models",
+    "seed": "none (the OpenAI API has no seed we rely on); results can vary a little per run"
+  },
+  "summaries": {
+    "v1_baseline": {
+      "n": 34,
+      "tool_selection_accuracy": 1.0,
+      "task_completion_tools": 1.0,
+      "task_completion_policy": 0.7,
+      "task_completion_all": 0.912,
+      "designed_failure_tool_accuracy": 1.0,
+      "designed_failure_task_completion": 1.0,
+      "mvp_task_completion": 1.0,
+      "first_pass_schema_ok": 1.0,
+      "fallbacks": 0,
+      "citation_validity": 1.0,
+      "runs_with_ungrounded_amounts": 0,
+      "mean_latency_s": 2.9521,
+      "mean_tokens": 3094.5,
+      "est_cost_usd": 0.0087
+    },
+    "v2_grounded": {
+      "n": 34,
+      "tool_selection_accuracy": 1.0,
+      "task_completion_tools": 1.0,
+      "task_completion_policy": 0.9,
+      "task_completion_all": 0.971,
+      "designed_failure_tool_accuracy": 1.0,
+      "designed_failure_task_completion": 1.0,
+      "mvp_task_completion": 1.0,
+      "first_pass_schema_ok": 1.0,
+      "fallbacks": 0,
+      "citation_validity": 1.0,
+      "runs_with_ungrounded_amounts": 0,
+      "mean_latency_s": 3.4135,
+      "mean_tokens": 3389.2059,
+      "est_cost_usd": 0.0089
+    },
+    "v3_checklist": {
+      "n": 34,
+      "tool_selection_accuracy": 1.0,
+      "task_completion_tools": 1.0,
+      "task_completion_policy": 0.8,
+      "task_completion_all": 0.941,
+      "designed_failure_tool_accuracy": 1.0,
+      "designed_failure_task_completion": 1.0,
+      "mvp_task_completion": 1.0,
+      "first_pass_schema_ok": 1.0,
+      "fallbacks": 0,
+      "citation_validity": 1.0,
+      "runs_with_ungrounded_amounts": 0,
+      "mean_latency_s": 3.7294,
+      "mean_tokens": 3789.2647,
+      "est_cost_usd": 0.0095
+    }
+  },
+  "items": {
+    "v1_baseline": [
+      {
+        "id": "S01",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "refund",
+        "expected": [
+          "refund"
+        ],
+        "amount": 82.05,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "Eligible change-of-mind return within POL-01 with applicable $6.95 return-shipping deduction. The max refundable amount is 82.05 (price 89.00 minus 6.95). The policy allows refunds up to $150 without manager approval, and the order has not been refunded yet. Approval level is agent. The customer is within 30 days of delivery (delivery date 10/23).",
+        "reply": "Hi {{first_name}}, thanks for reaching out. We can process a standard return refund for the Wireless headphones (order ORD-1001). You\u2019ll be refunded the item price minus the $6.95 return-shipping fee, back to your original payment method within 5-7 business days after we receive the item. Please use the prepaid return label we\u2019ll provide if required. Do you want us to proceed with this, and do you need the return label emailed to you?",
+        "notices": [],
+        "latency_s": 6.79,
+        "prompt_tokens": 4000,
+        "completion_tokens": 463,
+        "llm_calls": 2
+      },
+      {
+        "id": "S02",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "I want to return the running shoes in order ORD-1003, they don't fit the way I hoped.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "refund",
+        "expected": [
+          "refund"
+        ],
+        "amount": 68.05,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "The item is within the 30-day return window and not a final-sale or opened item. Policy POL-01 defines a $6.95 return-shipping deduction for change-of-mind returns. The max refundable amount for this item is $75.00 minus the $6.95 fee equals $68.05. The order was delivered within the return window, and the item is unopened. Eligibility confirmed in eligibility_result (WITHIN_RETURN_WINDOW).",
+        "reply": "Hi {{first_name}}, thanks for reaching out. I can help with a return and refund for your Running shoes (ORD-1003). Since the item is within the 30-day return window and unopened, we can process a refund to your original payment method. A flat $6.95 return-shipping fee will be deducted from the refund, so you would receive $68.05. Please confirm that you\u2019d like us to proceed with the refund to your original payment method. If you\u2019d prefer store credit instead, I can arrange that as well.",
+        "notices": [],
+        "latency_s": 4.25,
+        "prompt_tokens": 3998,
+        "completion_tokens": 405,
+        "llm_calls": 2
+      },
+      {
+        "id": "S03",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Can I return the backpack from ORD-1004? I just don't need it any more.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Policy POL-01 sets 30-day window; ORD-1004 delivered 2026-10-02, window ends 2026-11-01. POL-01/ POL-03 indicate outside window should be declined. The case notes say eligibility_result is deny with OUTSIDE_RETURN_WINDOW. No evidence of damage/defect provided.",
+        "reply": "Hi {{first_name}}, thanks for checking in. I\u2019m sorry, but ORD-1004 falls outside our 30-day return window, so we\u2019re not able to process a standard return or refund for a change-of-mind request. If the item is damaged or defective, please share a quick description and any photos and I can reassess under POL-04 for a possible replacement or refund. If you\u2019d prefer, I can offer store credit for your next purchase. What would you like to do?",
+        "notices": [],
+        "latency_s": 5.23,
+        "prompt_tokens": 3945,
+        "completion_tokens": 533,
+        "llm_calls": 2
+      },
+      {
+        "id": "S04",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I'd like to return the rain jacket on ORD-1002, it's too big.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "Policy POL-01 states returns for change-of-mind are allowed within 30 days of delivery. The order delivered on 2026-09-18; the customer request is beyond the 30-day window. The item is not marked as defective or damaged per provided data, so POL-04 doesn\u2019t apply. Therefore, this request is denied per POL-01.",
+        "reply": "Hi {{first_name}}, thanks for reaching out. I\u2019m sorry, but I can\u2019t process a return for this rain jacket because it\u2019s outside the 30-day return window outlined in our POL-01 policy. If the item arrived damaged or defective, please let me know and I can review for POL-04. If you\u2019d like, I can offer store credit for future Brightcart purchases in line with our policies. Please tell me how you\u2019d like to proceed.",
+        "notices": [],
+        "latency_s": 4.2,
+        "prompt_tokens": 4000,
+        "completion_tokens": 402,
+        "llm_calls": 2
+      },
+      {
+        "id": "S05",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Please let me return the clearance sweater from ORD-1005, I don't like the colour.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "The item is a clearance (final-sale) sweater (POL-03). The customer requests a return for change of mind, which is not allowed under POL-03 unless there is damage/defect or wrong item (POL-04). The order was delivered within 30 days, but the policy explicitly prohibits change-of-mind returns for clearance items. The only permitted remedies would be if the item were defective/damaged or incorrect; those would be handled under POL-04 with possible replacement/refund. No evidence of damage/defect is provided.",
+        "reply": "Hi {{first_name}}, thanks for reaching out. I\u2019m sorry you\u2019re not happy with the color. Per our POL-03 policy, clearance items are final sale and can\u2019t be returned for a change of mind. If the item arrived damaged, defective, or is the wrong item, we can help under POL-04 with a replacement or refund. Could you please confirm if the sweater is damaged or defective, or if you received the wrong item? If not, I\u2019m afraid we can\u2019t process a return. ",
+        "notices": [],
+        "latency_s": 4.35,
+        "prompt_tokens": 3948,
+        "completion_tokens": 470,
+        "llm_calls": 2
+      },
+      {
+        "id": "S06",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The clearance desk lamp in ORD-1006 arrived defective, it won't turn on at all.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund"
+        ],
+        "amount": 50.95,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0",
+          "POL-08#c0"
+        ],
+        "rationale": "Defective item reported for a clearance/final-sale lamp qualifies for POL-04 remedies. The customer is eligible for a replacement or a refund; the policy permits replacement as the recommended outcome, and POL-08 warranty could apply if needed.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry the clearance desk lamp arrived defective and won\u2019t turn on. Good news: you\u2019re eligible for a replacement or a refund. We can ship a replacement right away, or issue a refund/store credit\u2014your choice. Please tell me which option you prefer, and if you have any photos of the item or packaging to include, feel free to share them to help speed things up.",
+        "notices": [],
+        "latency_s": 3.95,
+        "prompt_tokens": 3818,
+        "completion_tokens": 386,
+        "llm_calls": 2
+      },
+      {
+        "id": "S07",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "My ceramic dinnerware set from ORD-1007 arrived broken, several plates are cracked.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund",
+          "need_info"
+        ],
+        "amount": 95.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0"
+        ],
+        "rationale": "Customer reported broken plates on a delivered order (ORD-1007). Policy POL-04 covers damaged items reported within 7 days of delivery; the customer is eligible for replacement or refund. The max eligible amount is 95.0. Evidence required: photos of item and packaging before approval. Replacement is available and within approval limits; processing can proceed agent-level (POL-04).",
+        "reply": "Hi {{first_name}}, I\u2019m really sorry your ceramic dinnerware set arrived with cracked plates. We can either replace the set or issue a refund. To move forward, please reply with your preference and attach photos of the damaged items and their packaging. Once we receive the photos, we\u2019ll process the replacement or refund right away. Thank you for your patience.",
+        "notices": [],
+        "latency_s": 3.22,
+        "prompt_tokens": 3913,
+        "completion_tokens": 366,
+        "llm_calls": 2
+      },
+      {
+        "id": "S08",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The glass vase from ORD-1008 was broken when it arrived. I'm only reporting it now.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: LATE_DAMAGE_CLAIM.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.6,
+        "prompt_tokens": 834,
+        "completion_tokens": 59,
+        "llm_calls": 1
+      },
+      {
+        "id": "S09",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The laptop I got in ORD-1009 is defective, the screen keeps flickering.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: DEFECT_REPORTED_IN_TIME, THREE_REFUNDS_IN_90_DAYS, ABOVE_AGENT_LIMIT.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.55,
+        "prompt_tokens": 832,
+        "completion_tokens": 64,
+        "llm_calls": 1
+      },
+      {
+        "id": "S10",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "My tablet stand from ORD-1010 never arrived and it's long overdue.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund"
+        ],
+        "amount": 65.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-06#c0",
+          "POL-05#c0"
+        ],
+        "rationale": "Customer is eligible for a replacement per POL-06 for lost packages. Max approved amount is 65.0, aligning with order value. Education on lead time and tracking provided.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry your tablet stand (ORD-1010) hasn\u2019t arrived yet. Based on our Lost Package policy, we can offer you a replacement for the Tablet stand SKU-TB1 or a refund. Please tell me which you prefer. If you choose replacement, I\u2019ll ship a new stand right away and share the tracking details. If you prefer a refund, I\u2019ll process it for $65 to your original payment method.",
+        "notices": [],
+        "latency_s": 3.65,
+        "prompt_tokens": 3783,
+        "completion_tokens": 357,
+        "llm_calls": 2
+      },
+      {
+        "id": "S11",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Where is my package? Order ORD-1011 is a day past the estimated date.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-05#c0"
+        ],
+        "rationale": "According to POL-05, the delivery is within tolerance if not more than 2 days late; ORD-1011 is 1 day past estimated delivery date and status is in_transit. The policy allows informing the customer and sharing tracking info while they wait. No refund or replacement is indicated at this time since late by policy falls under informing if within tolerance.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry your package is arriving later than expected. Your order ORD-1011 is currently in transit and within the normal tolerance window. I\u2019ve shared the latest tracking status below and kindly ask you to please allow a little more time for delivery. If you don\u2019t see it arriving soon, reply here and I\u2019ll be happy to check again and explore options.",
+        "notices": [],
+        "latency_s": 3.77,
+        "prompt_tokens": 3763,
+        "completion_tokens": 299,
+        "llm_calls": 2
+      },
+      {
+        "id": "S12",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Please cancel my order ORD-1013, I ordered it by mistake.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "cancel_order",
+        "expected": [
+          "cancel_order"
+        ],
+        "amount": 0.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0"
+        ],
+        "rationale": "Policy POL-07 allows cancellations before shipment for a full refund including shipping. Order ORD-1013 status is processing with no shipment yet, and the customer is eligible for cancellation. The maxRefund amount is $47.95 (product+shipping) per policy, which matches the order total of 42.00 + 5.95 = 47.95. The next steps indicate a full refund within 5-7 business days after cancellation.",
+        "reply": "Hi {{first_name}},\n\nI can help cancel ORD-1013 for you. Since the order hasn\u2019t shipped yet, we\u2019ll issue a full refund (including shipping) to your original payment method. Expect the refund to appear within 5\u20137 business days after cancellation.\n\nWould you like me to proceed with the cancellation now?",
+        "notices": [],
+        "latency_s": 2.91,
+        "prompt_tokens": 3926,
+        "completion_tokens": 330,
+        "llm_calls": 2
+      },
+      {
+        "id": "S13",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I need to cancel ORD-1014 please, I don't want it any more.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0",
+          "POL-04#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Policy POL-07 states cancellations are only possible before shipment. Since ORD-1014 has shipped (shipped_date 2026-11-01), cancellation is denied. The next best option per POL-01 is a return after delivery. If item is eligible, refund process follows after item is received; the return shipping is customer-paid per POL-01 unless the item is damaged/defective or Brightcart error is involved (POL-04). The item is not marked as non-returnable (POL-03 does not apply).",
+        "reply": "Hi {{first_name}}, I\u2019m sorry, but I can\u2019t cancel ORD-1014 because it has already shipped. You can return the item after delivery under our standard returns policy. Here are the next steps: 1) Wait for delivery (estimated 2026-11-07). 2) Initiate a return through your Brightcart account within 30 days of delivery. 3) Use the provided return label (customer-paid shipping under POL-01). 4) Once we receive the item in original condition, you\u2019ll be refunded to the original payment method within 5\u20137 business days, minus the standard return shipping fee of $6.95 for change-of-mind returns. If you\u2019d like, I can start the return request for you now\u2014just confirm.",
+        "notices": [],
+        "latency_s": 4.02,
+        "prompt_tokens": 3941,
+        "completion_tokens": 538,
+        "llm_calls": 2
+      },
+      {
+        "id": "S14",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "My portable speaker from ORD-1017 stopped working after about six months.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement"
+        ],
+        "amount": 130.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer reports a defect after six months. Eligible for warranty replacement according to POL-08 for electronics within 12 months. The next-step requires evidence of fault (description of the fault). Since the policy allows replacement or refund and the order value is $130, a replacement is prioritized by eligibility data.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry your portable speaker isn\u2019t working after six months. Based on our warranty for electronics, I can arrange a replacement or, if you prefer, a refund/store credit. Please reply with a brief description of the fault and your preferred remedy (replacement or refund/store credit). If you choose replacement, I\u2019ll initiate it to the same address. If you\u2019d rather have a refund or store credit, tell me which you prefer. A short description of the fault is required to proceed.",
+        "notices": [],
+        "latency_s": 3.64,
+        "prompt_tokens": 3809,
+        "completion_tokens": 408,
+        "llm_calls": 2
+      },
+      {
+        "id": "S15",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The USB-C adapter I bought in ORD-1018 failed after 13 months. Can you replace it?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "The eligibility result shows WARRANTY_EXPIRED for ORD-1018 and the policy POL-08 states electronics warranty is 12 months from delivery. The item delivered 2025-09-28, claim after 13 months falls outside warranty. Therefore replacement/refund under warranty is not allowed. POL-04 covers damaged/defective items but requires within 30 days; this item is outside window. The allowed recommendation is deny with explanation and offer alternatives if any per policy. ",
+        "reply": "Hi {{first_name}}, I\u2019m sorry to hear about your USB-C adapter failing after 13 months. Our electronics warranty covers defects within 12 months from delivery, so this falls outside warranty. I can help explore non-warranty options such as paid repair guidance or a one-time courtesy offer if available. Please let me know if you\u2019d like me to check for any paid repair estimates or store credit alternatives.",
+        "notices": [],
+        "latency_s": 3.89,
+        "prompt_tokens": 3751,
+        "completion_tokens": 462,
+        "llm_calls": 2
+      },
+      {
+        "id": "S16",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The power bank from ORD-1023 is overheating and smells like it's burning!",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Flagged by the assistant: safety_hazard.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.23,
+        "prompt_tokens": 830,
+        "completion_tokens": 62,
+        "llm_calls": 1
+      },
+      {
+        "id": "S17",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I'd like a refund for the hair brush set on ORD-1022, I don't want it.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: WITHIN_RETURN_WINDOW, THREE_REFUNDS_IN_90_DAYS.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.34,
+        "prompt_tokens": 834,
+        "completion_tokens": 65,
+        "llm_calls": 1
+      },
+      {
+        "id": "S18",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The personalised mug from ORD-1028 has my name spelled wrong.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Policy POL-04 allows replacement or refund for wrong items or errors. POL-03 notes personalised items are non-returnable unless the exception applies when Brightcart made the error. The current case lacks clear origin of error, so we need the customer-provided text to decide eligibility. Next steps documented in POL-04: request photos or descriptions as evidence; inform customer of possible remedies (replacement or refund) once origin is determined.",
+        "reply": "Hi {{first_name}}, I\u2019m really sorry the name on your personalised mug is misspelled. To help us fix this quickly, please reply with the exact text you entered for the name on the mug. This will help us determine whether the error came from Brightcart or from the text you provided. Once we have that, we\u2019ll offer you a replacement or a refund and share the next steps. Thank you for your patience, and again I apologize for the inconvenience.",
+        "notices": [],
+        "latency_s": 3.09,
+        "prompt_tokens": 3813,
+        "completion_tokens": 411,
+        "llm_calls": 2
+      },
+      {
+        "id": "S19",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "My package never came.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "A required fact is missing.",
+        "reply": "Hi {{first_name}}, happy to help. Could you share your order number (it looks like ORD-1234) so I can look it up?",
+        "notices": [],
+        "latency_s": 0.91,
+        "prompt_tokens": 819,
+        "completion_tokens": 47,
+        "llm_calls": 1
+      },
+      {
+        "id": "S20",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "I want to return my order ORD-9999.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Order lookup failed: not_found.",
+        "reply": "Hi {{first_name}}, I couldn't find that order on your account. Could you double-check the order number?",
+        "notices": [],
+        "latency_s": 0.88,
+        "prompt_tokens": 825,
+        "completion_tokens": 55,
+        "llm_calls": 1
+      },
+      {
+        "id": "S21",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order lookup failed (timeout); order not verified. Relevant policy: Final-Sale and Non-Returnable Items, Returns Policy.",
+        "reply": "Hi {{first_name}}, I'm sorry, I can't check your order right now, so I can't confirm what applies to it. I've asked a specialist to follow up with you.",
+        "notices": [
+          "Could not verify the order. Nothing below is based on order data."
+        ],
+        "latency_s": 1.04,
+        "prompt_tokens": 835,
+        "completion_tokens": 60,
+        "llm_calls": 1
+      },
+      {
+        "id": "S22",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order lookup failed (disabled); order not verified. Relevant policy: Final-Sale and Non-Returnable Items, Returns Policy.",
+        "reply": "Hi {{first_name}}, I'm sorry, I can't check your order right now, so I can't confirm what applies to it. I've asked a specialist to follow up with you.",
+        "notices": [
+          "Could not verify the order. Nothing below is based on order data."
+        ],
+        "latency_s": 1.02,
+        "prompt_tokens": 835,
+        "completion_tokens": 60,
+        "llm_calls": 1
+      },
+      {
+        "id": "S23",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Return my order ORD-1029 please.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The order does not belong to this customer's account.",
+        "reply": "Hi {{first_name}}, I can't help with that order from this account. I've asked a specialist to follow up with you.",
+        "notices": [],
+        "latency_s": 1.11,
+        "prompt_tokens": 823,
+        "completion_tokens": 53,
+        "llm_calls": 1
+      },
+      {
+        "id": "S24",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I want a refund for the hoodie in ORD-1030.",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: WITHIN_RETURN_WINDOW, CHARGEBACK_OPEN.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.0,
+        "prompt_tokens": 827,
+        "completion_tokens": 56,
+        "llm_calls": 1
+      },
+      {
+        "id": "P01",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How many days after delivery can I return an item?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "Customer asked about return window. Policy POL-01 states 30 days from delivery date. Since no order details are provided, respond with the general policy and invite them to share delivery date to confirm eligibility. If item falls into non-returnable categories (POL-03) or damaged/defective/wrong (POL-04), guide accordingly.",
+        "reply": "Hi {{first_name}}, thanks for checking in. Brightcart accepts most change-of-mind returns within 30 days of the delivery date (the day the carrier marks the order delivered). If you\u2019re within that window, you can return the item in its original packaging with all accessories and tags, and you\u2019ll see a refund processed to your original payment method after we receive and inspect the item. If you\u2019re outside the 30-day window, some items may be non-returnable (see POL-03), but exceptions apply for damaged/defective or wrong items under POL-04. If you share your delivery date (and a brief description of the item), I\u2019ll confirm eligibility and the exact next steps.",
+        "notices": [],
+        "latency_s": 3.78,
+        "prompt_tokens": 3618,
+        "completion_tokens": 419,
+        "llm_calls": 2
+      },
+      {
+        "id": "P02",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I choose store credit instead of a refund? Is there a bonus?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "need_info",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [],
+        "tool_ok": false,
+        "task_ok": false,
+        "failures": [
+          "missing tools ['search_policy']",
+          "recommendation need_info not in ['inform']",
+          "no policy citation",
+          "no citation of ['POL-02']"
+        ],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "A required fact is missing.",
+        "reply": "Hi {{first_name}}, happy to help. Could you share your order number (it looks like ORD-1234) so I can look it up?",
+        "notices": [],
+        "latency_s": 0.91,
+        "prompt_tokens": 829,
+        "completion_tokens": 58,
+        "llm_calls": 1
+      },
+      {
+        "id": "P03",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I return a final-sale item if it arrives defective?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Final-sale items are non-returnable for change of mind, but defects or wrong items are exceptions handled under POL-04. Since the customer asked about defect, we should guide them to provide evidence and proceed with damage/defect process.",
+        "reply": "Hi {{first_name}}, thanks for reaching out. Final-sale items are generally non-returnable for change of mind (POL-03). However, if the item arrived defective, damaged, or the wrong item was sent, we handle it under POL-04. To proceed, please share photos of the item and its packaging (and a brief description of the defect). You\u2019ll be able to choose between a replacement or a refund once we review the evidence. Could you also confirm the delivery date? This helps us apply the correct timelines. I\u2019ll be here to help every step of the way.",
+        "notices": [],
+        "latency_s": 3.58,
+        "prompt_tokens": 3596,
+        "completion_tokens": 386,
+        "llm_calls": 2
+      },
+      {
+        "id": "P04",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How long do standard and express shipping take?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-05#c0"
+        ],
+        "rationale": "The customer asked about standard and express shipping timelines. Policy POL-05 defines standard 5-7 business days and express 2 business days from ship date. It notes business days exclude holidays and processing time before ship. Since this is informational, no action required beyond providing the timelines and offering to track if they provide an order number.",
+        "reply": "Hi {{first_name}}, here are the shipping timelines: Standard shipping takes 5 to 7 business days from the ship date, and Express shipping takes 2 business days from the ship date. Business days are Monday\u2013Friday, excluding public holidays. If you\u2019d like, tell me your order number and I can check the current status or estimated delivery date for you.",
+        "notices": [],
+        "latency_s": 2.67,
+        "prompt_tokens": 3485,
+        "completion_tokens": 292,
+        "llm_calls": 2
+      },
+      {
+        "id": "P05",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Until when can I cancel an order?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0"
+        ],
+        "rationale": "Policy POL-07 clearly states cancellations are only allowed before shipment. Since we don\u2019t have order details, we should verify status. If not shipped, cancel and refund in full per POL-07. If shipped, refer to POL-01 for returns and POL-06 if late/delivery issues.",
+        "reply": "Hi {{first_name}}, thanks for checking on cancellation timing. Cancellations and changes are only possible before the order ships. If your order is still processing, I can cancel it and issue a full refund to your original payment method (expect 5\u20137 business days). If it has already shipped, I can guide you through a return under our standard policy. Could you please share your order number or the current status so I can confirm the next step?",
+        "notices": [],
+        "latency_s": 3.97,
+        "prompt_tokens": 3555,
+        "completion_tokens": 367,
+        "llm_calls": 2
+      },
+      {
+        "id": "P06",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How long is the warranty on electronics and what does it exclude?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0",
+          "POL-04#c0",
+          "POL-01#c0"
+        ],
+        "rationale": "The customer asked about warranty duration and exclusions. Based on POL-08, electronics have a 12-month warranty from delivery date for manufacturing defects, and exclusions include accidental damage, misuse, unauthorized repairs, and normal wear. The policy also notes that the remedy for valid warranty claims is a replacement (or refund/store credit if replacement unavailable). Since the customer did not report a specific defect yet, we should inform them of the terms and ask for details to proceed.",
+        "reply": "Hi {{first_name}}, thanks for reaching out. For electronics, Brightcart offers a 12-month warranty from the delivery date for manufacturing defects. The warranty does not cover accidental damage, misuse, unauthorized repairs, or normal wear and tear. If the defect is covered, the remedy is a replacement (or a refund/store credit if a replacement isn\u2019t available). To proceed, please tell us the delivery date and describe the issue, and attach photos if you can. If the item arrived damaged or defective, we\u2019ll guide you through the next steps.",
+        "notices": [],
+        "latency_s": 3.12,
+        "prompt_tokens": 3598,
+        "completion_tokens": 409,
+        "llm_calls": 2
+      },
+      {
+        "id": "P07",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Do you price-match competitors?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": false,
+        "failures": [
+          "recommendation inform not in ['escalate']"
+        ],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-09#c0"
+        ],
+        "rationale": "The customer asks about price-matching competitors. Brightcart policy POL-09 explicitly states that competitor price matching is not covered in our policy documents and should be escalated rather than guessed. Since price adjustments only apply to our own price drops within 14 days (POL-09) and there is no policy on competitor price matching, we should provide a clear, policy-based answer and offer to escalate for a definitive stance.",
+        "reply": "Hi {{first_name}}, thanks for reaching out. At Brightcart, we don\u2019t have a price-match policy for competitors in our current guidelines. If you recently paid a price that dropped within 14 days on a Brightcart item, you may be eligible for a price adjustment under our own price changes policy (up to $150; manager approval for higher amounts). If you\u2019d like, I can escalate this question to a manager for a formal policy decision. Please let me know how you\u2019d like to proceed.",
+        "notices": [],
+        "latency_s": 3.23,
+        "prompt_tokens": 3590,
+        "completion_tokens": 359,
+        "llm_calls": 2
+      },
+      {
+        "id": "P08",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I pick up my order in store?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "inform",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": false,
+        "failures": [
+          "recommendation inform not in ['escalate']"
+        ],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0"
+        ],
+        "rationale": "Policy question: pickup in store is not covered explicitly in the provided policies. We should inform customer that Brightcart currently ships orders and does not offer in-store pickup, or we need to confirm location availability. Since the allowed recommendations are inform, need_info, escalate, we can inform them of general policy: delivery only, no in-store pickup stated in POL-07/POL-01. If unsure, ask for their location and order details to check exceptions or store policies.",
+        "reply": "Hi {{first_name}}! Thanks for checking. At the moment, Brightcart policies cover delivery to your address rather than in-store pickup. I can look into any nearby store options if you share your city or zip code and an order number (if you have one). Would you like me to check availability for a pickup or provide the best delivery options instead?",
+        "notices": [],
+        "latency_s": 3.73,
+        "prompt_tokens": 3537,
+        "completion_tokens": 358,
+        "llm_calls": 2
+      },
+      {
+        "id": "P09",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How many loyalty points do I earn per dollar?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 3.18,
+        "prompt_tokens": 3526,
+        "completion_tokens": 325,
+        "llm_calls": 2
+      },
+      {
+        "id": "P10",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I place a bulk order for my business?",
+        "prompt_version": "v1_baseline",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 3.56,
+        "prompt_tokens": 3441,
+        "completion_tokens": 352,
+        "llm_calls": 2
+      }
+    ],
+    "v2_grounded": [
+      {
+        "id": "S01",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "refund",
+        "expected": [
+          "refund"
+        ],
+        "amount": 82.05,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "Customer requested return for change of mind on delivered item within 30-day window. POL-01 allows returns for change-of-mind with $6.95 shipping fee deducted; max refund amount is 82.05 per eligibility result. POL-01 covers return timing and fees; POL-04 covers damaged/defective if applicable but not needed here.",
+        "reply": "Hi {{first_name}},\\n\\nI\u2019m sorry for the hassle\u2014I can help get this return processed. Since your wireless headphones were delivered and you\u2019re returning for a change of mind, Brightcart will refund the item price minus a $6.95 return-shipping fee, back to your original payment method. The refund will be issued within 5 to 7 business days after we receive the return. You don\u2019t need to take any further action unless you want to switch to store credit instead.",
+        "notices": [],
+        "latency_s": 3.35,
+        "prompt_tokens": 4337,
+        "completion_tokens": 361,
+        "llm_calls": 2
+      },
+      {
+        "id": "S02",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "I want to return the running shoes in order ORD-1003, they don't fit the way I hoped.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "refund",
+        "expected": [
+          "refund"
+        ],
+        "amount": 68.05,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer requests a return for running shoes (ORD-1003). Policy POL-01 allows change-of-mind returns within 30 days of delivery with a $6.95 return-shipping fee deducted from the refund. Eligibility result shows eligible with max_amount 68.05 and next_steps specify refund timing and deduction.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry the shoes didn\u2019t fit as you hoped. I can help with a return within 30 days of delivery. The refund would be issued to your original payment method after we receive the item back, with a $6.95 return-shipping fee deducted from the refund. We\u2019ll keep you updated on the status once the item is on its way back and reviewed.",
+        "notices": [],
+        "latency_s": 3.26,
+        "prompt_tokens": 4335,
+        "completion_tokens": 348,
+        "llm_calls": 2
+      },
+      {
+        "id": "S03",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Can I return the backpack from ORD-1004? I just don't need it any more.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer requests a return for change-of-mind. Eligibility result: not eligible (OUTSIDE_RETURN_WINDOW). Policy POL-01 defines the 30-day return window; POL-03/04 discuss exceptions for damaged/defective items. The allowed recommendation is deny.",
+        "reply": "Hi {{first_name}},\n\nSorry, but our return window requires items to be returned within 30 days of delivery, and ORD-1004 was delivered on October 2. Because it\u2019s outside the return window, we can\u2019t approve a change-of-mind return at this time. If you believe the item arrived damaged or defective, or you received the wrong item, we can review that under our damage/defect policy. If applicable, I can guide you through the next steps or escalate for a human review.\n\nWhat would you like to do next?",
+        "notices": [],
+        "latency_s": 3.47,
+        "prompt_tokens": 4282,
+        "completion_tokens": 411,
+        "llm_calls": 2
+      },
+      {
+        "id": "S04",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I'd like to return the rain jacket on ORD-1002, it's too big.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "The eligibility result denies the return due to OUTSIDE_RETURN_WINDOW per POL-01; policy POL-03 states non-returnable categories for change-of-mind, with exceptions for damaged/defective items under POL-04. Customer asked to return a rain jacket delivered on 2026-09-18, which is beyond 30-day window from delivery date; per POL-01, this request is declined.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry for the trouble with the rain jacket. Based on our return window policy, we\u2019re unable to process a change-of-mind return because it\u2019s outside the 30-day window from delivery. If the item arrived damaged or defective, we can review that under the appropriate policy. Please let me know if you believe the item is damaged or defective, and I can guide you on the next steps.",
+        "notices": [],
+        "latency_s": 3.85,
+        "prompt_tokens": 4278,
+        "completion_tokens": 407,
+        "llm_calls": 2
+      },
+      {
+        "id": "S05",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Please let me return the clearance sweater from ORD-1005, I don't like the colour.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer requests return of a clearance (final-sale) sweater with order ORD-1005. POL-03 states clearance items are non-returnable for change-of-mind, with POL-04 exceptions for defective/damaged/wrong items. Eligibility result already denies. Cite POL-03 and POL-04.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry\u2014clearance items are final sale and can\u2019t be returned for a change of mind. Since your item is a clearance sweater, a standard return isn\u2019t eligible unless it\u2019s defective, damaged, or the wrong item was sent (POL-03). If you believe there\u2019s a defect or the item arrived wrong, please share any quick details or photos and I can review under POL-04. In the meantime, I can\u2019t promise a refund, but I\u2019ll escalate for any eligible exceptions if you provide supporting information.",
+        "notices": [],
+        "latency_s": 5.08,
+        "prompt_tokens": 4285,
+        "completion_tokens": 368,
+        "llm_calls": 2
+      },
+      {
+        "id": "S06",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The clearance desk lamp in ORD-1006 arrived defective, it won't turn on at all.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund"
+        ],
+        "amount": 50.95,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Customer reports a defective item. Eligibility results grant replacement as the recommended remedy within POL-04 and POL-02, with max_amount 50.95. Policy POL-04 states replacement/refund for defective items and POL-03 clarifies final-sale exceptions do not apply when defective. Cite POL-04#c0 and POL-03#c0 and POL-02 where relevant.",
+        "reply": "Hi {{first_name}}, I'm sorry to hear your Clearance desk lamp arrived defective. We can replace it for you. I\u2019ll arrange a replacement shipment and share the tracking details as soon as it\u2019s processed. Please note that once we initiate the replacement, we\u2019ll provide a return label if needed and confirm the new delivery date.",
+        "notices": [],
+        "latency_s": 3.98,
+        "prompt_tokens": 4155,
+        "completion_tokens": 327,
+        "llm_calls": 2
+      },
+      {
+        "id": "S07",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "My ceramic dinnerware set from ORD-1007 arrived broken, several plates are cracked.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund",
+          "need_info"
+        ],
+        "amount": 95.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0"
+        ],
+        "rationale": "Policy POL-04 allows replacement or refund for damaged items reported in time with evidence (photos). Eligibility result shows replacement as recommended, max_amount 95.0. Evidence required: photos of item and packaging. Delivery status delivered; damage reported within time window per policy.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry to hear your ceramic dinnerware set arrived damaged. We can replace the damaged item and send you a free return label if needed. To finalize, please let us know if you\u2019d like a replacement (you\u2019ll receive a new set) or a refund/store credit, and send photos of the damaged items and packaging as evidence. I\u2019ll take care of the rest once you choose one option.",
+        "notices": [],
+        "latency_s": 3.83,
+        "prompt_tokens": 4250,
+        "completion_tokens": 349,
+        "llm_calls": 2
+      },
+      {
+        "id": "S08",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The glass vase from ORD-1008 was broken when it arrived. I'm only reporting it now.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: LATE_DAMAGE_CLAIM.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.37,
+        "prompt_tokens": 834,
+        "completion_tokens": 63,
+        "llm_calls": 1
+      },
+      {
+        "id": "S09",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The laptop I got in ORD-1009 is defective, the screen keeps flickering.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: DEFECT_REPORTED_IN_TIME, THREE_REFUNDS_IN_90_DAYS, ABOVE_AGENT_LIMIT.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.36,
+        "prompt_tokens": 832,
+        "completion_tokens": 61,
+        "llm_calls": 1
+      },
+      {
+        "id": "S10",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "My tablet stand from ORD-1010 never arrived and it's long overdue.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund"
+        ],
+        "amount": 65.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-06#c0",
+          "POL-05#c0"
+        ],
+        "rationale": "Eligibility result shows 'eligible': true with reason 'PACKAGE_LOST' and recommends 'replacement' per POL-06. Policy POL-05 defines late delivery and POL-06 confirms replacement when lost. Amount comes from max_amount in eligibility_result.",
+        "reply": "Hi {{first_name}},\n\nI\u2019m really sorry your tablet stand hasn\u2019t arrived yet. Good news: Brightcart considers this a lost package and we can offer a replacement for ORD-1010. I\u2019ll arrange a replacement right away and share the next steps shortly. Thank you for your patience, and I\u2019m here to help with any other questions.",
+        "notices": [],
+        "latency_s": 3.86,
+        "prompt_tokens": 4120,
+        "completion_tokens": 316,
+        "llm_calls": 2
+      },
+      {
+        "id": "S11",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Where is my package? Order ORD-1011 is a day past the estimated date.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-05#c0"
+        ],
+        "rationale": "Customer\u2019s order ORD-1011 is in transit with estimated delivery 2026-11-01 and is only more than 2 days late per policy; POL-05 states to tell the customer the package is within normal tolerance and share tracking status.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry your package is running late. It\u2019s currently in transit and appears to be within the normal tolerance window. I\u2019ve sharing the latest tracking status below and kindly ask you to wait a bit longer for delivery. I\u2019ll keep an eye on it and update you as soon as there\u2019s new information. ",
+        "notices": [],
+        "latency_s": 3.39,
+        "prompt_tokens": 4100,
+        "completion_tokens": 278,
+        "llm_calls": 2
+      },
+      {
+        "id": "S12",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Please cancel my order ORD-1013, I ordered it by mistake.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "cancel_order",
+        "expected": [
+          "cancel_order"
+        ],
+        "amount": 47.95,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0"
+        ],
+        "rationale": "Eligibility result shows order can be cancelled before shipment with full refund including shipping; POL-07 defines cancellation for processing orders and POL-01 covers refund timing and shipping handling.",
+        "reply": "Hi {{first_name}},\n\nI\u2019m sorry for the hassle\u2014I can help cancel ORD-1013 since it hasn\u2019t shipped yet. The full amount, including shipping, will be refunded to the original payment method. The refund typically takes 5\u20137 business days after cancellation. I\u2019ll move forward with the cancellation now and confirm once it\u2019s processed.\n\nWhat would you like me to include in the cancellation notes, if anything extra?",
+        "notices": [],
+        "latency_s": 4.4,
+        "prompt_tokens": 4263,
+        "completion_tokens": 313,
+        "llm_calls": 2
+      },
+      {
+        "id": "S13",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I need to cancel ORD-1014 please, I don't want it any more.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order ORD-1014 has already shipped (status: shipped), so cancellation is refused per POL-07. The policy also notes return options after delivery (POL-07) and that some items may be non-returnable (POL-03).",
+        "reply": "Hi {{first_name}},\n\nI\u2019m sorry\u2014your order ORD-1014 has already shipped, so we can\u2019t cancel the order at this stage. Once delivery occurs, you can return the item under our standard return rules, or we can explore other options if the item is defective or not as described. I\u2019ll outline the exact next steps once delivery occurs and you confirm your preferred option.",
+        "notices": [],
+        "latency_s": 3.9,
+        "prompt_tokens": 4278,
+        "completion_tokens": 337,
+        "llm_calls": 2
+      },
+      {
+        "id": "S14",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "My portable speaker from ORD-1017 stopped working after about six months.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement"
+        ],
+        "amount": 130.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0",
+          "POL-08#c0"
+        ],
+        "rationale": "Eligibility result shows the item is eligible with a replacement as the recommended remedy (POL-08 warranty and POL-04 covers defects; max amount under approval limits). The order delivered and defect claim fall within the warranty period for electronics (POL-08) and defect handling in POL-04.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry your portable speaker stopped working after six months. Based on our policy, defective electronics are covered, and a replacement is the remedy we offer under warranty. Next, we\u2019ll need a brief description of the fault and to confirm you\u2019d like a replacement. I\u2019ll take it from there and keep you updated on the progress.",
+        "notices": [],
+        "latency_s": 4.47,
+        "prompt_tokens": 4146,
+        "completion_tokens": 374,
+        "llm_calls": 2
+      },
+      {
+        "id": "S15",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The USB-C adapter I bought in ORD-1018 failed after 13 months. Can you replace it?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0"
+        ],
+        "rationale": "Customer requests a replacement for a USB-C adapter after 13 months. POL-08 states electronics warranty is 12 months from delivery; claim outside warranty cannot be approved. Policy explicitly says warranty remedies are replacement, refund, or store credit only within warranty period. Eligibility result shows eligible=false and recommendation=deny.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry for the trouble with your USB-C adapter. After checking our warranty terms, electronics items are covered for defects within 12 months from delivery, and the claim for a replacement isn\u2019t eligible since your purchase was 13 months ago. I can help explore any other options that might apply, such as a standard return or other assistance if appropriate. Please let me know how you\u2019d like to proceed, and I\u2019ll help with the next steps.",
+        "notices": [],
+        "latency_s": 4.67,
+        "prompt_tokens": 4206,
+        "completion_tokens": 363,
+        "llm_calls": 2
+      },
+      {
+        "id": "S16",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The power bank from ORD-1023 is overheating and smells like it's burning!",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Flagged by the assistant: safety_hazard.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.29,
+        "prompt_tokens": 830,
+        "completion_tokens": 62,
+        "llm_calls": 1
+      },
+      {
+        "id": "S17",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I'd like a refund for the hair brush set on ORD-1022, I don't want it.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: WITHIN_RETURN_WINDOW, THREE_REFUNDS_IN_90_DAYS.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.48,
+        "prompt_tokens": 834,
+        "completion_tokens": 62,
+        "llm_calls": 1
+      },
+      {
+        "id": "S18",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The personalised mug from ORD-1028 has my name spelled wrong.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Policy POL-03 states personalised items are non-returnable unless defecct/damage/wrong item; POL-04 requires evidence for wrong items and asks to identify who made the error. Eligibility result is need_info with reason ERROR_ORIGIN_UNKNOWN, so we must request the original text to proceed.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry for the trouble with your personalised mug. To determine the next steps, I need to confirm who entered the text for the name. Please reply with the exact text you entered (including capitalization) or re-send the intended spelling. Once we have that, we\u2019ll let you know what happens next (replacement or refund) based on our policy. ",
+        "notices": [],
+        "latency_s": 4.61,
+        "prompt_tokens": 4150,
+        "completion_tokens": 368,
+        "llm_calls": 2
+      },
+      {
+        "id": "S19",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "My package never came.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "A required fact is missing.",
+        "reply": "Hi {{first_name}}, happy to help. Could you share your order number (it looks like ORD-1234) so I can look it up?",
+        "notices": [],
+        "latency_s": 1.13,
+        "prompt_tokens": 819,
+        "completion_tokens": 49,
+        "llm_calls": 1
+      },
+      {
+        "id": "S20",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "I want to return my order ORD-9999.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Order lookup failed: not_found.",
+        "reply": "Hi {{first_name}}, I couldn't find that order on your account. Could you double-check the order number?",
+        "notices": [],
+        "latency_s": 1.32,
+        "prompt_tokens": 825,
+        "completion_tokens": 54,
+        "llm_calls": 1
+      },
+      {
+        "id": "S21",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order lookup failed (timeout); order not verified. Relevant policy: Final-Sale and Non-Returnable Items, Returns Policy.",
+        "reply": "Hi {{first_name}}, I'm sorry, I can't check your order right now, so I can't confirm what applies to it. I've asked a specialist to follow up with you.",
+        "notices": [
+          "Could not verify the order. Nothing below is based on order data."
+        ],
+        "latency_s": 1.54,
+        "prompt_tokens": 835,
+        "completion_tokens": 61,
+        "llm_calls": 1
+      },
+      {
+        "id": "S22",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order lookup failed (disabled); order not verified. Relevant policy: Final-Sale and Non-Returnable Items, Returns Policy.",
+        "reply": "Hi {{first_name}}, I'm sorry, I can't check your order right now, so I can't confirm what applies to it. I've asked a specialist to follow up with you.",
+        "notices": [
+          "Could not verify the order. Nothing below is based on order data."
+        ],
+        "latency_s": 1.44,
+        "prompt_tokens": 835,
+        "completion_tokens": 59,
+        "llm_calls": 1
+      },
+      {
+        "id": "S23",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Return my order ORD-1029 please.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The order does not belong to this customer's account.",
+        "reply": "Hi {{first_name}}, I can't help with that order from this account. I've asked a specialist to follow up with you.",
+        "notices": [],
+        "latency_s": 1.2,
+        "prompt_tokens": 823,
+        "completion_tokens": 55,
+        "llm_calls": 1
+      },
+      {
+        "id": "S24",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I want a refund for the hoodie in ORD-1030.",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: WITHIN_RETURN_WINDOW, CHARGEBACK_OPEN.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.52,
+        "prompt_tokens": 827,
+        "completion_tokens": 56,
+        "llm_calls": 1
+      },
+      {
+        "id": "P01",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How many days after delivery can I return an item?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "Customer asked about return window. POL-01 states a 30-day return window from delivery date. Include that window and note fees per POL-01; mention exceptions for damaged/defective items under POL-04 if applicable.",
+        "reply": "Hi {{first_name}},\n\nThanks for checking. You can return an eligible item within 30 days of the delivery date (the day the carrier marks delivery). If the item is damaged or defective, or if the wrong item was sent, different rules may apply under POL-04. If you\u2019d like, I can help you review your order details and next steps based on the item\u2019s condition.\n\nWhat would you like to do next: confirm eligibility, or start a return?",
+        "notices": [],
+        "latency_s": 4.08,
+        "prompt_tokens": 3955,
+        "completion_tokens": 294,
+        "llm_calls": 2
+      },
+      {
+        "id": "P02",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I choose store credit instead of a refund? Is there a bonus?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-02#c0"
+        ],
+        "rationale": "Customer asked about store credit and bonus. POL-02 states store credit carries a 10% bonus and can be chosen instead of a refund; policy also notes agents should offer store credit as an option but not push it.",
+        "reply": "Hi {{first_name}},\n\nThanks for checking. Yes, Brightcart offers store credit as an alternative to a refund, and store credit comes with a 10% bonus. It cannot be converted back to cash and is applied to your Brightcart account. If you\u2019d like, I can help walk you through choosing store credit or sticking with a refund to your original payment method. I can\u2019t confirm any additional bonuses beyond what\u2019s in policy, but I\u2019ll pass along your question if you\u2019d like me to escalate for a manager\u2019s input.\n\nWhat would you prefer?",
+        "notices": [],
+        "latency_s": 4.96,
+        "prompt_tokens": 3945,
+        "completion_tokens": 355,
+        "llm_calls": 2
+      },
+      {
+        "id": "P03",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I return a final-sale item if it arrives defective?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer asks about returning a final-sale item if defective. POL-03 allows exceptions when the item is defective (handled under POL-04). POL-04 outlines remedies (replacement or refund) and required evidence (photos for damage). No eligibility result provided, so policy governs the next steps.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry for the trouble you\u2019re experiencing. Under our policy, final-sale items are non-returnable for change of mind, but if the item arrived defective or damaged, it may be eligible for a replacement or refund under POL-04. To proceed, we\u2019ll need to confirm the defect and may ask for photos of the item and packaging. We\u2019ll review and let you know the next steps. Thank you for your patience while we look into this.",
+        "notices": [],
+        "latency_s": 5.06,
+        "prompt_tokens": 3933,
+        "completion_tokens": 393,
+        "llm_calls": 2
+      },
+      {
+        "id": "P04",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How long do standard and express shipping take?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-05#c0"
+        ],
+        "rationale": "The policy POL-05 states standard shipping 5-7 business days and express 2 business days from ship date; no eligibility result is provided, so we answer using policy details. Policy citations included.",
+        "reply": "Hi {{first_name}},\n\nThanks for reaching out. Standard shipping typically takes 5 to 7 business days from the ship date, and express shipping takes 2 business days from the ship date. Business days are Monday to Friday, excluding public holidays. If you\u2019d like, I can help you estimate a delivery date based on when your order ships. Please note that processing time before shipping isn\u2019t counted toward these timelines.\n\nIf you need more help, just let me know. I\u2019m here to help.\n",
+        "notices": [],
+        "latency_s": 4.05,
+        "prompt_tokens": 3822,
+        "completion_tokens": 299,
+        "llm_calls": 2
+      },
+      {
+        "id": "P05",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Until when can I cancel an order?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0"
+        ],
+        "rationale": "The policy POL-07 states cancellations are allowed before shipment; the customer asked about cancellation timing. Since there is no order data to confirm status, we inform the general rule and offer to check status.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry for the confusion. Based on our Cancellation policy, orders can be canceled before they ship. If your order is still processing, you can cancel for a full refund to the original payment method. If it has already shipped, cancellation isn\u2019t possible and you\u2019d need to return the item after delivery. I can check your specific order status and guide you on the next steps as soon as I have the details. Please share your order number or confirm whether the package has shipped so I can help right away.",
+        "notices": [],
+        "latency_s": 4.37,
+        "prompt_tokens": 3892,
+        "completion_tokens": 347,
+        "llm_calls": 2
+      },
+      {
+        "id": "P06",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How long is the warranty on electronics and what does it exclude?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer asks about electronics warranty duration and exclusions. POL-08 states 12-month warranty for electronics from delivery and lists exclusions (accidental damage, misuse, etc.). Also mentions remedy as replacement within period and that defective items may be addressed under POL-04 if applicable. Cite POL-08 for warranty terms and POL-04 for damage/defect reporting guidance. ",
+        "reply": "Hi {{first_name}}, I\u2019m glad you asked. For electronics, Brightcart provides a 12-month warranty from the delivery date for manufacturing defects. The warranty does not cover accidental damage, misuse, unauthorised repairs, or normal wear and tear. If your issue is a manufacturing defect and you\u2019re within 12 months, the remedy is typically a replacement; a refund or store credit may be offered if a replacement isn\u2019t available. To help us proceed, please tell me whether you\u2019re within 12 months of delivery and describe the fault. If you have photos, you can share them to speed up the review.",
+        "notices": [],
+        "latency_s": 6.28,
+        "prompt_tokens": 3935,
+        "completion_tokens": 409,
+        "llm_calls": 2
+      },
+      {
+        "id": "P07",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Do you price-match competitors?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "inform",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": false,
+        "failures": [
+          "recommendation inform not in ['escalate']"
+        ],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-09#c0"
+        ],
+        "rationale": "Policy POL-09 notes price adjustments only for our own price drops within 14 days and explicitly states that competitor price matching is not covered and should be escalated. Since there is no eligibility result, we rely on policy excerpts to respond.",
+        "reply": "Hi {{first_name}},\n\nThanks for reaching out. Our policy does not include a price-match against competitors. If Brightcart itself lowers a price within 14 days of purchase, you may request a price adjustment per our policy, but we can\u2019t match competitor prices. If you\u2019d like, I can help review whether a price adjustment is possible based on your purchase details. Please share your order number and the current Brightcart price for the item if you\u2019d like us to check eligibility. \n\nWhat happens next: I\u2019ll review your case against POL-09 and POL-02 guidelines and get back to you with the next steps. \n\nWe\u2019ll aim to keep you updated within our standard processing timelines.",
+        "notices": [],
+        "latency_s": 4.19,
+        "prompt_tokens": 3903,
+        "completion_tokens": 379,
+        "llm_calls": 2
+      },
+      {
+        "id": "P08",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I pick up my order in store?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 4.73,
+        "prompt_tokens": 3850,
+        "completion_tokens": 326,
+        "llm_calls": 2
+      },
+      {
+        "id": "P09",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How many loyalty points do I earn per dollar?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 4.08,
+        "prompt_tokens": 3863,
+        "completion_tokens": 258,
+        "llm_calls": 2
+      },
+      {
+        "id": "P10",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I place a bulk order for my business?",
+        "prompt_version": "v2_grounded",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 4.49,
+        "prompt_tokens": 3778,
+        "completion_tokens": 316,
+        "llm_calls": 2
+      }
+    ],
+    "v3_checklist": [
+      {
+        "id": "S01",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "refund",
+        "expected": [
+          "refund"
+        ],
+        "amount": 82.05,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "The item is within the 30-day return window (POL-01) and eligible for a change-of-mind return. The max refundable amount is 82.05 after the $6.95 shipping fee is deducted. The policy confirms refunds go back to the original payment method and the fee is deducted for standard returns (POL-01).",
+        "reply": "Hi {{first_name}}, thanks for checking in. You're within the 30-day return window, so we can process a refund for the Wireless headphones. The refund will be $82.05 to your original payment method after the $6.95 return-shipping fee is deducted. It usually takes 5-7 business days after we receive the item. Please ship back the item using your preferred carrier.",
+        "notices": [],
+        "latency_s": 4.99,
+        "prompt_tokens": 4901,
+        "completion_tokens": 335,
+        "llm_calls": 2
+      },
+      {
+        "id": "S02",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "I want to return the running shoes in order ORD-1003, they don't fit the way I hoped.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "refund",
+        "expected": [
+          "refund"
+        ],
+        "amount": 68.05,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "The item is within the 30-day return window from delivery (POL-01). The item is not final-sale (final-sale items are POL-03; this item is not listed as such and the order shows opened and return-eligible). Refund amount equals item price minus the return-shipping fee: $75.00 - $6.95 = $68.05, which is within the max_amount cap of 68.05 in the eligibility data. Refund timing follows POL-01: 5-7 business days after item receipt and condition confirmation.",
+        "reply": "Hi {{first_name}}, thanks for checking in. I\u2019ve approved a standard return for your Running shoes (ORD-1003). You\u2019ll receive a refund of $68.05 to your original payment method once we receive the item back and confirm its condition. The $6.95 return-shipping fee will be deducted. If you need a receipt or confirmation, I can send that as soon as the refund is processed.",
+        "notices": [],
+        "latency_s": 4.8,
+        "prompt_tokens": 4899,
+        "completion_tokens": 361,
+        "llm_calls": 2
+      },
+      {
+        "id": "S03",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Can I return the backpack from ORD-1004? I just don't need it any more.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "CASE shows ORD-1004 item backpack with status delivered and within POL-01 window not applicable because eligibility result is OUTSIDE_RETURN_WINDOW and policy POL-01 indicates a 30-day window starting from delivery. The policy also lists non-returnable/opened conditions under POL-03; no exceptions allowed without policy. Allowed recommendation is deny per eligibility_result. Next steps per eligibility: explain the 30-day window and ask about damage/defect if applicable.",
+        "reply": "Hi {{first_name}}, thanks for checking. This item is outside our 30-day return window for change-of-mind returns, so we can\u2019t process a return. If you believe the backpack arrived damaged or defective, tell me and we\u2019ll review it under our damage/defect policy and let you know the next steps.",
+        "notices": [],
+        "latency_s": 5.86,
+        "prompt_tokens": 4846,
+        "completion_tokens": 453,
+        "llm_calls": 2
+      },
+      {
+        "id": "S04",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I'd like to return the rain jacket on ORD-1002, it's too big.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "The order ORD-1002 was delivered on 2026-09-18. Returns are only within 30 days of delivery (POL-01#c0). The eligibility result states OUTSIDE_RETURN_WINDOW and recommends denying the return. The item is not marked as final sale (POL-03) and there is no damage/defect evidence provided (POL-04 requires damage reports with photos). The allowed recommendation is deny (POL-01).",
+        "reply": "Hi {{first_name}}, I\u2019m sorry, but this return isn\u2019t eligible because it\u2019s outside the 30-day window from delivery. If the item arrived damaged or defective, please let me know and we can review under POL-04. Otherwise, I can help with other options.",
+        "notices": [],
+        "latency_s": 5.28,
+        "prompt_tokens": 4842,
+        "completion_tokens": 405,
+        "llm_calls": 2
+      },
+      {
+        "id": "S05",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Please let me return the clearance sweater from ORD-1005, I don't like the colour.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0"
+        ],
+        "rationale": "The item is a clearance final-sale item (POL-03) and the customer requests a change of mind. POL-03 states final sale for clearance items and exceptions only apply when defective/damaged/wrong item per POL-04. Since eligibility_result=deny with reason_codes [FINAL_SALE], we must decline the return unless an exception applies.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry, but this clearance sweater is a final-sale item and can\u2019t be returned for a change of mind. If it arrived damaged or defective, or if we sent the wrong item, please let me know and we\u2019ll look into it under POL-04. If you\u2019d like, I can help you explore other options.",
+        "notices": [],
+        "latency_s": 4.58,
+        "prompt_tokens": 4849,
+        "completion_tokens": 337,
+        "llm_calls": 2
+      },
+      {
+        "id": "S06",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The clearance desk lamp in ORD-1006 arrived defective, it won't turn on at all.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund"
+        ],
+        "amount": 50.95,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0",
+          "POL-08#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "The case is eligible for defective item under POL-04 with DEFECT_REPORTED_IN_TIME. The customer opted for replacement and the max amount is 50.95 per eligibility. POL-04 allows replacement when defective items are reported timely, and POL-02/POL-04 permit replacement as a remedy. Since the item is clearance (POL-03) but defects are covered under exceptions, replacement is permitted.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry the desk lamp arrived defective. We can send you a replacement. Please confirm if you\u2019d like a replacement to be shipped to your address on file, or would you prefer a refund or store credit instead?",
+        "notices": [],
+        "latency_s": 5.33,
+        "prompt_tokens": 4719,
+        "completion_tokens": 346,
+        "llm_calls": 2
+      },
+      {
+        "id": "S07",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "My ceramic dinnerware set from ORD-1007 arrived broken, several plates are cracked.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund",
+          "need_info"
+        ],
+        "amount": 95.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-04#c0"
+        ],
+        "rationale": "Eligibility result shows 'replacement' as the recommended remedy with max_amount 95.0 and evidence required (photos of item and packaging). Policy POL-04 allows replacement or refund for damaged items, provides free return label and waives the $6.95 fee. Photos are required before approval.",
+        "reply": "Hi {{first_name}}, I'm really sorry your dinnerware arrived damaged. We can send a replacement set at no extra cost and provide a free return label. Please attach photos of the damaged items and the packaging so we can start the replacement right away. Once we receive the photos, a team member will confirm the replacement and share the next steps.",
+        "notices": [],
+        "latency_s": 4.78,
+        "prompt_tokens": 4814,
+        "completion_tokens": 324,
+        "llm_calls": 2
+      },
+      {
+        "id": "S08",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The glass vase from ORD-1008 was broken when it arrived. I'm only reporting it now.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: LATE_DAMAGE_CLAIM.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.56,
+        "prompt_tokens": 834,
+        "completion_tokens": 60,
+        "llm_calls": 1
+      },
+      {
+        "id": "S09",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The laptop I got in ORD-1009 is defective, the screen keeps flickering.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: DEFECT_REPORTED_IN_TIME, THREE_REFUNDS_IN_90_DAYS, ABOVE_AGENT_LIMIT.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.48,
+        "prompt_tokens": 832,
+        "completion_tokens": 62,
+        "llm_calls": 1
+      },
+      {
+        "id": "S10",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "My tablet stand from ORD-1010 never arrived and it's long overdue.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement",
+          "refund"
+        ],
+        "amount": 65.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-06#c0"
+        ],
+        "rationale": "POL-06 Lost Packages defines lost when 7+ days have passed after the estimated delivery date and no delivery; remedy is replacement or refund. Since the order shows as in_transit with an estimated delivery date of 2026-10-24 and has not arrived, the package is considered lost and a replacement is offered up to $150 without manager approval (POL-06). The max_amount matches the order value ($65).",
+        "reply": "Hi {{first_name}}, I\u2019m really sorry your tablet stand hasn\u2019t arrived. Since the package is treated as lost, Brightcart can send you a replacement or issue a refund. Please tell me which you prefer. If you want a replacement, I\u2019ll ship it to the same address on the order. If you\u2019d rather a refund, I\u2019ll process that instead.",
+        "notices": [],
+        "latency_s": 5.49,
+        "prompt_tokens": 4684,
+        "completion_tokens": 372,
+        "llm_calls": 2
+      },
+      {
+        "id": "S11",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Where is my package? Order ORD-1011 is a day past the estimated date.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-05#c0"
+        ],
+        "rationale": "The case shows the order is in_transit with estimated_delivery_date 2026-11-01 and delivery not yet missed by more than 2 days beyond the estimate. POL-05 outlines late deliveries and steps; since the item is not yet 7 days past the estimate, and the eligibility result specifies inform as the only allowed action, we should provide tracking status and ask them to wait.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry for the delay. ORD-1011 is currently in transit and not yet 7 days past the estimated delivery date. I\u2019ve shared the latest tracking status with you. Please allow a bit more time for delivery; you can expect a final update soon. If you\u2019d like, I can keep you posted with any carrier updates.",
+        "notices": [],
+        "latency_s": 4.9,
+        "prompt_tokens": 4664,
+        "completion_tokens": 362,
+        "llm_calls": 2
+      },
+      {
+        "id": "S12",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "Please cancel my order ORD-1013, I ordered it by mistake.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "cancel_order",
+        "expected": [
+          "cancel_order"
+        ],
+        "amount": 47.95,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0"
+        ],
+        "rationale": "Policy POL-07 allows cancellation before shipment for orders in processing status. The rule states: 'Brightcart allows a customer to cancel an order... before it ships' and 'The full amount, including shipping, is refunded to the original payment method.' The order ORD-1013 is currently in processing with NOT_YET_SHIPPED status, so cancellation is permitted. The max_amount field indicates the total refundable amount.",
+        "reply": "Hi {{first_name}}, your order ORD-1013 is still processing and hasn\u2019t shipped yet, so we can cancel it and refund the full amount of 47.95 to your original payment method. Please allow 5\u20137 business days after cancellation for the refund to arrive.",
+        "notices": [],
+        "latency_s": 3.96,
+        "prompt_tokens": 4827,
+        "completion_tokens": 301,
+        "llm_calls": 2
+      },
+      {
+        "id": "S13",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I need to cancel ORD-1014 please, I don't want it any more.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0"
+        ],
+        "rationale": "Order ORD-1014 has already shipped (POL-07). Cancellations are not possible after shipment; customer can return after delivery under POL-01. The item is not final-sale per POL-03 since final_sale is false, but cancellation is not allowed post-shipment per POL-07. The allowed recommendation is deny for cancellation.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry, but we can\u2019t cancel ORD-1014 because it has already shipped. You can return it after delivery under our standard return policy (POL-01). If you\u2019d like, I can help you start a return once delivery is confirmed.",
+        "notices": [],
+        "latency_s": 3.58,
+        "prompt_tokens": 4842,
+        "completion_tokens": 258,
+        "llm_calls": 2
+      },
+      {
+        "id": "S14",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "My portable speaker from ORD-1017 stopped working after about six months.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "replacement",
+        "expected": [
+          "replacement"
+        ],
+        "amount": 130.0,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Eligibility result shows the item is eligible for a replacement due to WARRANTY_VALID (POL-08) and POL-04 interplay for defective electronics. The max_amount is 130.0, which matches the item price. Evidence requirement indicates a description of the fault is needed; since the customer states it stopped working after six months, a short fault description should be gathered if not already provided. Approval level is agent, and the policy permits a replacement as the remedy for valid electronic defects within warranty. Policy excerpts POL-08 (warranty) and POL-04 (defective items) support replacement as a remedy and the 12-month electronics warranty window; POL-02/approval limits indicate replacements up to $150 are allowed by agent.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry your portable speaker isn\u2019t working after six months. We can arrange a replacement under our warranty. I just need a brief description of the fault (when it stopped working). Do you prefer a replacement at no cost to you?",
+        "notices": [],
+        "latency_s": 4.43,
+        "prompt_tokens": 4710,
+        "completion_tokens": 425,
+        "llm_calls": 2
+      },
+      {
+        "id": "S15",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "The USB-C adapter I bought in ORD-1018 failed after 13 months. Can you replace it?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "deny",
+        "expected": [
+          "deny"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0"
+        ],
+        "rationale": "Warranty policy POL-08 states electronics have 12-month warranty from delivery. The claim is outside the warranty period (13 months). The policy also instructs not to promise any remedy for out-of-warranty claims and to politely explain warranty ended.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry, but the USB-C adapter is outside its 12-month warranty window for electronics. We\u2019re not able to replace or refund under warranty. If you\u2019d like, I can help review other options outside warranty, such as repair services, but I can\u2019t promise a remedy. Would you like me to explore any paid repair options or store alternatives?",
+        "notices": [],
+        "latency_s": 4.49,
+        "prompt_tokens": 4770,
+        "completion_tokens": 314,
+        "llm_calls": 2
+      },
+      {
+        "id": "S16",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The power bank from ORD-1023 is overheating and smells like it's burning!",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Flagged by the assistant: safety_hazard.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.3,
+        "prompt_tokens": 830,
+        "completion_tokens": 63,
+        "llm_calls": 1
+      },
+      {
+        "id": "S17",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I'd like a refund for the hair brush set on ORD-1022, I don't want it.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: WITHIN_RETURN_WINDOW, THREE_REFUNDS_IN_90_DAYS.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.61,
+        "prompt_tokens": 834,
+        "completion_tokens": 56,
+        "llm_calls": 1
+      },
+      {
+        "id": "S18",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": false,
+        "message": "The personalised mug from ORD-1028 has my name spelled wrong.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "The eligibility result marks the case as 'need_info' with reason code 'ERROR_ORIGIN_UNKNOWN' and next step to ask the customer for the original text they entered to determine who made the error. Policy POL-03 and POL-04 support gathering information before proceeding (POL-04 requires evidence for damages; for wrong items, photo is helpful but not required). The allowed recommendation is need_info.",
+        "reply": "Hi {{first_name}}, I\u2019m sorry about the misspelling on your personalised mug. To help us determine who made the error and the correct remedy, could you please confirm the exact text you entered for the name on the mug? If there was a different spelling than intended, please share the text you submitted. Thank you for your patience while we review this.",
+        "notices": [],
+        "latency_s": 4.96,
+        "prompt_tokens": 4714,
+        "completion_tokens": 362,
+        "llm_calls": 2
+      },
+      {
+        "id": "S19",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "My package never came.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "A required fact is missing.",
+        "reply": "Hi {{first_name}}, happy to help. Could you share your order number (it looks like ORD-1234) so I can look it up?",
+        "notices": [],
+        "latency_s": 1.12,
+        "prompt_tokens": 819,
+        "completion_tokens": 48,
+        "llm_calls": 1
+      },
+      {
+        "id": "S20",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "I want to return my order ORD-9999.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "need_info",
+        "expected": [
+          "need_info"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Order lookup failed: not_found.",
+        "reply": "Hi {{first_name}}, I couldn't find that order on your account. Could you double-check the order number?",
+        "notices": [],
+        "latency_s": 1.34,
+        "prompt_tokens": 825,
+        "completion_tokens": 53,
+        "llm_calls": 1
+      },
+      {
+        "id": "S21",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order lookup failed (timeout); order not verified. Relevant policy: Final-Sale and Non-Returnable Items, Returns Policy.",
+        "reply": "Hi {{first_name}}, I'm sorry, I can't check your order right now, so I can't confirm what applies to it. I've asked a specialist to follow up with you.",
+        "notices": [
+          "Could not verify the order. Nothing below is based on order data."
+        ],
+        "latency_s": 2.37,
+        "prompt_tokens": 835,
+        "completion_tokens": 59,
+        "llm_calls": 1
+      },
+      {
+        "id": "S22",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Hi, I'd like to return the wireless headphones from order ORD-1001. I changed my mind.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0",
+          "POL-03#c0"
+        ],
+        "rationale": "Order lookup failed (disabled); order not verified. Relevant policy: Final-Sale and Non-Returnable Items, Returns Policy.",
+        "reply": "Hi {{first_name}}, I'm sorry, I can't check your order right now, so I can't confirm what applies to it. I've asked a specialist to follow up with you.",
+        "notices": [
+          "Could not verify the order. Nothing below is based on order data."
+        ],
+        "latency_s": 1.55,
+        "prompt_tokens": 835,
+        "completion_tokens": 60,
+        "llm_calls": 1
+      },
+      {
+        "id": "S23",
+        "kind": "tool",
+        "mvp": true,
+        "designed_failure": true,
+        "message": "Return my order ORD-1029 please.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The order does not belong to this customer's account.",
+        "reply": "Hi {{first_name}}, I can't help with that order from this account. I've asked a specialist to follow up with you.",
+        "notices": [],
+        "latency_s": 1.35,
+        "prompt_tokens": 823,
+        "completion_tokens": 55,
+        "llm_calls": 1
+      },
+      {
+        "id": "S24",
+        "kind": "tool",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "I want a refund for the hoodie in ORD-1030.",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "lookup_order",
+          "check_eligibility",
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "Policy requires a human decision: WITHIN_RETURN_WINDOW, CHARGEBACK_OPEN.",
+        "reply": "Hi {{first_name}}, thank you for reaching out. I've passed your case to a specialist on our team who will review it and follow up with you. I'm sorry for the wait.",
+        "notices": [],
+        "latency_s": 1.22,
+        "prompt_tokens": 827,
+        "completion_tokens": 56,
+        "llm_calls": 1
+      },
+      {
+        "id": "P01",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How many days after delivery can I return an item?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-01#c0"
+        ],
+        "rationale": "Policy POL-01 states a 30-day return window from delivery date. Since this is a policy question, we inform the customer of the standard window and conditions without promising any action.",
+        "reply": "Hi {{first_name}}, Thanks for checking. You can return an eligible item within 30 days of the delivery date (counted from the day the carrier marks the order as delivered). If you\u2019re returning for a change of mind, a $6.95 return-shipping fee applies. If the item was damaged, defective, or incorrect, different rules may apply under POL-04. If you\u2019d like, I can review a specific order for you if you share the order number.",
+        "notices": [],
+        "latency_s": 4.59,
+        "prompt_tokens": 4569,
+        "completion_tokens": 275,
+        "llm_calls": 2
+      },
+      {
+        "id": "P02",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I choose store credit instead of a refund? Is there a bonus?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-02#c0"
+        ],
+        "rationale": "Policy POL-02 clearly states store credit as an option with a 10% bonus. The customer asks if they can choose store credit and if there is a bonus. The policy also notes agents should offer store credit as an option but not push it.",
+        "reply": "Hi {{first_name}}, yes\u2014Brightcart offers store credit as an alternative to a refund. Store credit includes a 10% bonus (for example, a $50 refund would become $55 in Brightcart credit). You can choose store credit instead of a refund to your original payment method. It does not expire and cannot be converted back to cash. If you\u2019d like to proceed with store credit, I can note that for you now.",
+        "notices": [],
+        "latency_s": 4.42,
+        "prompt_tokens": 4509,
+        "completion_tokens": 294,
+        "llm_calls": 2
+      },
+      {
+        "id": "P03",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I return a final-sale item if it arrives defective?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-03#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer asks about returning a final-sale item if it arrives defective. POL-03 states final-sale items are non-returnable for change-of-mind but exceptions apply when defective/damaged/wrong item; such cases fall under POL-04. POL-04 covers damaged/defective items and says remedies include replacement or refund, with specific evidence requirements (photos for damage). As policy_question, we cannot answer beyond provided excerpts. Since this is a policy question, we inform about the applicable policies and next steps for reporting a defect and choosing remedy.",
+        "reply": "Hi {{first_name}}, thanks for checking. According to our policy, final-sale items can be non-returnable for change of mind, but if the item is defective or damaged, it is covered under POL-04 and you may be eligible for a replacement or a refund. To proceed, please let me know if the item arrived defective and, if possible, provide photos of the item and packaging. If you prefer, I can escalate to a specialist to review your case.",
+        "notices": [],
+        "latency_s": 5.43,
+        "prompt_tokens": 4497,
+        "completion_tokens": 368,
+        "llm_calls": 2
+      },
+      {
+        "id": "P04",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How long do standard and express shipping take?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-05#c0"
+        ],
+        "rationale": "The customer asked for shipping durations. Policy POL-05 lists standard 5-7 business days and express 2 business days from ship date. It also defines late-delivery handling. Since this is policy_question, no eligibility result is present; answer is covered by policy chunks POL-05#c0. No need for additional info.",
+        "reply": "Hi {{first_name}}, here are the typical shipping times:Standard shipping takes 5 to 7 business days from the ship date, and Express shipping takes 2 business days from the ship date. Business days are Mon\u2013Fri (excluding public holidays). If delivery is late, we treat it as described in our policy and may refund shipping in certain cases. If you need more details about a specific order, I can check that for you.",
+        "notices": [],
+        "latency_s": 4.56,
+        "prompt_tokens": 4386,
+        "completion_tokens": 301,
+        "llm_calls": 2
+      },
+      {
+        "id": "P05",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Until when can I cancel an order?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0"
+        ],
+        "rationale": "The customer asks when they can cancel an order. POL-07 states cancellations are allowed before shipment (status processing) and after shipment cannot be canceled. Since there is no order in the data, we cannot confirm a specific status. We should inform them of the policy and what their next step would be if they want to cancel, or escalate if status is unclear.",
+        "reply": "Hi {{first_name}}, cancellation is possible only before the order ships (status: processing). If your order is still processing, you can request cancellation and a full refund to your original payment method. If it has already shipped, cancellation isn\u2019t possible and you\u2019d need to consider returning it once delivered under POL-01. Could you tell me the current status of your order?",
+        "notices": [],
+        "latency_s": 5.05,
+        "prompt_tokens": 4456,
+        "completion_tokens": 339,
+        "llm_calls": 2
+      },
+      {
+        "id": "P06",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How long is the warranty on electronics and what does it exclude?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "inform"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-08#c0",
+          "POL-04#c0"
+        ],
+        "rationale": "Customer asked about warranty on electronics and exclusions. Policy POL-08 specifies warranty periods, coverage, exclusions, and remedies (replacement) with details. Since this is a policy question, we inform and guide rather than make commitments outside the policy. If the customer needs to initiate a claim, further information or evidence would be requested per POL-08 and POL-04.",
+        "reply": "Hi {{first_name}}, thanks for checking. Electronics have a 12-month warranty from delivery for manufacturing defects. The warranty excludes accidental damage, misuse, unauthorised repairs, and normal wear and tear. If you experience a eligible defect within 12 months, the remedy is a replacement (or refund/store credit if replacement isn\u2019t available). If you\u2019d like, I can help you start a claim or provide a concise summary.",
+        "notices": [],
+        "latency_s": 4.18,
+        "prompt_tokens": 4499,
+        "completion_tokens": 344,
+        "llm_calls": 2
+      },
+      {
+        "id": "P07",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Do you price-match competitors?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": false,
+        "failures": [
+          "recommendation inform not in ['escalate']"
+        ],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-09#c0"
+        ],
+        "rationale": "Customer asked about price-matching. Policy POL-09 states price adjustments apply to Brightcart's own price drops within 14 days of purchase; it also notes not covered are competitor price matching, loyalty points, etc., and to escalate if asked about it. Since policy explicitly says competitor price matching is not covered and should be escalated, we should inform that we do not offer price matching with competitors and that such requests are not covered, but offer to review a Brightcart price adjustment if within 14 days of purchase for our own price drops.",
+        "reply": "Hi {{first_name}}, thanks for checking. Brightcart does not offer price matching against competitors. Price adjustments apply only to our own price drops within 14 days of purchase. If your item qualifies under our price-drop policy, I can help you with that. If you were asking about competitor pricing, I\u2019ll escalate this to a specialist for clarification.",
+        "notices": [],
+        "latency_s": 4.3,
+        "prompt_tokens": 4467,
+        "completion_tokens": 316,
+        "llm_calls": 2
+      },
+      {
+        "id": "P08",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I pick up my order in store?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 4.29,
+        "prompt_tokens": 4366,
+        "completion_tokens": 337,
+        "llm_calls": 2
+      },
+      {
+        "id": "P09",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "How many loyalty points do I earn per dollar?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "escalate",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy",
+          "escalate_to_human"
+        ],
+        "tool_ok": true,
+        "task_ok": true,
+        "failures": [],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [],
+        "rationale": "The question is not covered in the policy documents.",
+        "reply": "Hi {{first_name}}, that isn't covered in our policy documents, so I don't want to guess. I've asked a specialist to look into it and get back to you.",
+        "notices": [],
+        "latency_s": 3.17,
+        "prompt_tokens": 4427,
+        "completion_tokens": 338,
+        "llm_calls": 2
+      },
+      {
+        "id": "P10",
+        "kind": "policy",
+        "mvp": false,
+        "designed_failure": false,
+        "message": "Can I place a bulk order for my business?",
+        "prompt_version": "v3_checklist",
+        "recommendation": "inform",
+        "expected": [
+          "escalate"
+        ],
+        "amount": null,
+        "tools_called": [
+          "search_policy"
+        ],
+        "tool_ok": true,
+        "task_ok": false,
+        "failures": [
+          "recommendation inform not in ['escalate']"
+        ],
+        "guardrail_status": "passed",
+        "invalid_citations": 0,
+        "ungrounded_amounts": [],
+        "citations": [
+          "POL-07#c0",
+          "POL-01#c0"
+        ],
+        "rationale": "The customer asked a policy question (intent: policy_question). There is no eligibility_result, and the allowed recommendations are inform, need_info, escalate. Use the policy excerpts provided to answer whether bulk orders are supported. POL-07 covers cancellations and order changes, not bulk ordering directly, so we can state general guidance: bulk orders are not specifically addressed, but changes/cancellations apply before shipment; ordering bulk does not change policy. Since the user asked about placing a bulk order for business, there is no explicit restriction in the supplied policies. The agent should respond with general information and offer escalation if needed.",
+        "reply": "Hi {{first_name}}, thanks for checking. Our policy doesn\u2019t specify a limit on bulk orders in the documents provided. Generally, cancellations or changes are possible before shipment (POL-07). If you have a specific order in mind, share details (quantity, items, delivery timeline), and I\u2019ll help confirm what\u2019s possible. If you\u2019d like, I can connect you with a specialist for bulk orders.",
+        "notices": [],
+        "latency_s": 4.48,
+        "prompt_tokens": 4440,
+        "completion_tokens": 405,
+        "llm_calls": 2
+      }
+    ]
+  }
+}

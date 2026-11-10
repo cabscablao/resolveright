@@ -9,6 +9,6 @@ qdrant_db/
 .diskcache/
 *.sqlite3
 logs/
-eval/results/raw/
+docs/evidence/evals/raw/
 Capstone_Project_*.zip
-eval/results/sdg_knowledge_graph.json
+docs/evidence/evals/sdg_knowledge_graph.json

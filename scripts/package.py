@@ -1,9 +1,9 @@
-"""Build the submission zip (Capstone_Project_<name>.zip) from the files git would track.
+﻿"""Build the submission zip (Capstone_Project_<name>.zip) from the files git would track.
 
 It takes `git ls-files --cached --others --exclude-standard`, so ignored files (`.env`, `.venv`,
 `logs`, caches) are never included. Before writing the zip it refuses to continue if `.env` is in
 the list or if a text file contains something that looks like a key. It also writes the listing
-to docs/evidence/package-listing.txt.
+to docs/evidence/miscellaneous/package-listing.txt.
 
 Run: uv run python -m scripts.package --name "Your Name" [--out ..]
 """
@@ -83,7 +83,7 @@ def main() -> int:
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as z:
         for p in files:
             z.write(ROOT / p, f"Capstone_Project_{safe}/{p}")
-    listing = ROOT / "docs" / "evidence" / "package-listing.txt"
+    listing = ROOT / "docs" / "evidence" / "miscellaneous" / "package-listing.txt"
     listing.parent.mkdir(parents=True, exist_ok=True)
     listing.write_text(
         f"{target.name}: {len(files)} files\n" + "\n".join(files) + "\n", encoding="utf-8"

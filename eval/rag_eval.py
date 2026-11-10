@@ -8,7 +8,7 @@ Run: uv run python -m eval.rag_eval --label baseline
      uv run python -m eval.rag_eval --label section_aware --strategy section
      uv run python -m eval.rag_eval --label smoke --limit 3        (quick check)
      uv run python -m eval.rag_eval --label recheck --only SDG03,G10   (chosen questions)
-It calls paid APIs. It writes eval/results/rag_<label>.json and prints the metrics.
+It calls paid APIs. It writes docs/evidence/evals/rag_<label>.json and prints the metrics.
 
 Metrics (RAGAS 0.4.3, judge model JUDGE_MODEL, default gpt-4o-mini):
   - faithfulness: is every claim in the answer supported by the retrieved text?

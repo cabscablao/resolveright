@@ -1,6 +1,6 @@
 # Caching
 
-Three layers, each with a different job. Evidence: `eval/results/cache-bench.json` (`uv run python -m eval.cache_bench`, test guide CA-01 to CA-08), `tests/test_cache.py`.
+Three layers, each with a different job. Evidence: `docs/evidence/evals/cache-bench.json` (`uv run python -m eval.cache_bench`, test guide CA-01 to CA-08), `tests/test_cache.py`.
 
 | Layer | Technology (course Session 9) | What it saves | Where |
 |---|---|---|---|

@@ -8,7 +8,7 @@ Run: uv run python -m eval.eval_tools --prompt v1_baseline
      uv run python -m eval.eval_tools --prompt v1_baseline --only S01 S23
 It calls the real model, so it costs money.
 It reports accuracy overall, for the MVP subset and for the designed failures
-(scenarios built to fail on purpose). It writes eval/results/tools_<prompt>.json.
+(scenarios built to fail on purpose). It writes docs/evidence/evals/tools_<prompt>.json.
 """
 
 import argparse

@@ -1,0 +1,177 @@
+{
+  "label": "smoke",
+  "environment": {
+    "date": "2026-11-02T14:41:49+00:00",
+    "python": "3.12.11",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "versions": {
+      "ragas": "0.4.3",
+      "langchain": "0.3.30",
+      "langgraph": "0.6.11",
+      "qdrant-client": "1.15.1",
+      "openai": "1.109.1",
+      "langfuse": "5.0.4"
+    },
+    "llm_model": "gpt-5-nano",
+    "embedding_model": "text-embedding-3-small",
+    "prompt_version": "v5_executing",
+    "chunk_strategy": "baseline",
+    "top_k": 4,
+    "as_of_date": "2026-11-02",
+    "temperature": "provider default for gpt-5* (no temperature sent); 0 for other models",
+    "seed": "none (the OpenAI API has no seed we rely on); results can vary a little per run",
+    "retriever": "dense"
+  },
+  "metrics": {
+    "faithfulness": 1.0,
+    "answer_relevancy": 0.6335,
+    "context_precision": 0.9074,
+    "context_recall": 1.0,
+    "correctly_declined": null,
+    "wrongly_declined": "0/3",
+    "retrieval_hit_rate": 1.0,
+    "invalid_citations": 0,
+    "mean_latency_s": 1.7933
+  },
+  "cost": {
+    "agent_model": "gpt-5-nano",
+    "agent_usage": {
+      "calls": 3,
+      "prompt_tokens": 7207,
+      "completion_tokens": 209
+    },
+    "agent_cost_usd": 0.0004,
+    "judge_model": "gpt-4o-mini",
+    "judge_calls": 24,
+    "judge_cost_usd": 0.007
+  },
+  "items": [
+    {
+      "id": "G01",
+      "question": "How many days after delivery can a customer return an item?",
+      "reference_answer": "Within 30 days of the delivery date. The window is counted from the day the carrier marks the order as delivered. Day 30 is still inside the window; day 31 is outside it.",
+      "reference_policy_ids": [
+        "POL-01"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": true,
+      "answer": "Customers may return an eligible item within 30 days of the delivery date.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#c0"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-01#c0",
+        "POL-04#c0",
+        "POL-03#c0",
+        "POL-08#c0"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-03",
+        "POL-04",
+        "POL-08"
+      ],
+      "contexts": [
+        "# POL-01: Returns Policy\n\n**Document ID:** POL-01 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy explains when Brightcart accepts returns for change-of-mind reasons and how those returns are refunded. Returns for damaged, defective or wrong items follow POL-04 instead, and non-returnable items are listed in POL-03.\n\n## Return window\n\nCustomers may return an eligible item within **30 days of the delivery date**. The window is counted from the day the carrier marks the order as delivered, not from the order date or the ship date. Day 30 is still inside the window; day 31 is outside it. Brightcart support agents may not extend the window. A request outside the window is declined politely, and the agent may mention that damaged or defective items are handled under different rules.\n\n## Condition of returned items\n\nItems must be unused and returned in their original packaging, with all accessories and tags. Items that show signs of wear, use or missing parts may be refused or refunded only in part, after review by the agent.\n\n## Who pays for return shipping\n\nFor change-of-mind returns, the customer pays return shipping. Instead of asking the customer to prepay a label, Brightcart deducts a flat return-shipping fee from the refund: **\u20b1200** for orders delivered within Metro Manila and **\u20b1500** for orders delivered outside Metro Manila. Brightcart pays for return shipping only when the return is caused by our error, such as a wrong item or a damaged item (see POL-04).\n\n## Orders delivered outside Metro Manila\n\nFor orders delivered outside Metro Manila, for example to Bulacan, Cavite or Batangas, the flat return-shipping fee is **\u20b1500** instead of \u20b1200, because courier pickups in the provinces cost more. The agent states the fee that matches the delivery address of the order.\n\n## Refund timing and method\n\nRefunds go back to the **original payment method**. The refund is issued **5 to 7 business days after Brightcart receives the returned item** and confirms its condition. Customers who ask where their refund is should be told this timeline. Store credit is available as an alternative (see POL-02).\n\n## Multi-item orders\n\nWhen an order contains several items, only the returned item is refunded. The refund equals the price of that item minus the return-shipping fee (\u20b1200 within Metro Manila, \u20b1500 outside). The other items stay with the customer and are not affected.\n\n## Orders with earlier refunds\n\nIf part of the order has already been refunded, the new refund cannot exceed the amount still unrefunded on that order, minus the return-shipping fee.\n\n## Approval limits\n\nAgents may approve refunds up to \u20b15,000. Refunds above that amount need manager approval (see POL-02 and POL-10).",
+        "# POL-04: Damaged, Defective and Wrong Items\n\n**Document ID:** POL-04 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy covers items that arrive broken, do not work, or are not what the customer ordered.\n\n## Reporting deadlines\n\n- **Damaged items** must be reported within **7 days of the delivery date**.\n- **Defective items** (the item does not work as intended) must be reported within **30 days of the delivery date**. Longer-term defects may be covered by the warranty in POL-08.\n- **Wrong items** (a different product, size or colour from the order) should be reported within 30 days of delivery.\n\n## Evidence\n\nFor damage, the customer must provide **photos** of the item and of the packaging. The agent asks for photos before approving anything. For defects, a short description of the fault is enough. For wrong items, a photo of the item received is helpful but not required.\n\n## Remedies\n\nThe customer may choose a **replacement or a refund**. If Brightcart is at fault, the refund includes the original shipping fee. Brightcart pays for the return, and the customer receives a **free return label** for wrong items and for damaged or defective items that need to be sent back. The return-shipping fee from POL-01 never applies to these cases.\n\n## Final-sale items\n\nClearance or personalised items that are defective, damaged or wrong are still covered (see POL-03).\n\n## Late claims\n\nA damage claim reported **more than 7 days after delivery** cannot be approved by a support agent. The agent must escalate it to a human reviewer with a short case summary and must not promise any outcome to the customer. The same applies to defect claims after 30 days unless POL-08 warranty terms apply.\n\n## Approval limits\n\nAgents may approve resolutions up to \u20b15,000. Higher-value claims, such as a \u20b130,000 laptop, need manager approval and are escalated (POL-02, POL-10).\n\n## Safety\n\nIf a defective product creates a safety risk, such as overheating or smoke, the agent stops normal processing and escalates immediately as urgent, following POL-10. The agent advises the customer to stop using the product.\n\n## What to tell the customer\n\nThe reply should apologise, state what is needed next (photos, a choice of replacement or refund), and avoid promising approval before the checks are complete.",
+        "# POL-03: Final-Sale and Non-Returnable Items\n\n**Document ID:** POL-03 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nSome Brightcart products cannot be returned for a change of mind. This policy lists them and explains the exceptions.\n\n## Non-returnable categories\n\nThe following items are **non-returnable** for change-of-mind requests:\n\n- **Clearance items.** Products sold in the Clearance section are final sale. The product page and the order confirmation state this.\n- **Personalised items.** Products made to order with a name, text or custom design, such as engraved or printed goods.\n- **Gift cards.** Physical or digital gift cards (see also POL-09).\n- **Opened consumables.** Food, supplements and similar consumable products once the seal has been opened.\n- **Hygiene items.** Items such as personal-care devices, underwear and swimwear once the hygiene seal has been removed.\n\nUnopened consumables that are still sealed follow the normal return rules in POL-01.\n\n## Exceptions\n\nThe restriction does not apply when the item is **defective, damaged, or the wrong item was sent**. In those cases the claim is handled under POL-04 even if the product was clearance or personalised. A clearance lamp that arrives broken, for example, is eligible for replacement or refund. Warranty claims under POL-08 also remain available.\n\n## Personalised items and errors\n\nIf a personalised item has an error, the agent must first establish **who made the error**. When Brightcart made the mistake, for example by printing a different name from the one on the order, it is treated as a wrong item. When the customer supplied the wrong spelling, the item is final sale. If it is unclear who made the error, the agent asks the customer for the original text they entered, and escalates if it still cannot be determined.\n\n## What agents say to customers\n\nWhen a request is declined because an item is final sale, the agent should explain the rule in plain words, mention the exceptions, and ask whether the item arrived damaged or defective. The agent must not make exceptions to this policy on their own authority.\n\n## Related policies\n\nReturn windows and fees are in POL-01. Damage and defect timelines are in POL-04. Approval limits are in POL-02.",
+        "# POL-08: Warranty\n\n**Document ID:** POL-08 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy sets out Brightcart's warranty for products that fail after the normal return period.\n\n## Warranty periods\n\n- **Electronics:** **12 months from the delivery date** for manufacturing defects.\n- **Apparel and home goods:** **90 days from the delivery date** for workmanship defects, such as failed stitching or a broken seam.\n\nThe period is counted from the delivery date shown on the order.\n\n## What is covered\n\nThe warranty covers failures caused by how the product was made. Examples are a speaker that stops working after months of normal use, or a seam that comes apart.\n\n## What is not covered\n\nThe warranty **excludes accidental damage**, such as drops, spills, water damage, misuse, unauthorised repairs and normal wear and tear. Cosmetic changes from ordinary use are also excluded.\n\n## Remedy\n\nFor a valid claim within the warranty period, the remedy is a **replacement**. If a replacement is not available, a refund or store credit may be offered. Warranty remedies do not carry the return-shipping fee, because the item has failed for a reason that is our responsibility.\n\n## Expired warranty\n\nIf the claim is outside the warranty period, for example a defect reported 13 months after delivery of an electronic item, the agent cannot approve a replacement or refund. The agent politely explains that the warranty has ended. Repair services for out-of-warranty items are not covered by these policy documents, so the agent must not promise any.\n\n## Evidence\n\nThe agent asks for a short description of the fault and when it started. Photos or video are helpful. Where the cause may be accidental damage, the agent escalates for review rather than denying outright.\n\n## Approval limits\n\nAgents may approve warranty replacements up to \u20b15,000. Higher-value items go to manager approval (POL-02).\n\n## Relationship to returns\n\nItems within 30 days of delivery may also be eligible under POL-04. The agent chooses the policy that gives the customer the better lawful outcome."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 2.18,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.5771,
+        "context_precision": 0.9167,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G02",
+      "question": "Who pays for return shipping when the customer changes their mind, and how much is deducted?",
+      "reference_answer": "The customer pays. Brightcart deducts a flat return-shipping fee from the refund instead of asking the customer to prepay a label: \u20b1200 for orders delivered within Metro Manila and \u20b1500 for orders delivered outside Metro Manila.",
+      "reference_policy_ids": [
+        "POL-01"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": true,
+      "answer": "For change-of-mind returns, the customer pays return shipping. Brightcart deducts a flat return-shipping fee from the refund: \u20b1200 within Metro Manila or \u20b1500 outside Metro Manila.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#c0"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-01#c0",
+        "POL-03#c0",
+        "POL-07#c0",
+        "POL-02#c0"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-03",
+        "POL-07"
+      ],
+      "contexts": [
+        "# POL-01: Returns Policy\n\n**Document ID:** POL-01 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy explains when Brightcart accepts returns for change-of-mind reasons and how those returns are refunded. Returns for damaged, defective or wrong items follow POL-04 instead, and non-returnable items are listed in POL-03.\n\n## Return window\n\nCustomers may return an eligible item within **30 days of the delivery date**. The window is counted from the day the carrier marks the order as delivered, not from the order date or the ship date. Day 30 is still inside the window; day 31 is outside it. Brightcart support agents may not extend the window. A request outside the window is declined politely, and the agent may mention that damaged or defective items are handled under different rules.\n\n## Condition of returned items\n\nItems must be unused and returned in their original packaging, with all accessories and tags. Items that show signs of wear, use or missing parts may be refused or refunded only in part, after review by the agent.\n\n## Who pays for return shipping\n\nFor change-of-mind returns, the customer pays return shipping. Instead of asking the customer to prepay a label, Brightcart deducts a flat return-shipping fee from the refund: **\u20b1200** for orders delivered within Metro Manila and **\u20b1500** for orders delivered outside Metro Manila. Brightcart pays for return shipping only when the return is caused by our error, such as a wrong item or a damaged item (see POL-04).\n\n## Orders delivered outside Metro Manila\n\nFor orders delivered outside Metro Manila, for example to Bulacan, Cavite or Batangas, the flat return-shipping fee is **\u20b1500** instead of \u20b1200, because courier pickups in the provinces cost more. The agent states the fee that matches the delivery address of the order.\n\n## Refund timing and method\n\nRefunds go back to the **original payment method**. The refund is issued **5 to 7 business days after Brightcart receives the returned item** and confirms its condition. Customers who ask where their refund is should be told this timeline. Store credit is available as an alternative (see POL-02).\n\n## Multi-item orders\n\nWhen an order contains several items, only the returned item is refunded. The refund equals the price of that item minus the return-shipping fee (\u20b1200 within Metro Manila, \u20b1500 outside). The other items stay with the customer and are not affected.\n\n## Orders with earlier refunds\n\nIf part of the order has already been refunded, the new refund cannot exceed the amount still unrefunded on that order, minus the return-shipping fee.\n\n## Approval limits\n\nAgents may approve refunds up to \u20b15,000. Refunds above that amount need manager approval (see POL-02 and POL-10).",
+        "# POL-03: Final-Sale and Non-Returnable Items\n\n**Document ID:** POL-03 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nSome Brightcart products cannot be returned for a change of mind. This policy lists them and explains the exceptions.\n\n## Non-returnable categories\n\nThe following items are **non-returnable** for change-of-mind requests:\n\n- **Clearance items.** Products sold in the Clearance section are final sale. The product page and the order confirmation state this.\n- **Personalised items.** Products made to order with a name, text or custom design, such as engraved or printed goods.\n- **Gift cards.** Physical or digital gift cards (see also POL-09).\n- **Opened consumables.** Food, supplements and similar consumable products once the seal has been opened.\n- **Hygiene items.** Items such as personal-care devices, underwear and swimwear once the hygiene seal has been removed.\n\nUnopened consumables that are still sealed follow the normal return rules in POL-01.\n\n## Exceptions\n\nThe restriction does not apply when the item is **defective, damaged, or the wrong item was sent**. In those cases the claim is handled under POL-04 even if the product was clearance or personalised. A clearance lamp that arrives broken, for example, is eligible for replacement or refund. Warranty claims under POL-08 also remain available.\n\n## Personalised items and errors\n\nIf a personalised item has an error, the agent must first establish **who made the error**. When Brightcart made the mistake, for example by printing a different name from the one on the order, it is treated as a wrong item. When the customer supplied the wrong spelling, the item is final sale. If it is unclear who made the error, the agent asks the customer for the original text they entered, and escalates if it still cannot be determined.\n\n## What agents say to customers\n\nWhen a request is declined because an item is final sale, the agent should explain the rule in plain words, mention the exceptions, and ask whether the item arrived damaged or defective. The agent must not make exceptions to this policy on their own authority.\n\n## Related policies\n\nReturn windows and fees are in POL-01. Damage and defect timelines are in POL-04. Approval limits are in POL-02.",
+        "# POL-07: Cancellations and Order Changes\n\n**Document ID:** POL-07 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy explains when a customer can cancel an order or change its delivery address.\n\n## The rule: before shipment only\n\nBrightcart allows a customer to **cancel an order or change its delivery address only before the order ships**. An order whose status is *processing* can be cancelled or changed. Once the status is *shipped*, *in transit* or *delivered*, the order can no longer be cancelled or redirected, because the package is already with the carrier.\n\n## Cancelling an order that has not shipped\n\nIf the order is still processing, the agent can recommend cancellation. The full amount, including shipping, is refunded to the original payment method. Customers should expect the refund 5 to 7 business days after the cancellation is confirmed.\n\n## Changing the address\n\nIf the order is still processing, the agent can recommend an address update. The customer must provide the complete new address. Support does not store it in free-text notes; it goes into the order system by the fulfilment team. In this tool the agent only records the recommendation.\n\n## Orders that have already shipped\n\nAfter shipment, **cancellation is refused**. The agent explains that the package has already left our warehouse and offers the alternative: the customer can **return the item after delivery** under the normal return rules in POL-01. The customer should not refuse delivery or ask the carrier to return the parcel, because this causes delays and extra fees.\n\n## Orders already cancelled\n\nIf an order was cancelled and the refund has been issued, the customer is told the date of the refund and the 5 to 7 business day timeline. If more than 7 business days have passed without the money arriving, the agent escalates.\n\n## Edge cases\n\nIf the status is unclear or the customer disputes the shipment date, the agent escalates rather than guessing. Cancellation requests never need manager approval, because the refund is the full amount paid for an order that has not shipped.\n\n## What to tell the customer\n\nBe clear and brief. State whether the request is possible, and give the next step.",
+        "# POL-02: Refunds and Store Credit\n\n**Document ID:** POL-02 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy describes the forms a resolution can take at Brightcart and who is allowed to approve them.\n\n## Full and partial refunds\n\nBrightcart issues a **full refund** when the problem is our error, for example a damaged item, a defective item, a wrong item, or a package lost in transit. A **partial refund** applies when only part of an order is returned, when an item shows wear, or when a deduction such as the return-shipping fee (POL-01) applies. Refunds are paid to the original payment method.\n\n## Store credit alternative\n\nA customer may choose **store credit** instead of a refund to the original payment method. Store credit carries a **10% bonus**: a \u20b11,500.00 refund becomes \u20b11,650.00 in credit. Store credit does not expire, is applied to the customer's Brightcart account, and cannot be converted back to cash once issued. Agents should offer store credit as an option but never push it.\n\n## Shipping fees\n\nOriginal shipping fees are refunded **only when the problem is our error**: damaged, defective or wrong items, lost packages, or a late delivery as described in POL-05. For ordinary change-of-mind returns the original shipping fee is not refunded.\n\n## Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **\u20b15,000** per case. Anything **above \u20b15,000 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case.\n\n## Combined amounts\n\nThe \u20b15,000 limit applies to the total value of the resolution for the case, not to each item separately. A \u20b13,000 refund plus a \u20b12,500 shipping credit is \u20b15,500 in total and needs manager approval.\n\n## Refund timing\n\nAfter approval, refunds are issued to the original payment method. Customers should expect them 5 to 7 business days after the returned item is received, or 5 to 7 business days after approval when no return is required.\n\n## Gift cards\n\nGift cards are not refundable, as described in POL-09.\n\n## Documentation\n\nEvery approved resolution must record the order number, the policy cited, and the amount. Resolution amounts must never exceed what the order data shows was paid and not yet refunded."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.51,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6705,
+        "context_precision": 0.8056,
+        "context_recall": 1.0
+      }
+    },
+    {
+      "id": "G03",
+      "question": "How long does a refund take after the returned item is received?",
+      "reference_answer": "The refund goes to the original payment method 5 to 7 business days after Brightcart receives the returned item and confirms its condition.",
+      "reference_policy_ids": [
+        "POL-01"
+      ],
+      "type": "answerable",
+      "reviewed_by_human": true,
+      "answer": "Refunds are issued 5 to 7 business days after Brightcart receives the returned item (and confirms its condition). Store credit is an alternative option with a 10% bonus.",
+      "answered": true,
+      "cited_chunk_ids": [
+        "POL-01#c0",
+        "POL-02#c0"
+      ],
+      "retrieved_chunk_ids": [
+        "POL-01#c0",
+        "POL-02#c0",
+        "POL-04#c0",
+        "POL-06#c0"
+      ],
+      "retrieved_docs": [
+        "POL-01",
+        "POL-02",
+        "POL-04",
+        "POL-06"
+      ],
+      "contexts": [
+        "# POL-01: Returns Policy\n\n**Document ID:** POL-01 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy explains when Brightcart accepts returns for change-of-mind reasons and how those returns are refunded. Returns for damaged, defective or wrong items follow POL-04 instead, and non-returnable items are listed in POL-03.\n\n## Return window\n\nCustomers may return an eligible item within **30 days of the delivery date**. The window is counted from the day the carrier marks the order as delivered, not from the order date or the ship date. Day 30 is still inside the window; day 31 is outside it. Brightcart support agents may not extend the window. A request outside the window is declined politely, and the agent may mention that damaged or defective items are handled under different rules.\n\n## Condition of returned items\n\nItems must be unused and returned in their original packaging, with all accessories and tags. Items that show signs of wear, use or missing parts may be refused or refunded only in part, after review by the agent.\n\n## Who pays for return shipping\n\nFor change-of-mind returns, the customer pays return shipping. Instead of asking the customer to prepay a label, Brightcart deducts a flat return-shipping fee from the refund: **\u20b1200** for orders delivered within Metro Manila and **\u20b1500** for orders delivered outside Metro Manila. Brightcart pays for return shipping only when the return is caused by our error, such as a wrong item or a damaged item (see POL-04).\n\n## Orders delivered outside Metro Manila\n\nFor orders delivered outside Metro Manila, for example to Bulacan, Cavite or Batangas, the flat return-shipping fee is **\u20b1500** instead of \u20b1200, because courier pickups in the provinces cost more. The agent states the fee that matches the delivery address of the order.\n\n## Refund timing and method\n\nRefunds go back to the **original payment method**. The refund is issued **5 to 7 business days after Brightcart receives the returned item** and confirms its condition. Customers who ask where their refund is should be told this timeline. Store credit is available as an alternative (see POL-02).\n\n## Multi-item orders\n\nWhen an order contains several items, only the returned item is refunded. The refund equals the price of that item minus the return-shipping fee (\u20b1200 within Metro Manila, \u20b1500 outside). The other items stay with the customer and are not affected.\n\n## Orders with earlier refunds\n\nIf part of the order has already been refunded, the new refund cannot exceed the amount still unrefunded on that order, minus the return-shipping fee.\n\n## Approval limits\n\nAgents may approve refunds up to \u20b15,000. Refunds above that amount need manager approval (see POL-02 and POL-10).",
+        "# POL-02: Refunds and Store Credit\n\n**Document ID:** POL-02 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy describes the forms a resolution can take at Brightcart and who is allowed to approve them.\n\n## Full and partial refunds\n\nBrightcart issues a **full refund** when the problem is our error, for example a damaged item, a defective item, a wrong item, or a package lost in transit. A **partial refund** applies when only part of an order is returned, when an item shows wear, or when a deduction such as the return-shipping fee (POL-01) applies. Refunds are paid to the original payment method.\n\n## Store credit alternative\n\nA customer may choose **store credit** instead of a refund to the original payment method. Store credit carries a **10% bonus**: a \u20b11,500.00 refund becomes \u20b11,650.00 in credit. Store credit does not expire, is applied to the customer's Brightcart account, and cannot be converted back to cash once issued. Agents should offer store credit as an option but never push it.\n\n## Shipping fees\n\nOriginal shipping fees are refunded **only when the problem is our error**: damaged, defective or wrong items, lost packages, or a late delivery as described in POL-05. For ordinary change-of-mind returns the original shipping fee is not refunded.\n\n## Approval authority\n\nSupport agents may approve refunds, store credit and replacements up to **\u20b15,000** per case. Anything **above \u20b15,000 needs manager approval**. When a request exceeds the limit, the agent does not approve it. The recommended action is to escalate with a summary, and the customer is told that a manager will review the case.\n\n## Combined amounts\n\nThe \u20b15,000 limit applies to the total value of the resolution for the case, not to each item separately. A \u20b13,000 refund plus a \u20b12,500 shipping credit is \u20b15,500 in total and needs manager approval.\n\n## Refund timing\n\nAfter approval, refunds are issued to the original payment method. Customers should expect them 5 to 7 business days after the returned item is received, or 5 to 7 business days after approval when no return is required.\n\n## Gift cards\n\nGift cards are not refundable, as described in POL-09.\n\n## Documentation\n\nEvery approved resolution must record the order number, the policy cited, and the amount. Resolution amounts must never exceed what the order data shows was paid and not yet refunded.",
+        "# POL-04: Damaged, Defective and Wrong Items\n\n**Document ID:** POL-04 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy covers items that arrive broken, do not work, or are not what the customer ordered.\n\n## Reporting deadlines\n\n- **Damaged items** must be reported within **7 days of the delivery date**.\n- **Defective items** (the item does not work as intended) must be reported within **30 days of the delivery date**. Longer-term defects may be covered by the warranty in POL-08.\n- **Wrong items** (a different product, size or colour from the order) should be reported within 30 days of delivery.\n\n## Evidence\n\nFor damage, the customer must provide **photos** of the item and of the packaging. The agent asks for photos before approving anything. For defects, a short description of the fault is enough. For wrong items, a photo of the item received is helpful but not required.\n\n## Remedies\n\nThe customer may choose a **replacement or a refund**. If Brightcart is at fault, the refund includes the original shipping fee. Brightcart pays for the return, and the customer receives a **free return label** for wrong items and for damaged or defective items that need to be sent back. The return-shipping fee from POL-01 never applies to these cases.\n\n## Final-sale items\n\nClearance or personalised items that are defective, damaged or wrong are still covered (see POL-03).\n\n## Late claims\n\nA damage claim reported **more than 7 days after delivery** cannot be approved by a support agent. The agent must escalate it to a human reviewer with a short case summary and must not promise any outcome to the customer. The same applies to defect claims after 30 days unless POL-08 warranty terms apply.\n\n## Approval limits\n\nAgents may approve resolutions up to \u20b15,000. Higher-value claims, such as a \u20b130,000 laptop, need manager approval and are escalated (POL-02, POL-10).\n\n## Safety\n\nIf a defective product creates a safety risk, such as overheating or smoke, the agent stops normal processing and escalates immediately as urgent, following POL-10. The agent advises the customer to stop using the product.\n\n## What to tell the customer\n\nThe reply should apologise, state what is needed next (photos, a choice of replacement or refund), and avoid promising approval before the checks are complete.",
+        "# POL-06: Lost Packages\n\n**Document ID:** POL-06 | **Version:** 1.0 | **Effective date:** 2026-01-01 | **Owner:** Brightcart Customer Care\n\n## Purpose\n\nThis policy defines when a package is treated as lost and what Brightcart offers the customer.\n\n## Definition of lost\n\nA package is treated as **lost when 7 or more days have passed after the estimated delivery date** and the order still shows no delivery. The count starts on the estimated delivery date shown on the order. For example, if the estimated delivery date was 9 days ago and the package has not arrived, it is lost. If it was 1 day ago, the package is only late and POL-05 applies.\n\n## Remedy\n\nWhen a package is lost, the customer is offered a **replacement or a refund**, at the customer's choice. The refund includes the original shipping fee because the problem is our error (POL-02). No return of the item is needed. If the replacement item is out of stock, the refund or store credit is offered instead.\n\n## Checks before approval\n\nBefore offering a remedy the agent confirms:\n\n1. The order belongs to the customer who is asking.\n2. The status is not delivered.\n3. The estimated delivery date is at least 7 days in the past.\n\nIf the order shows as delivered but the customer says it never arrived, the agent does not approve a remedy and instead escalates for investigation, because carrier proof of delivery has to be checked.\n\n## If the package turns up later\n\nIf the original package arrives after a replacement has been sent, the customer is asked to refuse or return it using a free label. Agents do not chase this case further.\n\n## Approval limits\n\nAgents may approve a replacement or refund up to \u20b15,000. Above that, manager approval is needed (POL-02).\n\n## What to tell the customer\n\nThe reply should apologise, confirm that the package is treated as lost under our policy, and ask whether the customer prefers a replacement or a refund. It should not guess at what the carrier did."
+      ],
+      "hit": true,
+      "invalid_citations": [],
+      "latency_s": 1.69,
+      "ragas": {
+        "faithfulness": 1.0,
+        "answer_relevancy": 0.6529,
+        "context_precision": 1.0,
+        "context_recall": 1.0
+      }
+    }
+  ]
+}

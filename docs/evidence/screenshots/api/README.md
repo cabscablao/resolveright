@@ -4,7 +4,7 @@
 |---|---|---|
 | `api-openapi.png` | The generated API documentation page (`/docs`) | Usable interface, API-02 |
 
-Command-line proof that the API works: [`../../api-curl.txt`](../../api-curl.txt).
+Command-line proof that the API works: [`../../miscellaneous/api-curl.txt`](../../miscellaneous/api-curl.txt).
 
 ## Screenshots
 

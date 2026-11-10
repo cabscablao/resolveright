@@ -8,7 +8,7 @@ Run: uv run python -m eval.compare_prompts                      (v1_baseline v2_
      uv run python -m eval.compare_prompts --versions v1_baseline v3_checklist
      uv run python -m eval.compare_prompts --versions v2_grounded v4_approval_aware   (after D47)
 It calls the real model, so it costs money.
-It writes eval/results/compare_prompts.json and prints a markdown table
+It writes docs/evidence/evals/compare_prompts.json and prints a markdown table
 that can be pasted into docs/prompt-comparison.md.
 """
 

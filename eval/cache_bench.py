@@ -10,7 +10,7 @@ were answered from the cache.
 
 Run: uv run python -m eval.cache_bench      (real model; about 130 LLM calls, well under USD 0.10)
      uv run python -m eval.cache_bench --offline-only      (no API calls; only CA-05 to CA-07)
-It writes eval/results/cache-bench.json.
+It writes docs/evidence/evals/cache-bench.json.
 
 Real-model parts (CA-01 to CA-04, CA-08) use the live agent with a throw-away SQLite file and a
 throw-away Qdrant folder, so the application's own caches are not touched. CA-05 to CA-07 test

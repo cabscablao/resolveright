@@ -2,14 +2,14 @@
 
 > **Stale since D52 (localization to the Philippines).** All numbers below were measured before the policies, data and amounts moved to pesos (agent limit ₱5,000, return fee ₱200 / ₱500). Amounts quoted in the text, such as `$82.05` or the `$150` limit, are the old dollar values. Re-run the evaluations after the owner's golden-set review (paid, needs the owner's go-ahead).
 
-> **D50 (2026-10-30): the agent now executes in-policy resolutions (mock) and escalates only on a policy rule or a policy gap.** Every number in this file is from before D50 (the prompt was `v2_grounded` or `v4_approval_aware`, nothing was executed, and GR-10 counted as an attack). The new default prompt `v5_executing` has not been compared yet. Re-running the paid evaluations needs the owner's yes. See `docs/design-decisions.md` D50. **D51 (2026-10-31)** adds a case status check to the scenario runner (an escalated result must be saved as `escalated`, everything else as `completed` by the chatbot); it has not been run with the paid model.
+> **D50 (2026-10-30): the agent now executes in-policy resolutions (mock) and escalates only on a policy rule or a policy gap.** Every number in this file is from before D50 (the prompt was `v2_grounded` or `v4_approval_aware`, nothing was executed, and GR-10 counted as an attack). The new default prompt `v5_executing` has not been compared yet. Re-running the paid evaluations needs the owner's yes. See `docs/miscellaneous/design-decisions.md` D50. **D51 (2026-10-31)** adds a case status check to the scenario runner (an escalated result must be saved as `escalated`, everything else as `completed` by the chatbot); it has not been run with the paid model.
 
 Status after W2 Weekend 1: golden set, RAG baseline, tool scenarios, prompt comparison, retrieval improvement, the refusal suite, the caching benchmark, the LLM-as-judge and the RAGAS synthetic-data candidates are done (judge scores and the golden set and candidate reviews done on 2026-11-02; the RAGAS re-run on the reviewed sets was done the same day, see section 1b). This file is updated as each is done.
 
-> **Re-run after D47 (2026-10-29).** The sections below hold the earlier numbers (measured before human approval was limited to escalations and before POL-10 v1.1). The re-run is in the section "Re-run after D47" at the end; the earlier result files are kept in `eval/results/pre_d47/`. See `docs/design-decisions.md` D47.
+> **Re-run after D47 (2026-10-29).** The sections below hold the earlier numbers (measured before human approval was limited to escalations and before POL-10 v1.1). The re-run is in the section "Re-run after D47" at the end; the earlier result files are kept in `docs/evidence/evals/pre_d47/`. See `docs/miscellaneous/design-decisions.md` D47.
 
 ## Method
-- All evaluation code is in `eval/` and runs with `uv run python -m eval.<script>` (also `.\tasks.ps1 eval-rag | eval-tools | compare-prompts`). Raw outputs, library versions, models and settings are saved in `eval/results/` with every run.
+- All evaluation code is in `eval/` and runs with `uv run python -m eval.<script>` (also `.\tasks.ps1 eval-rag | eval-tools | compare-prompts`). Raw outputs, library versions, models and settings are saved in `docs/evidence/evals/` with every run.
 - Agent model `gpt-5-nano` (`LLM_MODEL`). RAGAS judge model `gpt-4o-mini` (`JUDGE_MODEL`), deliberately a different model from the one being judged. Embeddings `text-embedding-3-small`.
 - No seed is available through the OpenAI API, so results vary a little between runs.
 
@@ -29,10 +29,10 @@ Configuration: baseline chunking (RecursiveCharacterTextSplitter, 800 tokens, ov
 | Citations to a chunk that was not retrieved | 0 |
 | Cost | agent USD 0.004, judge USD 0.049 (estimated) |
 
-Metrics are averaged over the 20 answerable questions. File: `eval/results/rag_baseline.json`.
+Metrics are averaged over the 20 answerable questions. File: `docs/evidence/evals/rag_baseline.json`.
 
 ## 1b. RAG re-run on the reviewed sets (2026-11-02)
-Command: `uv run python -m eval.rag_eval --include-sdg --label baseline_v2_reviewed`. Dataset: the 25 golden questions (with the AI-reviewed edits to G06, G18, G20) plus the 11 reviewed synthetic questions in `eval/golden_rag_sdg.jsonl` (`reference_policy_ids` checked against the policies; SDG10 corrected). That is 36 questions: 31 answerable, 5 unanswerable. Same configuration as section 1 (baseline chunking, dense retrieval, top-k 4, `gpt-5-nano` answers, `gpt-4o-mini` judge). File: `eval/results/rag_baseline_v2_reviewed.json`; the old `rag_baseline.json` is kept.
+Command: `uv run python -m eval.rag_eval --include-sdg --label baseline_v2_reviewed`. Dataset: the 25 golden questions (with the AI-reviewed edits to G06, G18, G20) plus the 11 reviewed synthetic questions in `eval/golden_rag_sdg.jsonl` (`reference_policy_ids` checked against the policies; SDG10 corrected). That is 36 questions: 31 answerable, 5 unanswerable. Same configuration as section 1 (baseline chunking, dense retrieval, top-k 4, `gpt-5-nano` answers, `gpt-4o-mini` judge). File: `docs/evidence/evals/rag_baseline_v2_reviewed.json`; the old `rag_baseline.json` is kept.
 
 | Metric | Old baseline (25 questions, 2026-10-29) | Re-run (36 questions) |
 |---|---|---|
@@ -54,7 +54,7 @@ Command: `uv run python -m eval.rag_eval --include-sdg --label baseline_v2_revie
 - **The two runs are not like for like:** the second has 11 more questions and 3 edited reference answers, and RAGAS and the answering model vary a little between runs (no seed). Differences of about 0.02 should not be read as a change in the system.
 - The 11 synthetic rows are AI-reviewed (see section 4e), so this is not an independent human-reviewed result.
 
-**Re-run with the citation rule (`baseline_v3_citerule`, 2026-11-02).** Same 36 questions; the only change is the new rule in `prompts/rag_answer.md`. Faithfulness 0.969, answer relevancy 0.790, context precision 0.956, context recall 0.989, retrieval hit 31/31, 4/5 declined, 0/31 wrongly declined, **0 invalid citations**, mean latency 1.71 s, cost agent USD 0.006 + judge USD 0.078. Faithfulness below 0.9 on G10 (0.5, judge noise, above), G14 (0.8) and SDG06 (0.75); G14 and SDG06 were not examined. Answer relevancy moved by 0.01 (noise level). File: `eval/results/rag_baseline_v3_citerule.json`. The cheap re-check option is `uv run python -m eval.rag_eval --label recheck --only SDG03,G10`.
+**Re-run with the citation rule (`baseline_v3_citerule`, 2026-11-02).** Same 36 questions; the only change is the new rule in `prompts/rag_answer.md`. Faithfulness 0.969, answer relevancy 0.790, context precision 0.956, context recall 0.989, retrieval hit 31/31, 4/5 declined, 0/31 wrongly declined, **0 invalid citations**, mean latency 1.71 s, cost agent USD 0.006 + judge USD 0.078. Faithfulness below 0.9 on G10 (0.5, judge noise, above), G14 (0.8) and SDG06 (0.75); G14 and SDG06 were not examined. Answer relevancy moved by 0.01 (noise level). File: `docs/evidence/evals/rag_baseline_v3_citerule.json`. The cheap re-check option is `uv run python -m eval.rag_eval --label recheck --only SDG03,G10`.
 
 **Interpretation.**
 - The scores are very high because the corpus is small: ten policies of about 600 tokens each, so the 800-token baseline is effectively one chunk per document and top-4 returns four of the ten documents. Perfect recall is therefore expected, and the corpus gives the retriever little room to fail. The improvement planned for W2 Weekday 4 (section-aware chunks) can only show small differences here; it will be reported honestly even if they are within noise.
@@ -64,7 +64,7 @@ Command: `uv run python -m eval.rag_eval --include-sdg --label baseline_v2_revie
 - **G24 ("Do you repair electronics after the warranty expires?") was counted as not declined.** The answer says that repair services are not covered by the policy documents, so in substance it declines, but the model set `answerable=true`. The metric is kept strict (4/5), not adjusted. Its content is checked in the spot-check below.
 
 ## 1b. Retrieval improvement: before and after (W2 Weekday 4)
-Same 25 questions, same answer prompt and judge as the baseline. Chunking: `baseline` (800 tokens, 10 documents become 10 chunks) or `section` (one chunk per `##` heading with a "POL-01 Returns Policy / Return window" prefix, 77 chunks). Retrievers: `dense`, `hybrid` (BM25 + dense, reciprocal rank fusion, `EnsembleRetriever`), `multiquery` (LLM query rewrites, `MultiQueryRetriever`). One run each; files `eval/results/rag_<label>.json`.
+Same 25 questions, same answer prompt and judge as the baseline. Chunking: `baseline` (800 tokens, 10 documents become 10 chunks) or `section` (one chunk per `##` heading with a "POL-01 Returns Policy / Return window" prefix, 77 chunks). Retrievers: `dense`, `hybrid` (BM25 + dense, reciprocal rank fusion, `EnsembleRetriever`), `multiquery` (LLM query rewrites, `MultiQueryRetriever`). One run each; files `docs/evidence/evals/rag_<label>.json`.
 
 | Chunking / retriever / k | Faithfulness | Answer rel. | Ctx precision | Ctx recall | Hit rate | Declined (of 5) | Latency s |
 |---|---|---|---|---|---|---|---|
@@ -90,7 +90,7 @@ The retrieval modes stay in the code (`RETRIEVAL_MODE`, `CHUNK_STRATEGY`) and ar
 ## 2. Tool evaluation (24 scenarios) and 10 policy questions
 Dataset: `eval/tool_scenarios.jsonl` (S01 to S24 from the test guide, plus P01 to P10). 15 scenarios are the MVP subset; S19 to S23 are the designed failures (missing information, non-existent order, tool timeout, wrong tool available, ownership mismatch; since D55 S23 expects `need_info`, so the stored S23 result predates it).
 
-Final run with the chosen prompt `v2_grounded` (`eval/results/compare_prompts.json`):
+Final run with the chosen prompt `v2_grounded` (`docs/evidence/evals/compare_prompts.json`):
 
 | Metric | Result |
 |---|---|
@@ -122,7 +122,7 @@ See `docs/prompt-comparison.md`. Chosen default: v2_grounded.
 Full tables, safety checks and the invalidation policy are in `docs/caching.md`. Summary: exact-match tier 100% hits on repeats with 0 LLM calls (p50 5.9 s to 0.49 s); semantic tier 4 of 5 repeats served but only 1 of 5 paraphrases at the safe 0.92 threshold; 0 false hits on 3 near-neighbour probes; blocked, tool-failure and PII requests never cached.
 
 ## 4d. LLM-as-judge (W2 Weekend 1)
-`eval/judge_prompt.md` defines four criteria (policy accuracy, tone and empathy, completeness, no over-promising) on a 1 to 5 scale with anchors and a JSON output. Judge `gpt-4o-mini` (not the drafting model `gpt-5-nano`) scored all 34 `v2_grounded` reply drafts from the tool scenarios and policy questions (`eval/results/judge_scores.json`, `uv run python -m eval.judge --score`).
+`eval/judge_prompt.md` defines four criteria (policy accuracy, tone and empathy, completeness, no over-promising) on a 1 to 5 scale with anchors and a JSON output. Judge `gpt-4o-mini` (not the drafting model `gpt-5-nano`) scored all 34 `v2_grounded` reply drafts from the tool scenarios and policy questions (`docs/evidence/evals/judge_scores.json`, `uv run python -m eval.judge --score`).
 
 | Criterion | Mean score (34 drafts) |
 |---|---|
@@ -133,12 +133,12 @@ Full tables, safety checks and the invalidation policy are in `docs/caching.md`.
 
 Lowest items: S21 (policy 1, completeness 2; a request with missing information), S06 (over-promising 2: replacement and tracking promised before confirmation), S07, S10, S11, S18 (over-promising 3). The judge is lenient (many all-5 rows), so these scores say the drafts are not obviously bad, not that they are excellent. The judge sees the engine's decision and the cited policy text but not the order record, so it cannot catch a wrong fact that comes from the order data.
 
-**Hand scoring (JD-03, JD-04) was done on 2026-11-02 with LLM assistance, so it is not an independent human check; the results are in `docs/judge-agreement.md`, which states this.** The kappa and agreement figures therefore compare two models' judgments. The sheet procedure was: `eval/results/judge_manual.csv` holds 12 drafts with no judge score shown. Fill the four score columns (1 to 5) blind, then run `uv run python -m eval.judge --agreement`; it writes `docs/judge-agreement.md` (percent within ±1, exact match, Cohen's kappa, disagreements of 2 points or more) and refuses to run with fewer than 10 scored rows.
+**Hand scoring (JD-03, JD-04) was done on 2026-11-02 with LLM assistance, so it is not an independent human check; the results are in `docs/judge-agreement.md`, which states this.** The kappa and agreement figures therefore compare two models' judgments. The sheet procedure was: `docs/evidence/evals/judge_manual.csv` holds 12 drafts with no judge score shown. Fill the four score columns (1 to 5) blind, then run `uv run python -m eval.judge --agreement`; it writes `docs/judge-agreement.md` (percent within ±1, exact match, Cohen's kappa, disagreements of 2 points or more) and refuses to run with fewer than 10 scored rows.
 
 ## 4e. RAGAS synthetic data generation (W2 Weekend 1)
 `eval/sdg.py` follows the course notebook (Session 5, `1-SDG.ipynb`): policies become knowledge-graph nodes, RAGAS transforms add summaries, themes, entities and similarity links, and `TestsetGenerator` produces questions with a query distribution of 50% single-hop specific, 25% multi-hop abstract and 25% multi-hop specific. Generator `gpt-4o-mini`, 77 nodes (one per `## ` policy section), 98 relationships, cost about USD 0.02. Run: `uv run python -m eval.sdg --size 15`.
 
-Output: `eval/results/sdg_candidates.jsonl`, **16 candidates** (8 single-hop, 4 multi-hop abstract, 4 multi-hop specific), generated with `reviewed_by_human: false`. On 2026-11-02 all 16 were reviewed (`reviewed_by_human: true`): 5 dropped (SDG01, SDG04, SDG05, SDG13, SDG14), 10 edited, 1 kept (SDG12). The review was AI-assisted (confirmed by the owner), so it is not an independent human review (same limit as items 2 and 4); the file itself has no reviewer field. They stay apart from `eval/golden_rag.jsonl` and are used only in the 2026-11-02 re-run (section 1b), through `--include-sdg`. The 11 remaining are merged into `eval/golden_rag_sdg.jsonl` by `uv run python -m eval.sdg --merge` (golden-set fields, `source: ragas_sdg`; ids stay SDGnn). `uv run python -m eval.rag_eval --include-sdg` evaluates the golden set plus these. `reference_policy_ids` comes from the automatic `source_docs`. On 2026-11-02 all 11 were checked against `data/policies/` (AI-assisted): only SDG10 (gift cards) changed, from POL-02 + POL-09 to POL-09, because every fact in its answer is in POL-09; the other 10 were correct (for example SDG06 is POL-01 and SDG07 is POL-02, whose text states the ₱5,000 limit).
+Output: `docs/evidence/evals/sdg_candidates.jsonl`, **16 candidates** (8 single-hop, 4 multi-hop abstract, 4 multi-hop specific), generated with `reviewed_by_human: false`. On 2026-11-02 all 16 were reviewed (`reviewed_by_human: true`): 5 dropped (SDG01, SDG04, SDG05, SDG13, SDG14), 10 edited, 1 kept (SDG12). The review was AI-assisted (confirmed by the owner), so it is not an independent human review (same limit as items 2 and 4); the file itself has no reviewer field. They stay apart from `eval/golden_rag.jsonl` and are used only in the 2026-11-02 re-run (section 1b), through `--include-sdg`. The 11 remaining are merged into `eval/golden_rag_sdg.jsonl` by `uv run python -m eval.sdg --merge` (golden-set fields, `source: ragas_sdg`; ids stay SDGnn). `uv run python -m eval.rag_eval --include-sdg` evaluates the golden set plus these. `reference_policy_ids` comes from the automatic `source_docs`. On 2026-11-02 all 11 were checked against `data/policies/` (AI-assisted): only SDG10 (gift cards) changed, from POL-02 + POL-09 to POL-09, because every fact in its answer is in POL-09; the other 10 were correct (for example SDG06 is POL-01 and SDG07 is POL-02, whose text states the ₱5,000 limit).
 
 Automatic checks on the candidates:
 
@@ -163,7 +163,7 @@ Small corpus and small question sets; one run per configuration; the golden set 
 
 ## Re-run after D47 (2026-10-29)
 
-Policies re-ingested first (only POL-10 changed: 1 document embedded, 9 skipped). Model `gpt-5-nano`, prompt `v2_grounded`, one run each, so differences of one case are inside the run-to-run noise. Earlier results: `eval/results/pre_d47/`.
+Policies re-ingested first (only POL-10 changed: 1 document embedded, 9 skipped). Model `gpt-5-nano`, prompt `v2_grounded`, one run each, so differences of one case are inside the run-to-run noise. Earlier results: `docs/evidence/evals/pre_d47/`.
 
 | Suite | After D47 | Before D47 | Notes |
 |---|---|---|---|
@@ -176,6 +176,6 @@ The task-completion check is now `requires_human_approval == (recommendation == 
 
 A bare "I want to talk to human staff" used to pick up an order and an item from earlier turns (seen on the customer page: ORD-1027, "Protein supplement"). It is now handed off at once with only what the message says.
 
-- **Free check, no network:** `uv run python -m eval.human_request_eval` (8 phrasings for the keyword rule, 1 two-turn hand-off check with a scripted model) writes `eval/results/human_request.json`. Result: 9 of 9.
+- **Free check, no network:** `uv run python -m eval.human_request_eval` (8 phrasings for the keyword rule, 1 two-turn hand-off check with a scripted model) writes `docs/evidence/evals/human_request.json`. Result: 9 of 9.
 - **Live scenarios, not run yet (paid, need the owner's go):** H01 "I want to talk to human staff" and H02 "Can I speak to a real person about my refund on ORD-1001?" in `eval/tool_scenarios.jsonl`, kind `human`, so the stored S01 to S24 and P01 to P10 counts and results are unchanged. Run with `eval.scenarios.run_set(prompt_version, kinds=("human",))`.
 - **Golden set unchanged (25 items).** G20 already covers "a customer asking for a human" (POL-10 item 7). Adding an item would make the stored RAGAS baseline stale until a paid re-run.

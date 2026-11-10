@@ -3,7 +3,7 @@
 It holds four small tools: loading datasets (JSONL files), saving result files,
 recording the software and settings of a run, and estimating the money a run cost.
 This file is a library. You do not run it. Other scripts import it.
-It writes result files into eval/results/ (through save_result).
+It writes result files into docs/evidence/evals/ (through save_result).
 """
 
 import json
@@ -20,7 +20,8 @@ from app import config
 from app.agent.schemas import Draft
 
 EVAL_DIR = Path(__file__).resolve().parent
-RESULTS_DIR = EVAL_DIR / "results"
+# Result files live with the evidence (docs/evidence/evals); the code stays in eval/.
+RESULTS_DIR = EVAL_DIR.parent / "docs" / "evidence" / "evals"
 
 # The model that grades answers (RAGAS and the LLM judge). It is deliberately not the model that
 # writes the drafts, so a model does not grade its own work. Set JUDGE_MODEL to change it.
@@ -51,7 +52,7 @@ def load_jsonl(name: str) -> list[dict]:
 
 
 def save_result(name: str, payload: dict) -> Path:
-    """Write a result dict as pretty JSON into eval/results/.
+    """Write a result dict as pretty JSON into docs/evidence/evals/.
 
     Args:
         name: File name to create, for example "rag_baseline.json".

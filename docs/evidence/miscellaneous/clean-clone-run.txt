@@ -1,4 +1,4 @@
-﻿Clean-clone check, 2026-11-03 01:50: fresh folder 05_Release\resolveright (named resolveright-final at the time of the run), no .env, no .venv
+﻿Clean-clone check, 2026-11-03 01:50: fresh folder 05_Release\resolveright-final, no .env, no .venv
 $ uv sync --frozen
 (dependency list shortened)
     return json.dumps(val.to_dict())
